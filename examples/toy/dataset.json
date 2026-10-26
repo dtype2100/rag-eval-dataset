@@ -45,7 +45,9 @@
     "review": {
       "policy": "independent",
       "approved_by": "independent-llm-toy-review",
-      "approved_at": "2026-10-26T16:40:52.729983+00:00"
+      "approved_at": "2026-10-26T16:40:52.729983+00:00",
+      "calibration": "Independent reviewer compared all three questions and labels against the complete two-source toy corpus, including direct, conjunctive, alternative and missing-international-policy cases. No human agreement study or operational judge calibration was performed.",
+      "disagreements": "No label disagreement reported by the independent LLM source reviewer in this limited three-item example."
     },
     "judging": {
       "criteria": "2: directly states required delivery/return timing; 1: related shop policy context without the requested timing; 0: unrelated to the query. International delivery cannot be inferred from standard delivery.",

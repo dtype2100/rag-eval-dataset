@@ -58,5 +58,7 @@ freeze는 미확인 접수 정보·미검토 항목을 거절하며 기존 출�
 - [독립 검토·행동 기준선](docs/review.md)
 - [데이터 계약](skills/rag-dataset-builder/references/contract.md)
 - [데이터별 분석 기준](skills/rag-dataset-builder/references/data-types.md)
+- [세 차례 외부 자료 조사·개선](docs/iterations.md)
+- [검증 계획·결과·한계](docs/validation.md)
 
 이 스킬은 적용 범위 내 평가셋 구축을 돕습니다. 모든 입력에서 정답셋을 만들 수 있거나, 구조 검사를 통과한 정답이 참이라는 보장은 하지 않습니다.

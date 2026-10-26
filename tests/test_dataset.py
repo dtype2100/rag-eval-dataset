@@ -33,7 +33,9 @@ def example():
                 "losses": [], "split_group": "policy-v1",
             }],
             "review": {"policy": "independent", "approved_by": "reviewer",
-                       "approved_at": "2026-10-27T00:00:00Z"},
+                       "approved_at": "2026-10-27T00:00:00Z",
+                       "calibration": "Literal toy source checked; no human agreement study.",
+                       "disagreements": "None observed in the limited source review."},
         },
         "evidence": [{
             "id": "e1", "source_id": "s1", "modality": "text",
@@ -62,7 +64,7 @@ class DatasetTests(unittest.TestCase):
 
     def run_cli(self, data, command="validate", out=None):
         path = self.folder / "input.json"
-        path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        path.write_text(json.dumps(data), encoding="utf-8")
         args = [sys.executable, str(CLI), command, str(path)]
         if out is not None:
             args += ["--out", str(out)]
@@ -268,6 +270,45 @@ class DatasetTests(unittest.TestCase):
         second.update(id="q2", split="dev", leakage_group="different", query="Shipping duration?", evidence_sets=[["e2"]], relevance_judgments={"e2": 2})
         data["items"].append(second)
         self.invalid(data, "split")
+
+    def test_freeze_requires_review_calibration_record(self):
+        data = example()
+        data["manifest"]["review"]["calibration"] = ""
+        self.invalid(data, "calibration", "freeze")
+
+    def test_huge_integer_bbox_returns_json_error(self):
+        data = example()
+        data["manifest"]["sources"][0]["modality"] = "image"
+        data["evidence"][0].update(modality="image", locator={"page": 1, "bbox": [0, 0, 10 ** 400, 1]})
+        result = self.run_cli(data)
+        self.assertEqual(result.returncode, 1)
+        self.assertNotIn("Traceback", result.stderr)
+        self.assertEqual(json.loads(result.stderr)["status"], "error")
+
+    def test_large_integer_time_is_mathematically_finite(self):
+        data = example()
+        data["manifest"]["sources"][0]["modality"] = "audio"
+        data["evidence"][0].update(modality="audio", locator={"start_seconds": 0, "end_seconds": 10 ** 400})
+        result = self.run_cli(data)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_overflowing_exponent_in_extension_is_rejected(self):
+        data = example()
+        data["extra"] = {"nested": [1]}
+        raw = json.dumps(data).replace('"nested": [1]', '"nested": [1e400]')
+        path = self.folder / "overflow.json"
+        path.write_text(raw)
+        result = subprocess.run([sys.executable, str(CLI), "validate", str(path)], text=True, capture_output=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual(json.loads(result.stderr)["status"], "error")
+
+    def test_unpaired_surrogate_cannot_validate_as_utf8(self):
+        data = example()
+        data["items"][0]["query"] = "broken\ud800"
+        result = self.run_cli(data)
+        self.assertEqual(result.returncode, 1)
+        self.assertNotIn("Traceback", result.stderr)
+        self.assertEqual(json.loads(result.stderr)["status"], "error")
 
     def test_freeze_roundtrip_detects_tampering(self):
         out = self.folder / "frozen.json"

@@ -42,6 +42,8 @@ draft는 빈 문자열을 허용해 미확인을 표현한다. 다만 문항이 
 
 review 필드: `policy`는 `independent` 또는 `human-required`.
 동결 시 `approved_by`는 공백 아닌 문자열이고 `approved_at`은 타임존이 있는 ISO 8601 시각이다.
+동결 시 `calibration`, `disagreements`도 공백 아닌 문자열이다. 검토 기준을 확인한 정답·오답·경계 사례와 대조한 방법 및 불일치 해결 결과를 기록한다.
+미수행한 사람 교정·일치도 연구는 했다고 주장하지 않고 한계를 명시한다. 해결되지 않은 항목은 accepted로 동결하지 않는다.
 이 승인은 실제 수행한 데이터셋 검토 승인이다. 저장소 공개 승인과 혼동하지 않는다.
 
 ## Evidence
@@ -116,3 +118,5 @@ human-required 정책에서는 accepted 항목 method가 human/hybrid여야 한�
 - 기존 rag-eval 0.1.0에 연결할 때 안정 근거→청크 매핑을 먼저 검증한다. AND/OR, 이미지 질의, 등급 qrels, 거절/되묻기 의미가 손실되는 변환은 수행하지 않는다. 이 버전에는 exporter나 측정 어댑터가 없다.
 
 JSONL로 작업했다면 이 구조로 명시적으로 묶는다. 파일명만 바꿔 JSONL을 JSON으로 가장하지 않는다.
+확장 필드까지 유효 JSON/UTF-8 직렬화가 가능해야 한다. NaN/Infinity, 지수 오버플로로 생긴 무한대, 짝이 없는 surrogate 문자는 거절한다.
+좌표/시간의 구조 검사는 실제 원본 크기·재생 길이를 검증하지 않는다. 실제 범위와 의미는 원본 검토에서 확인한다.

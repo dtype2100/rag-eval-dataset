@@ -72,6 +72,10 @@ def records(value, path):
     return result
 
 
+def finite_number(value):
+    return type(value) is int or (type(value) is float and math.isfinite(value))
+
+
 def validate_locator(modality, value, path):
     loc = obj(value, path)
     if modality == "text":
@@ -86,11 +90,11 @@ def validate_locator(modality, value, path):
         integer(loc.get("page"), 1, path + ".page")
         box = array(loc.get("bbox"), path + ".bbox")
         require(len(box) == 4, path + ".bbox", "expected four coordinates")
-        require(all(type(n) in (int, float) and math.isfinite(n) and 0 <= n <= 1 for n in box), path + ".bbox", "expected finite normalized coordinates")
+        require(all(finite_number(n) and 0 <= n <= 1 for n in box), path + ".bbox", "expected finite normalized coordinates")
         require(box[0] < box[2] and box[1] < box[3], path + ".bbox", "rectangle must have positive area")
     elif modality in ("audio", "video"):
         start, end = loc.get("start_seconds"), loc.get("end_seconds")
-        require(all(type(n) in (int, float) and math.isfinite(n) for n in (start, end)), path, "expected finite time offsets")
+        require(all(finite_number(n) for n in (start, end)), path, "expected finite time offsets")
         require(0 <= start < end, path, "expected 0 <= start_seconds < end_seconds")
     elif modality == "code":
         string(loc.get("path"), path + ".path")
@@ -98,15 +102,23 @@ def validate_locator(modality, value, path):
         integer(loc.get("end_line"), start, path + ".end_line")
 
 
+def json_bytes(data):
+    try:
+        return json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+    except (TypeError, UnicodeError) as exc:
+        raise ValueError(f"JSON: {exc}") from None
+
+
 def payload_hash(data):
     manifest = {k: v for k, v in data["manifest"].items() if k not in ("payload_sha256", "frozen_at")}
     payload = {**data, "manifest": manifest}
-    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
-    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+    return hashlib.sha256(json_bytes(payload)).hexdigest()
 
 
 def validate_dataset(data, *, for_freeze=False):
     obj(data, "dataset")
+    # Include extension fields: a valid draft must also be serializable when frozen.
+    json_bytes(data)
     manifest = obj(data.get("manifest"), "manifest")
     choice(manifest.get("schema_version"), ("1.0",), "manifest.schema_version")
     for key in ("dataset_id", "version", "corpus_snapshot"):
@@ -135,6 +147,8 @@ def validate_dataset(data, *, for_freeze=False):
     if strict:
         string(review.get("approved_by"), "manifest.review.approved_by")
         timestamp(review.get("approved_at"), "manifest.review.approved_at")
+        for key in ("calibration", "disagreements"):
+            string(review.get(key), f"manifest.review.{key}")
 
     modalities = ("text", "table", "image", "audio", "video", "code")
     sources = records(manifest.get("sources"), "manifest.sources")
