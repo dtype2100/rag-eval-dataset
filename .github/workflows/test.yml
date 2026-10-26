@@ -14,6 +14,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m unittest discover -s tests -v
+      - run: node site/tests/evidence.test.mjs
       - run: python skills/rag-dataset-builder/scripts/dataset.py validate examples/toy/dataset.json
       - run: python skills/rag-dataset-builder/scripts/dataset.py freeze examples/toy/dataset.json --out "$RUNNER_TEMP/toy-dataset.v1.json"
       - run: python skills/rag-dataset-builder/scripts/dataset.py validate "$RUNNER_TEMP/toy-dataset.v1.json"

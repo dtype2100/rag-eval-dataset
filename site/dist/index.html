@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAG 평가 데이터셋 스킬의 구현, 세 차례 전문자료 기반 개선, 테스트 결과와 적용 한계.">
+  <meta name="theme-color" content="#f4f2eb">
+  <title>RAG Dataset Builder — 구현·검증 보고서</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="masthead wrap">
+    <a class="brand" href="#main">RAG / DATASET BUILDER</a>
+    <nav aria-label="보고서 메뉴"><a href="#rounds">개선 기록</a><a href="#proof">검증 결과</a><a href="#limits">적용 한계</a></nav>
+  </header>
+  <main id="main">
+    <section class="intro wrap" aria-labelledby="title">
+      <div class="intro-copy">
+        <p class="eyebrow">구현·검증 보고서 <span>2026.10.27</span></p>
+        <h1 id="title">평가의 시작은<br>좋은 질문과<br><em>확인된 근거.</em></h1>
+        <p class="lead">낯선 자료가 들어와도 먼저 데이터와 사용 과업을 묻고, 평가 가능한 범위를 판단하는 스킬을 만들었습니다.</p>
+        <div class="actions"><a class="primary" href="https://github.com/dtype2100/rag-eval-dataset">GitHub에서 사용하기 <span aria-hidden="true">↗</span></a><a href="https://github.com/dtype2100/rag-eval-dataset/blob/main/skills/rag-dataset-builder/SKILL.md">스킬 읽기</a></div>
+      </div>
+      <aside class="verdict" aria-label="최종 권고와 확인 범위">
+        <p class="eyebrow">최종 권고</p>
+        <h2>실제 자료의 작은 파일럿부터 적용하세요.</h2>
+        <p>구축 절차와 데이터 계약은 검증했습니다. 모든 입력에서 정답셋을 자동 생성하거나, 운영 RAG의 품질을 보증하는 도구는 아닙니다.</p>
+        <dl class="stats"><div><dt>개선·검토 반복</dt><dd>3<span>회</span></dd></div><div><dt>Python 자동 테스트</dt><dd>33<span>개 통과</span></dd></div><div><dt>에이전트 행동 시나리오</dt><dd>6<span>개 확인</span></dd></div></dl>
+        <p class="note">테스트 개수는 RAG 성능 점수가 아닙니다.</p>
+      </aside>
+    </section>
+
+    <section class="flow-section" id="workflow" aria-labelledby="flow-title">
+      <div class="wrap"><div class="section-head"><p class="eyebrow">구현한 절차</p><h2 id="flow-title">먼저 묻고, 읽고,<br>가능한 범위에서 만듭니다.</h2></div>
+        <ol class="flow"><li><b>사용자 질문</b><p>자료의 의미, 실제 질의, 시점·권한·목표를 확인</p></li><li><b>분석·지원 판정</b><p>추출 손실과 근거 접근성을 보고 진행·조건부·중단 결정</p></li><li><b>근거 기반 생성</b><p>과업별 질문과 정답 행동, 대체·결합 근거를 연결</p></li><li><b>독립 검토·동결</b><p>구조 검사와 원문 검토 후 버전·체크섬으로 보존</p></li></ol>
+        <p class="flow-note">검색 전용 과업은 관련성 라벨로 평가합니다. 답변까지 평가할 때 정답·루브릭·충분한 근거를 추가합니다.</p>
+      </div>
+    </section>
+
+    <section class="wrap rounds" id="rounds" aria-labelledby="round-title">
+      <div class="section-head"><p class="eyebrow">전문자료 조사 → 보완 → 테스트 → 검증</p><h2 id="round-title">세 번의 개선,<br>확인된 변경만 반영했습니다.</h2><p>실패를 재현한 회귀 테스트와 독립 행동 검사를 거쳤습니다. 근거가 없는 범용성 보장은 추가하지 않았습니다.</p></div>
+      <article class="round"><div class="round-label"><span>1회차</span><strong>25</strong><small>테스트 통과</small></div><div><h3>“못 찾음”을 “답 없음”으로 오판하지 않게</h3><p>업무별 관련성 기준·후보군·판정 범위를 기록하고, 무정답 검토를 전수와 제한 확인으로 나눴습니다. 미판정 자료는 자동 오답이 아닙니다.</p><p class="test-detail">추가한 회귀 3개: 기준 누락 · 불완전 전수 선언 · 제한 검토의 한계 누락</p><div class="references"><a href="https://aclanthology.org/2021.naacl-main.200/">KILT</a><a href="https://trec.nist.gov/pubs/trec33/papers/overview_33.pdf">TREC pooling</a><a href="https://github.com/dtype2100/rag-eval-dataset/commit/61e95c5">변경 확인 ↗</a></div></div></article>
+      <article class="round"><div class="round-label"><span>2회차</span><strong>28</strong><small>테스트 통과</small></div><div><h3>생성 이력을 남기고 데이터 누출을 차단</h3><p>생성 방법·모델·프롬프트·설정을 기록합니다. Unicode 표기가 다른 동일 질문과 동일 파일의 복사본도 개발·평가셋 분리에서 점검합니다.</p><p class="test-detail">추가한 회귀 3개: 생성 이력 누락 · 한국어 NFC/NFD 중복 · 출처 그룹명 우회</p><div class="references"><a href="https://arxiv.org/abs/1803.09010">Datasheets for Datasets</a><a href="https://aclanthology.org/2023.emnlp-main.308/">평가셋 오염 연구</a><a href="https://github.com/dtype2100/rag-eval-dataset/commit/63adedf">변경 확인 ↗</a></div></div></article>
+      <article class="round"><div class="round-label"><span>3회차</span><strong>33</strong><small>테스트 통과</small></div><div><h3>판정의 한계를 기록하고 입력 경계를 보완</h3><p>검토 교정과 불일치를 기록하며, 상관된 질문을 독립 표본으로 부풀리지 않도록 했습니다. 독립 코드 리뷰가 찾은 큰 정수·JSON·UTF-8 경계 오류도 수정했습니다.</p><p class="test-detail">추가한 회귀 5개: 교정 누락 · 큰 좌표/시간 정수 · 지수 오버플로 · 잘못된 Unicode</p><div class="references"><a href="https://arxiv.org/abs/2306.05685">LLM-as-a-Judge</a><a href="https://aclanthology.org/P18-1128/">NLP 통계 검정</a><a href="https://github.com/dtype2100/rag-eval-dataset/commit/8d5694a">변경 확인 ↗</a></div></div></article>
+    </section>
+
+    <section class="demo-section" aria-labelledby="demo-title">
+      <div class="wrap demo-grid"><div><p class="eyebrow">근거 설계 직접 확인하기</p><h2 id="demo-title">대체 출처는 인정하고,<br>필요한 사실은 모두 찾습니다.</h2><p>X와 Y가 함께 필요한 질문입니다. X는 A 또는 B 문서에서 찾을 수 있습니다. 검색한 근거를 선택해 보세요.</p><code class="formula">(X<sub>A</sub> AND Y) OR (X<sub>B</sub> AND Y)</code><p class="note">실제 검색기가 아닌 합성 논리 예제입니다. 가능한 선택 조합 8개를 자동 검사했습니다.</p></div>
+      <div class="demo"><fieldset><legend>검색 결과에 포함된 근거</legend><label><input name="evidence" type="checkbox" value="X_A" checked><span><b>X — 출처 A</b><small>배송은 3일이 걸립니다.</small></span></label><label><input name="evidence" type="checkbox" value="X_B"><span><b>X — 출처 B</b><small>표준 주문은 3일 안에 도착합니다.</small></span></label><label><input name="evidence" type="checkbox" value="Y" checked><span><b>Y — 반품 조건</b><small>반품은 14일 안에 가능합니다.</small></span></label></fieldset><p id="evidence-result" role="status" aria-live="polite">근거를 선택하면 충족 여부를 표시합니다.</p><noscript><p>JavaScript를 켜면 선택 결과가 표시됩니다. X의 출처 하나와 Y를 함께 확보하면 충분한 근거입니다.</p></noscript></div></div>
+    </section>
+
+    <section class="wrap proof" id="proof" aria-labelledby="proof-title"><div class="section-head"><p class="eyebrow">확인한 것</p><h2 id="proof-title">실행 기록으로<br>결과를 확인할 수 있습니다.</h2></div>
+      <div class="proof-grid"><div class="proof-row"><b>계약·동결·오류 처리</b><span>Python 33개 테스트 통과. AND/OR 보존, 참조 검사, 변조 탐지, 기존 파일 보호 포함.</span></div><div class="proof-row"><b>합성 원문 대조</b><span>출처 2개와 근거 3개의 해시·위치 일치. 별도 LLM이 문항 3개를 전체 원문으로 검토.</span></div><div class="proof-row"><b>행동 검사</b><span>초기 3개와 회차별 1개, 총 6개 시나리오. 사람 검토나 실제 실행을 꾸며 쓰지 않음.</span></div><div class="proof-row"><b>재현 환경</b><span>Python 3.10·3.13 GitHub CI와 깨끗한 복제본에서 확인. 자세한 실행 상태는 연결된 기록 참고.</span></div></div>
+      <div class="document-links"><a href="https://github.com/dtype2100/rag-eval-dataset/blob/main/docs/validation.md">검증 계획·결과 ↗</a><a href="https://github.com/dtype2100/rag-eval-dataset/blob/main/docs/iterations.md">회차별 조사·판단 ↗</a><a href="https://github.com/dtype2100/rag-eval-dataset/actions">GitHub CI ↗</a></div>
+    </section>
+
+    <section class="limits wrap" id="limits" aria-labelledby="limits-title"><div><p class="eyebrow">확인하지 않은 것</p><h2 id="limits-title">범용 절차와<br>만능 생성기는 다릅니다.</h2></div><div><p>원본 없는 벡터, 해독할 수 없는 자료, 정답 기준이 없는 과업에서는 생성을 중단합니다. 이미지·음성·영상은 도구와 원본 검토가 가능한 범위만 다룹니다.</p><p>실제 고객 데이터·운영 RAG·임베딩 모델별 성능·OCR/영상 추출 품질·사람 판정 일치도는 측정하지 않았습니다. 모달리티 6종의 위치 형식 검사는 원본 이해 품질 검증과 다릅니다.</p><p>구조 검사와 체크섬은 정답의 진실성이나 독립 검토의 실재를 증명하지 않습니다. 공개 예제는 오염 없는 최종 holdout이 아닙니다.</p><a href="https://github.com/dtype2100/rag-eval-dataset/blob/main/docs/plan.md">계획의 타당성·반례 검토 읽기 ↗</a></div></section>
+  </main>
+  <footer class="wrap"><span>RAG Dataset Builder · 근거를 남기는 평가</span><a href="https://github.com/dtype2100/rag-eval-dataset">소스와 사용 안내 ↗</a></footer>
+</body>
+</html>

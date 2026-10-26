@@ -53,6 +53,7 @@ freeze는 미확인 접수 정보·미검토 항목을 거절하며 기존 출�
 
 ## 문서
 
+- [공개 구현·검증 보고서](https://rag-eval-dataset-report.datatype2100.chatgpt.site)
 - [계획·타당성 검토](docs/plan.md)
 - [구현 계획](docs/implementation-plan.md)
 - [독립 검토·행동 기준선](docs/review.md)
