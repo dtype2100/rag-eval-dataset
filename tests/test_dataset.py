@@ -18,6 +18,7 @@ def example():
             "status": "draft", "corpus_snapshot": "toy-v1", "task": "rag",
             "split_policy": "query-disjoint", "coverage": ["synthetic text"],
             "limitations": ["Not a production benchmark"],
+            "judging": {"criteria": "Direct evidence for delivery timing is grade 2; partial policy context is grade 1.", "coverage": "exhaustive", "candidate_scope": "all sources in toy-v1"},
             "intake": {
                 "data_description": "Synthetic delivery policy",
                 "user_task": "Find delivery times", "query_language": "en",
@@ -223,7 +224,25 @@ class DatasetTests(unittest.TestCase):
         data["items"][0].update(expected_action="abstain", evidence_sets=[], reference_answer="")
         self.invalid(data, "rationale")
         data["items"][0]["rationale"] = "Toy snapshot has no international delivery policy; checked both sources."
+        data["items"][0]["answerability_check"] = {"method": "exhaustive", "source_ids": ["s1"], "notes": "Read the entire toy source."}
         self.assertEqual(self.run_cli(data).returncode, 0)
+
+    def test_freeze_requires_task_specific_judging_criteria(self):
+        data = example()
+        data["manifest"]["judging"]["criteria"] = ""
+        self.invalid(data, "judging", "freeze")
+
+    def test_abstention_exhaustive_check_requires_all_sources(self):
+        data = example()
+        data["manifest"]["sources"].append({**data["manifest"]["sources"][0], "id": "s2"})
+        data["items"][0].update(expected_action="abstain", evidence_sets=[], rationale="No evidence found", answerability_check={"method": "exhaustive", "source_ids": ["s1"], "notes": "Read one source."})
+        self.invalid(data, "answerability_check")
+
+    def test_bounded_abstention_must_disclose_limitations(self):
+        data = example()
+        data["manifest"]["limitations"] = []
+        data["items"][0].update(expected_action="abstain", evidence_sets=[], rationale="Not found within the checked sample", answerability_check={"method": "bounded", "source_ids": ["s1"], "notes": "Only a limited search; not proof of absence."})
+        self.invalid(data, "limitations", "freeze")
 
     def test_freeze_roundtrip_detects_tampering(self):
         out = self.folder / "frozen.json"

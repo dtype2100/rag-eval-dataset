@@ -17,6 +17,10 @@ Python 3.10+ 표준 라이브러리 검증기는 이 계약의 구조·참조·�
 | intake | 아래 접수 필드 객체 |
 | sources | 최소 1개의 출처 객체 |
 | review | 검토 정책·승인 객체 |
+| judging | `criteria`, `candidate_scope`: 문자열(동결 시 공백 불가); `coverage`: `exhaustive`, `pooled`, `sampled` |
+
+judging.criteria는 업무별 0/1/2의 판정 예와 경계를 설명한다. candidate_scope에는 후보군과 풀링/표본 방법·범위를 기록한다.
+미판정은 0과 다르다. 풀에 없던 검색 결과는 추가 판정하며, 채점 시 판정 범위와 미판정 비율을 함께 보고한다.
 
 intake의 문자열 필드: `data_description`, `user_task`, `query_language`, `scope`, `access_policy`, `external_processing`.
 draft는 빈 문자열을 허용해 미확인을 표현한다. 다만 문항이 담긴 번들의 `data_description`, `user_task`는 항상 필요하다.
@@ -73,12 +77,15 @@ modality는 출처와 같아야 하며, OCR된 이미지의 content가 텍스트
 | relevance_judgments | `{근거ID: 0 또는 1 또는 2}`. 0=무관, 1=부분 관련, 2=직접 관련. 미판정은 키 없음 |
 | rubric | 공백 아닌 문자열의 배열. 답변/거절/되묻기에는 1개 이상 |
 | rationale | 거절/되묻기 시 공백 아닌 문자열: 시점·권한·확인 범위와 기대 행동의 이유 |
+| answerability_check | abstain에 필수: `method`(exhaustive/bounded), `source_ids`(고유한 출처 ID 배열, 최소 1개), `notes`(공백 아닌 문자열) |
 | verification | 아래 검토 객체 |
 
 `retrieve`는 task=retrieval에서만, `answer`는 task=rag에서만 사용한다.
 retrieve는 양성 qrels가 1개 이상 필요하며 정답 답변·충분 근거는 없어도 된다.
 answer는 정답 답변·루브릭·충분 근거 집합이 필요하다. 집합의 모든 근거는 양성 qrels로도 판정되어야 한다.
 abstain/clarify는 충분한 답변 근거를 주장하지 않으므로 evidence_sets=[]이고 답변/관련성 필드는 빈 값도 허용한다.
+answerability_check.method=exhaustive는 source_ids에 스냅샷 출처 전체를 포함해야 한다. bounded는 확인 범위 내 미발견이며 동결 시 manifest.limitations에 한계를 반드시 기록한다.
+검증기는 읽었다는 선언을 검사할 뿐 실제 전수 읽기나 부재를 증명하지 않는다.
 
 `[[X,Y],[Z]]`는 `(X AND Y) OR Z`이다. 대체 출처가 X와 동등하면 해당 대체가 포함된 충분 근거 집합도 기록한다.
 qrels는 관련성 라벨이며 이 논리 집합과 다르다. 하나라도 찾았다는 이유로 결합형 문항을 통과시키지 않는다.

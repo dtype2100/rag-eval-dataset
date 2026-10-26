@@ -116,6 +116,10 @@ def validate_dataset(data, *, for_freeze=False):
     split_policy = choice(manifest.get("split_policy"), ("query-disjoint", "source-disjoint"), "manifest.split_policy")
     strings(manifest.get("coverage"), "manifest.coverage", nonempty=strict)
     strings(manifest.get("limitations"), "manifest.limitations")
+    judging = obj(manifest.get("judging"), "manifest.judging")
+    for key in ("criteria", "candidate_scope"):
+        string(judging.get(key), f"manifest.judging.{key}", nonempty=strict)
+    choice(judging.get("coverage"), ("exhaustive", "pooled", "sampled"), "manifest.judging.coverage")
     intake = obj(manifest.get("intake"), "manifest.intake")
     for key in ("data_description", "user_task", "query_language", "scope", "access_policy", "external_processing"):
         string(intake.get(key), f"manifest.intake.{key}", nonempty=strict or key in ("data_description", "user_task"))
@@ -172,6 +176,17 @@ def validate_dataset(data, *, for_freeze=False):
         strings(item.get("rubric"), path + ".rubric", nonempty=action != "retrieve")
         if action in ("abstain", "clarify"):
             string(item.get("rationale"), path + ".rationale")
+        if action == "abstain":
+            check_path = path + ".answerability_check"
+            check = obj(item.get("answerability_check"), check_path)
+            method = choice(check.get("method"), ("exhaustive", "bounded"), check_path + ".method")
+            checked = strings(check.get("source_ids"), check_path + ".source_ids", nonempty=True, unique=True)
+            require(all(s in sources for s in checked), check_path + ".source_ids", "unknown source")
+            string(check.get("notes"), check_path + ".notes")
+            if method == "exhaustive":
+                require(set(checked) == set(sources), check_path, "exhaustive check must cover all snapshot sources")
+            elif strict:
+                require(bool(manifest["limitations"]), "manifest.limitations", "bounded answerability requires disclosed limitations")
 
         query_ids = strings(item.get("query_evidence_ids", []), path + ".query_evidence_ids", unique=True)
         require(all(e in evidence for e in query_ids), path + ".query_evidence_ids", "unknown evidence")

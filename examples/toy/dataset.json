@@ -46,6 +46,11 @@
       "policy": "independent",
       "approved_by": "independent-llm-toy-review",
       "approved_at": "2026-10-26T16:40:52.729983+00:00"
+    },
+    "judging": {
+      "criteria": "2: directly states required delivery/return timing; 1: related shop policy context without the requested timing; 0: unrelated to the query. International delivery cannot be inferred from standard delivery.",
+      "coverage": "exhaustive",
+      "candidate_scope": "All content in policy.txt and faq.txt from toy-shop-v1; all three evidence units inspected."
     }
   },
   "evidence": [
@@ -175,7 +180,15 @@
         "independent": true,
         "notes": "Independent LLM inspected the full two-file synthetic snapshot; hashes, offsets, answerability and alternative evidence were checked. Limited to toy-v1."
       },
-      "rationale": "The full two-file toy snapshot only specifies standard delivery and returns; it does not identify international shipping timing. Do not infer that standard means international."
+      "rationale": "The full two-file toy snapshot only specifies standard delivery and returns; it does not identify international shipping timing. Do not infer that standard means international.",
+      "answerability_check": {
+        "method": "exhaustive",
+        "source_ids": [
+          "s1",
+          "s2"
+        ],
+        "notes": "Independent reviewer read both complete source files; neither establishes international delivery timing."
+      }
     }
   ]
 }
