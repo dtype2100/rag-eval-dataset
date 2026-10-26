@@ -113,10 +113,10 @@
 
 ## 구현 작업 단위와 검증
 
-- [ ] 1. 계획·검토: `docs/plan.md`, `docs/review.md`; 독립 검토에서 실행을 막는 빈 조건을 보완한다. 공개 저장소를 만들고 계획을 업로드한다.
-- [ ] 2. 스킬·계약: `skills/rag-dataset-builder/SKILL.md`, `references/contract.md`, `references/data-types.md`; 입력 질문 선행, 중단, 대체 근거, 손실 공개 시나리오로 행동을 확인한다. 로컬 스킬 포맷 검증도 수행한다.
-- [ ] 3. 실행 가능한 검증: 같은 스킬 안의 `scripts/dataset.py`, 합성 예제, `tests/test_dataset.py`; 잘못된 참조·중복 ID·미검토 동결·손실/범위 누락·AND/OR 오염·덮어쓰기·잘못된 JSON을 테스트한다. 표준 라이브러리만 사용한다.
-- [ ] 4. 전체 검증·안내: `README.md`, CI, `docs/validation.md`; 깨끗한 체크아웃에서 예제 검증/동결과 전체 테스트를 수행하고 공개 저장소·커밋·Orca 등록을 확인한다. 각 작업 단위별 커밋과 push를 남긴다.
+- [x] 1. 계획·검토: `docs/plan.md`, `docs/review.md`; 독립 검토에서 실행을 막는 빈 조건을 보완한다. 공개 저장소를 만들고 계획을 업로드한다.
+- [x] 2. 스킬·계약: `skills/rag-dataset-builder/SKILL.md`, `references/contract.md`, `references/data-types.md`; 입력 질문 선행, 중단, 대체 근거, 손실 공개 시나리오로 행동을 확인한다. 로컬 스킬 포맷 검증도 수행한다.
+- [x] 3. 실행 가능한 검증: 같은 스킬 안의 `scripts/dataset.py`, 합성 예제, `tests/test_dataset.py`; 잘못된 참조·중복 ID·미검토 동결·손실/범위 누락·AND/OR 오염·덮어쓰기·잘못된 JSON을 테스트한다. 표준 라이브러리만 사용한다.
+- [x] 4. 전체 검증·안내: `README.md`, CI, `docs/validation.md`; 깨끗한 체크아웃에서 예제 검증/동결과 전체 테스트를 수행하고 공개 저장소·커밋·Orca 등록을 확인한다. 각 작업 단위별 커밋과 push를 남긴다.
 
 사용 환경 전체 설치나 실제 RAG 평가 실행은 이번 범위가 아니다. 이 저장소를 복제하여 스킬 디렉터리를 설치하는 방법을 제공한다.
 
