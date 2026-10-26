@@ -1,0 +1,181 @@
+{
+  "manifest": {
+    "schema_version": "1.0",
+    "dataset_id": "toy-shop",
+    "version": "1",
+    "status": "draft",
+    "corpus_snapshot": "toy-shop-v1",
+    "task": "rag",
+    "split_policy": "query-disjoint",
+    "coverage": [
+      "synthetic text"
+    ],
+    "limitations": [
+      "Not a production benchmark"
+    ],
+    "intake": {
+      "data_description": "Synthetic delivery policy",
+      "user_task": "Find delivery times",
+      "query_language": "en",
+      "scope": "Only the two synthetic v1 files: policy.txt and faq.txt",
+      "access_policy": "public synthetic data",
+      "external_processing": "not needed",
+      "target_size": 3
+    },
+    "sources": [
+      {
+        "id": "s1",
+        "sha256": "1072ec13cd56f26a74ed5b03a0a9daa5381b4dfd11e6066b7a6956f891538384",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none",
+        "losses": [],
+        "split_group": "policy-v1"
+      },
+      {
+        "id": "s2",
+        "sha256": "24b3338980eb206aa0bf39a7fdaf8e823b3958f74bc6ec3ef0bb9700f811378c",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none",
+        "losses": [],
+        "split_group": "policy-v1"
+      }
+    ],
+    "review": {
+      "policy": "independent",
+      "approved_by": "independent-llm-toy-review",
+      "approved_at": "2026-10-26T16:40:52.729983+00:00"
+    }
+  },
+  "evidence": [
+    {
+      "id": "e1",
+      "source_id": "s1",
+      "modality": "text",
+      "locator": {
+        "path": "policy.txt",
+        "start": 19,
+        "end": 54
+      },
+      "content": "Standard delivery takes three days."
+    },
+    {
+      "id": "e2",
+      "source_id": "s1",
+      "modality": "text",
+      "locator": {
+        "path": "policy.txt",
+        "start": 55,
+        "end": 97
+      },
+      "content": "Returns are accepted within fourteen days."
+    },
+    {
+      "id": "e3",
+      "source_id": "s2",
+      "modality": "text",
+      "locator": {
+        "path": "faq.txt",
+        "start": 16,
+        "end": 53
+      },
+      "content": "Standard orders arrive in three days."
+    }
+  ],
+  "items": [
+    {
+      "id": "q1",
+      "query": "How long does delivery take?",
+      "split": "test",
+      "leakage_group": "delivery-time",
+      "query_type": "fact",
+      "origin": "synthetic",
+      "author": "author",
+      "expected_action": "answer",
+      "reference_answer": "Three days.",
+      "evidence_sets": [
+        [
+          "e1"
+        ],
+        [
+          "e3"
+        ]
+      ],
+      "relevance_judgments": {
+        "e1": 2,
+        "e3": 2
+      },
+      "rubric": [
+        "Says three days."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "independent-llm-toy-review",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent LLM inspected the full two-file synthetic snapshot; hashes, offsets, answerability and alternative evidence were checked. Limited to toy-v1."
+      }
+    },
+    {
+      "id": "q2",
+      "query": "How long does standard delivery take, and how long do I have to return an item?",
+      "split": "test",
+      "leakage_group": "shipping-and-returns",
+      "query_type": "multi-hop",
+      "origin": "synthetic",
+      "author": "author",
+      "expected_action": "answer",
+      "reference_answer": "Standard delivery takes three days; returns are accepted within fourteen days.",
+      "evidence_sets": [
+        [
+          "e1",
+          "e2"
+        ],
+        [
+          "e3",
+          "e2"
+        ]
+      ],
+      "relevance_judgments": {
+        "e1": 2,
+        "e2": 2,
+        "e3": 2
+      },
+      "rubric": [
+        "States both three days for standard delivery and fourteen days for returns."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "independent-llm-toy-review",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent LLM inspected the full two-file synthetic snapshot; hashes, offsets, answerability and alternative evidence were checked. Limited to toy-v1."
+      }
+    },
+    {
+      "id": "q3",
+      "query": "How long does international delivery take?",
+      "split": "test",
+      "leakage_group": "international-delivery",
+      "query_type": "unanswerable",
+      "origin": "synthetic",
+      "author": "author",
+      "expected_action": "abstain",
+      "reference_answer": "",
+      "evidence_sets": [],
+      "relevance_judgments": {},
+      "rubric": [
+        "States that international delivery timing is not established by this snapshot."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "independent-llm-toy-review",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent LLM inspected the full two-file synthetic snapshot; hashes, offsets, answerability and alternative evidence were checked. Limited to toy-v1."
+      },
+      "rationale": "The full two-file toy snapshot only specifies standard delivery and returns; it does not identify international shipping timing. Do not infer that standard means international."
+    }
+  ]
+}

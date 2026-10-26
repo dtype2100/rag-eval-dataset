@@ -1,0 +1,3 @@
+Toy shop policy v1
+Standard delivery takes three days.
+Returns are accepted within fourteen days.
