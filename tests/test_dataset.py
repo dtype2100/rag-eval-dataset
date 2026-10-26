@@ -5,6 +5,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import unicodedata
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +20,7 @@ def example():
             "split_policy": "query-disjoint", "coverage": ["synthetic text"],
             "limitations": ["Not a production benchmark"],
             "judging": {"criteria": "Direct evidence for delivery timing is grade 2; partial policy context is grade 1.", "coverage": "exhaustive", "candidate_scope": "all sources in toy-v1"},
+            "provenance": {"method": "synthetic fixture", "generator": "test author", "prompt_version": "fixture-v1", "settings": "literal test data; no model sampling", "created_at": "2026-10-27T00:00:00Z"},
             "intake": {
                 "data_description": "Synthetic delivery policy",
                 "user_task": "Find delivery times", "query_language": "en",
@@ -243,6 +245,29 @@ class DatasetTests(unittest.TestCase):
         data["manifest"]["limitations"] = []
         data["items"][0].update(expected_action="abstain", evidence_sets=[], rationale="Not found within the checked sample", answerability_check={"method": "bounded", "source_ids": ["s1"], "notes": "Only a limited search; not proof of absence."})
         self.invalid(data, "limitations", "freeze")
+
+    def test_freeze_requires_generation_provenance(self):
+        data = example()
+        data["manifest"]["provenance"]["generator"] = ""
+        self.invalid(data, "provenance", "freeze")
+
+    def test_unicode_equivalent_queries_cannot_cross_splits(self):
+        data = example()
+        data["items"][0]["query"] = "배송 기간은?"
+        second = copy.deepcopy(data["items"][0])
+        second.update(id="q2", split="dev", leakage_group="different", query=unicodedata.normalize("NFD", "배송 기간은?"))
+        data["items"].append(second)
+        self.invalid(data, "split")
+
+    def test_same_source_hash_cannot_evade_source_disjoint_policy(self):
+        data = example()
+        data["manifest"]["split_policy"] = "source-disjoint"
+        data["manifest"]["sources"].append({**data["manifest"]["sources"][0], "id": "s2", "split_group": "mislabelled-as-different"})
+        data["evidence"].append({**data["evidence"][0], "id": "e2", "source_id": "s2"})
+        second = copy.deepcopy(data["items"][0])
+        second.update(id="q2", split="dev", leakage_group="different", query="Shipping duration?", evidence_sets=[["e2"]], relevance_judgments={"e2": 2})
+        data["items"].append(second)
+        self.invalid(data, "split")
 
     def test_freeze_roundtrip_detects_tampering(self):
         out = self.folder / "frozen.json"

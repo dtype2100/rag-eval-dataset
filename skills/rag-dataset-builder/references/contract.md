@@ -18,9 +18,12 @@ Python 3.10+ 표준 라이브러리 검증기는 이 계약의 구조·참조·�
 | sources | 최소 1개의 출처 객체 |
 | review | 검토 정책·승인 객체 |
 | judging | `criteria`, `candidate_scope`: 문자열(동결 시 공백 불가); `coverage`: `exhaustive`, `pooled`, `sampled` |
+| provenance | `method`, `generator`, `prompt_version`, `settings`: 문자열(동결 시 공백 불가); 동결 시 `created_at`은 타임존 있는 ISO 8601 |
 
 judging.criteria는 업무별 0/1/2의 판정 예와 경계를 설명한다. candidate_scope에는 후보군과 풀링/표본 방법·범위를 기록한다.
 미판정은 0과 다르다. 풀에 없던 검색 결과는 추가 판정하며, 채점 시 판정 범위와 미판정 비율을 함께 보고한다.
+provenance는 합성/실제 질의의 라벨 작성 방법과 생성 이력을 기록한다. generator에는 실제 사용한 모델 ID/작성자를, settings에는 관련 파라미터·seed 통제 여부를 적는다.
+실행 환경이 모델 ID나 seed를 노출하지 않으면 그 제한을 명시한다. 이력은 반복 추적을 돕지만 같은 LLM 출력의 비트 단위 재현을 보장하지 않는다.
 
 intake의 문자열 필드: `data_description`, `user_task`, `query_language`, `scope`, `access_policy`, `external_processing`.
 draft는 빈 문자열을 허용해 미확인을 표현한다. 다만 문항이 담긴 번들의 `data_description`, `user_task`는 항상 필요하다.
@@ -104,8 +107,9 @@ human-required 정책에서는 accepted 항목 method가 human/hybrid여야 한�
 
 ## 분리·동결·연결
 
-- 동일한 query 문자열(공백·대소문자 정규화) 또는 leakage_group이 dev/test 양쪽에 있으면 거절한다.
-- source-disjoint는 양성 qrels 및 evidence_sets가 참조한 source.split_group도 dev/test 교차를 금지한다. query 자산은 후보 근거와 역할이 다르므로 이 검사에 포함하지 않는다.
+- 동일한 query 문자열(NFC·공백·대소문자 정규화) 또는 leakage_group이 dev/test 양쪽에 있으면 거절한다.
+- source-disjoint는 양성 qrels 및 evidence_sets가 참조한 source.split_group과 원본 sha256도 dev/test 교차를 금지한다. query 자산은 후보 근거와 역할이 다르므로 이 검사에 포함하지 않는다.
+- 패러프레이즈/번역/근접 중복 집단 지정과 사전학습 오염 조사는 별도 작업이다. 공개 예제는 private holdout이 아니다.
 - freeze는 모든 항목 accepted, 접수 필수 문자열, coverage, 검토 승인을 요구한다. 입력 자체가 frozen이면 같은 조건과 해시를 다시 검사한다.
 - `frozen_at`은 UTC ISO 8601 시각. `payload_sha256`은 manifest에서 payload_sha256/frozen_at을 제외하고 전체 번들을 `json.dumps(ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)`한 UTF-8 바이트의 SHA-256이다. 봉인 값은 변경 탐지용이며 재계산 가능한 서명 없는 해시다.
 - 기존 출력은 덮어쓰지 않는다. 동결 이후 변경은 version을 바꾸어 새 파일로 기록한다. CLI는 저장소 전체의 버전 중복을 탐지하지 않는다.

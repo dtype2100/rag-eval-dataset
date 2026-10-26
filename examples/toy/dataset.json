@@ -51,6 +51,13 @@
       "criteria": "2: directly states required delivery/return timing; 1: related shop policy context without the requested timing; 0: unrelated to the query. International delivery cannot be inferred from standard delivery.",
       "coverage": "exhaustive",
       "candidate_scope": "All content in policy.txt and faq.txt from toy-shop-v1; all three evidence units inspected."
+    },
+    "provenance": {
+      "method": "Agent-authored synthetic sources and questions; independent LLM source review",
+      "generator": "Authoring agent runtime; exact model ID not exposed in the authoring environment",
+      "prompt_version": "rag-dataset-builder-initial-v1",
+      "settings": "No direct generation API; seed and sampling parameters not controlled. Public illustrative data, not a private holdout.",
+      "created_at": "2026-10-26T16:45:42.123890+00:00"
     }
   },
   "evidence": [

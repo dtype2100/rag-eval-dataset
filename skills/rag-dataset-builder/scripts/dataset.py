@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import unicodedata
 
 
 def require(condition, path, message):
@@ -120,6 +121,11 @@ def validate_dataset(data, *, for_freeze=False):
     for key in ("criteria", "candidate_scope"):
         string(judging.get(key), f"manifest.judging.{key}", nonempty=strict)
     choice(judging.get("coverage"), ("exhaustive", "pooled", "sampled"), "manifest.judging.coverage")
+    provenance = obj(manifest.get("provenance"), "manifest.provenance")
+    for key in ("method", "generator", "prompt_version", "settings"):
+        string(provenance.get(key), f"manifest.provenance.{key}", nonempty=strict)
+    if strict:
+        timestamp(provenance.get("created_at"), "manifest.provenance.created_at")
     intake = obj(manifest.get("intake"), "manifest.intake")
     for key in ("data_description", "user_task", "query_language", "scope", "access_policy", "external_processing"):
         string(intake.get(key), f"manifest.intake.{key}", nonempty=strict or key in ("data_description", "user_task"))
@@ -164,7 +170,7 @@ def validate_dataset(data, *, for_freeze=False):
         query = string(item.get("query"), path + ".query")
         split = choice(item.get("split"), ("dev", "test"), path + ".split")
         group = string(item.get("leakage_group"), path + ".leakage_group")
-        bind_split(("query", " ".join(query.casefold().split())), split, path + ".split")
+        bind_split(("query", " ".join(unicodedata.normalize("NFC", query).casefold().split())), split, path + ".split")
         bind_split(("query_group", group), split, path + ".split")
         for key in ("query_type", "author"):
             string(item.get(key), f"{path}.{key}")
@@ -211,6 +217,7 @@ def validate_dataset(data, *, for_freeze=False):
                 if grade > 0:
                     source = sources[evidence[evidence_id]["source_id"]]
                     bind_split(("source", source["split_group"]), split, path + ".split_group")
+                    bind_split(("source_hash", source["sha256"]), split, path + ".split_group")
 
         verification = obj(item.get("verification"), path + ".verification")
         verified = choice(verification.get("status"), ("pending", "accepted", "rejected"), path + ".verification.status")
