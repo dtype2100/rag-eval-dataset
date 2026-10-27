@@ -1,0 +1,560 @@
+{
+  "case_id": "public-cloudflare-workers-pricing",
+  "round": 1,
+  "performed_at": "2026-10-27T17:06:00.322328+00:00",
+  "actor": "case-pricing-author",
+  "review_type": "author deterministic checks; not independent semantic review",
+  "command": "python3 data/public-cases/pricing/check_case.py",
+  "status": "checks-passed-independent-review-pending",
+  "counts": {
+    "items": 12,
+    "answer": 10,
+    "abstain": 1,
+    "clarify": 1,
+    "evidence": 14,
+    "table_rows": 10,
+    "table_cells_checked": 100,
+    "checks": 46
+  },
+  "checks": [
+    {
+      "name": "contract-validator",
+      "status": "passed",
+      "details": {
+        "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 skills/rag-dataset-builder/scripts/dataset.py validate examples/public-cases/pricing/dataset.json",
+        "stdout": "{\"status\": \"valid\", \"items\": 12, \"task\": \"rag\", \"frozen\": false}",
+        "stderr": "",
+        "exit_code": 0
+      }
+    },
+    {
+      "name": "sha256:cf-pricing-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "sha256": "433c1ef43e3adc53b7272a02b0ddb893f9514ac99c949635f7ff90423f819d75"
+      }
+    },
+    {
+      "name": "pinned-source:cf-pricing-original",
+      "status": "passed",
+      "details": {
+        "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/pricing.mdx",
+        "license": "CC-BY-4.0"
+      }
+    },
+    {
+      "name": "sha256:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "sha256": "707eb71f26a93061771979b386ebce8374680f64864d61f750d20f265ec62a3e"
+      }
+    },
+    {
+      "name": "pinned-source:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/limits.mdx",
+        "license": "CC-BY-4.0"
+      }
+    },
+    {
+      "name": "sha256:cf-workers-derived-table",
+      "status": "passed",
+      "details": {
+        "path": "examples/public-cases/pricing/pricing.csv",
+        "sha256": "adb3dc62e2cee210e60041946175fba287999850a1f9d9334f57f5b5140710a9"
+      }
+    },
+    {
+      "name": "derived-upstream-links",
+      "status": "passed",
+      "details": [
+        "cf-pricing-original",
+        "cf-limits-original"
+      ]
+    },
+    {
+      "name": "license-snapshot",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/LICENSE",
+        "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+      }
+    },
+    {
+      "name": "table-schema-and-unique-row-keys",
+      "status": "passed",
+      "details": {
+        "rows": 10,
+        "columns": [
+          "row_key",
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ]
+      }
+    },
+    {
+      "name": "table-locator:t-base",
+      "status": "passed",
+      "details": {
+        "row": "paid_base",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-free-requests",
+      "status": "passed",
+      "details": {
+        "row": "free_requests",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-paid-requests",
+      "status": "passed",
+      "details": {
+        "row": "standard_requests",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-paid-cpu",
+      "status": "passed",
+      "details": {
+        "row": "standard_cpu",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-paid-request-limit",
+      "status": "passed",
+      "details": {
+        "row": "paid_request_limit",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-free-http-cpu",
+      "status": "passed",
+      "details": {
+        "row": "free_http_cpu",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-paid-http-default",
+      "status": "passed",
+      "details": {
+        "row": "paid_http_cpu_default",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-paid-http-max",
+      "status": "passed",
+      "details": {
+        "row": "paid_http_cpu_max",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-free-memory",
+      "status": "passed",
+      "details": {
+        "row": "free_memory",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "table-locator:t-paid-memory",
+      "status": "passed",
+      "details": {
+        "row": "paid_memory",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "cells_checked": 10
+      }
+    },
+    {
+      "name": "text-offset:p-base",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 580,
+        "end": 630
+      }
+    },
+    {
+      "name": "text-offset:p-egress",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 742,
+        "end": 827
+      }
+    },
+    {
+      "name": "text-offset:l-reset",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 10959,
+        "end": 11067
+      }
+    },
+    {
+      "name": "text-offset:l-memory-scope",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 6816,
+        "end": 6862
+      }
+    },
+    {
+      "name": "row-provenance:paid_base:cf-pricing-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 580,
+        "end": 630
+      }
+    },
+    {
+      "name": "row-provenance:free_requests:cf-pricing-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 2442,
+        "end": 2963
+      }
+    },
+    {
+      "name": "row-provenance:free_requests:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 508,
+        "end": 624
+      }
+    },
+    {
+      "name": "row-provenance:free_requests:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 10959,
+        "end": 11067
+      }
+    },
+    {
+      "name": "row-provenance:standard_requests:cf-pricing-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 2964,
+        "end": 3485
+      }
+    },
+    {
+      "name": "row-provenance:standard_cpu:cf-pricing-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 2964,
+        "end": 3485
+      }
+    },
+    {
+      "name": "row-provenance:paid_request_limit:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 508,
+        "end": 624
+      }
+    },
+    {
+      "name": "row-provenance:free_http_cpu:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 3959,
+        "end": 4070
+      }
+    },
+    {
+      "name": "row-provenance:paid_http_cpu_default:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 3959,
+        "end": 4070
+      }
+    },
+    {
+      "name": "row-provenance:paid_http_cpu_max:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 3959,
+        "end": 4070
+      }
+    },
+    {
+      "name": "row-provenance:free_memory:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 742,
+        "end": 858
+      }
+    },
+    {
+      "name": "row-provenance:free_memory:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 6816,
+        "end": 6862
+      }
+    },
+    {
+      "name": "row-provenance:paid_memory:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 742,
+        "end": 858
+      }
+    },
+    {
+      "name": "row-provenance:paid_memory:cf-limits-original",
+      "status": "passed",
+      "details": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 6816,
+        "end": 6862
+      }
+    },
+    {
+      "name": "source-facts:included-and-overage",
+      "status": "passed",
+      "details": "Exact upstream Standard row checked against both monthly inclusions and both overage denominators."
+    },
+    {
+      "name": "source-facts:free-request-period",
+      "status": "passed",
+      "details": "Pricing and limits both state a daily 100,000 request allowance."
+    },
+    {
+      "name": "source-facts:paid-request-limit",
+      "status": "passed",
+      "details": "No-limit technical count is separate from monthly included pricing."
+    },
+    {
+      "name": "source-facts:http-cpu",
+      "status": "passed",
+      "details": "Free=10 ms; Paid default 30 s=30,000 ms; maximum 5 min=300,000 ms; HTTP only."
+    },
+    {
+      "name": "source-facts:memory-unit-and-scope",
+      "status": "passed",
+      "details": "Both plans retain source MB and per-isolate scope; no MB-to-MiB conversion."
+    },
+    {
+      "name": "calculation:pricing-05",
+      "status": "passed",
+      "details": {
+        "request_overage_quantity": "2000000",
+        "request_charge_usd": "0.60",
+        "scope": "Request component only; not full bill."
+      }
+    },
+    {
+      "name": "calculation:pricing-09",
+      "status": "passed",
+      "details": {
+        "inputs": {
+          "requests_per_month": "12000000",
+          "cpu_ms_per_request": "5"
+        },
+        "cpu_ms_per_month": "60000000",
+        "subscription_usd": "5",
+        "request_overage_usd": "0.60",
+        "cpu_overage_usd": "0.60",
+        "total_usd": "6.20",
+        "method": "Python decimal.Decimal using CSV cells; ordinary dynamic requests only, taxes/discounts/other products excluded."
+      }
+    },
+    {
+      "name": "calculation:included-usage-no-negative-credit",
+      "status": "passed",
+      "details": "Usage below inclusion yields zero overage, never a negative credit."
+    },
+    {
+      "name": "draft-pending-not-self-approved",
+      "status": "passed",
+      "details": "All 12 items remain synthetic and pending; no author approval."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "examples/public-cases/pricing/dataset.json",
+      "sha256": "ac2d0258a6404158d16f976b777cf86bc9b0fe9bcb36e72aeeb1cfb77f0dfbcb"
+    },
+    {
+      "path": "examples/public-cases/pricing/pricing.csv",
+      "sha256": "adb3dc62e2cee210e60041946175fba287999850a1f9d9334f57f5b5140710a9"
+    },
+    {
+      "path": "examples/public-cases/pricing/sources.json",
+      "sha256": "7cbe2bc2563ea84be450e51e87cbd2483986af77cfe0e1629736d4753cf78292"
+    },
+    {
+      "path": "data/public-cases/pricing/pricing.mdx",
+      "sha256": "433c1ef43e3adc53b7272a02b0ddb893f9514ac99c949635f7ff90423f819d75"
+    },
+    {
+      "path": "data/public-cases/pricing/limits.mdx",
+      "sha256": "707eb71f26a93061771979b386ebce8374680f64864d61f750d20f265ec62a3e"
+    },
+    {
+      "path": "data/public-cases/pricing/LICENSE",
+      "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+    }
+  ],
+  "limitations": [
+    "No production RAG execution, retrieval pool, model-performance measurement, credentialed generation API, human review, judge agreement study or freeze.",
+    "Source snippets and selected table claims were checked; unexpanded MDX components and linked documents are outside the candidate corpus.",
+    "Independent source review must decide semantic acceptance. Passing this report is not approval."
+  ]
+}

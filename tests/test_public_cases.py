@@ -35,13 +35,29 @@ class PublicCaseTests(unittest.TestCase):
         )
         self.data["evidence"][0]["locator"].update(path=self.relative, end=26)
 
-    def run_cli(self, data=None, fetch=False):
+    def run_cli(self, data=None, fetch=False, exercise=False):
         path = self.root / "dataset.json"
         path.write_text(json.dumps(self.data if data is None else data), encoding="utf-8")
         args = [sys.executable, str(CLI), str(path), "--root", str(self.root)]
         if fetch:
             args.append("--fetch")
+        if exercise:
+            args.append("--exercise")
         return subprocess.run(args, text=True, capture_output=True)
+
+    def test_exercise_rejects_five_controlled_corruptions(self):
+        result = self.run_cli(exercise=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout)["controls_rejected"], 5)
+
+    def test_exercise_keeps_pending_input_and_source_unchanged(self):
+        self.data["items"][0]["verification"].update(status="pending", reviewer="", independent=False, notes="")
+        before = (self.root / self.relative).read_bytes()
+        result = self.run_cli(exercise=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        saved = json.loads((self.root / "dataset.json").read_text())
+        self.assertEqual(saved["items"][0]["verification"]["status"], "pending")
+        self.assertEqual((self.root / self.relative).read_bytes(), before)
 
     def test_real_source_hash_and_text_locator_match(self):
         result = self.run_cli()

@@ -1,0 +1,11 @@
+row_key,plan,metric,value,unit,period,allowance_kind,overage_usd,overage_quantity,overage_unit,notes
+paid_base,Workers Paid Standard,minimum_subscription,5,USD,month,minimum_charge,,,,Account minimum; not an additional per-Worker fee.
+free_requests,Workers Free,inbound_requests,100000,request,UTC_day,daily_limit,,,,Daily allowance; not a monthly pooled allowance.
+standard_requests,Workers Paid Standard,inbound_requests,10000000,request,month,included_usage,0.30,1000000,request,Ordinary dynamic inbound requests; usage above inclusion is billed.
+standard_cpu,Workers Paid Standard,CPU_time,30000000,CPU_ms,month,included_usage,0.02,1000000,CPU_ms,Monthly billing inclusion; not a per-invocation execution limit.
+paid_request_limit,Workers Paid,request_count,unlimited,request,day,technical_limit,,,,No daily count limit; this does not mean all requests are free.
+free_http_cpu,Workers Free,CPU_time,10,CPU_ms,HTTP_invocation,execution_limit,,,,"HTTP-request CPU execution limit, not a monthly allowance."
+paid_http_cpu_default,Workers Paid,CPU_time,30000,CPU_ms,HTTP_invocation,default_execution_limit,,,,Default 30 seconds; can be configured up to the maximum.
+paid_http_cpu_max,Workers Paid,CPU_time,300000,CPU_ms,HTTP_invocation,maximum_execution_limit,,,,Configurable maximum 5 minutes; not the default.
+free_memory,Workers Free,memory,128,MB,isolate,execution_limit,,,,"Per isolate, including JavaScript heap and WebAssembly allocations."
+paid_memory,Workers Paid,memory,128,MB,isolate,execution_limit,,,,"Per isolate, including JavaScript heap and WebAssembly allocations."

@@ -1,0 +1,764 @@
+{
+  "manifest": {
+    "schema_version": "1.0",
+    "dataset_id": "public-support-kubernetes",
+    "version": "0.1.0",
+    "status": "draft",
+    "corpus_snapshot": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+    "task": "rag",
+    "split_policy": "query-disjoint",
+    "coverage": [
+      "공식 Kubernetes Markdown 문서 3개에 근거한 기술 지원 합성 문항 12개",
+      "오류 토큰 조회, 이전 컨테이너 로그 수집, 조건·상태 구분, 복합 근거, 되묻기·범위 내 답변 거절",
+      "영문 문서 기반 한국어 질의·정답; 오류 토큰·명령·Secret type은 원어 유지"
+    ],
+    "limitations": [
+      "모든 문항은 합성이며 실제 고객 질의 빈도·업무 대표성은 검증하지 않았다.",
+      "모든 문항은 pending이다. 독립 검토·사람 검토·루브릭 교정·동결 승인은 수행하지 않았다.",
+      "실제 운영 로그·고객 데이터·자격 증명·클러스터 접근을 사용하지 않았다. 출력 발췌는 문서 예제이며 별도 진단 입력은 합성이다.",
+      "실제 RAG 검색·답변 생성·임베딩 비교·운영 개선 효과를 측정하지 않았다.",
+      "공개 개발 예제이며 오염 없는 최종 holdout이 아니다. 모든 문항은 dev split에 속한다.",
+      "코퍼스는 명시한 고정 커밋의 세 Markdown 원본이다. 링크 대상·Hugo shortcode·그림·외부 코드 샘플은 확장하지 않았다.",
+      "출처 전체 버전의 모든 주제·배포 버전을 평가하지 않는다. 질문은 선택한 정적 본문 구간에만 근거한다.",
+      "답변 거절은 세 파일의 주제·선택 구간 대조 및 사건 식별 문자열 검색이라는 bounded 검토에 한정한다. 전체 코퍼스에 정답이 없음을 의미적으로 전수 증명하지 않았다.",
+      "qrels는 선택 근거의 작성자 후보 판정이다. 기재하지 않은 검색 결과는 미판정이며 자동 오답이 아니다."
+    ],
+    "intake": {
+      "data_description": "Kubernetes 공식 website 저장소에서 동일 커밋으로 내려받은 Pod Lifecycle, Debug Running Pods, Images 영문 Markdown 세 파일",
+      "user_task": "기술 지원 담당자가 오류 상태 토큰의 의미를 찾고 다음 진단 정보를 선택하며, 일반 문서만으로 실제 환경의 원인을 단정하지 않도록 검색과 답변 행동을 평가한다.",
+      "query_language": "ko; Kubernetes error tokens and CLI syntax retained in English",
+      "scope": "고정 커밋 ed70e311737a341574ed5758b7af24e3bba232cb의 세 출처 원본 본문과 명시된 문서 출력 예제. 실제 회사 장애 기록과 연결된 페이지는 제외한다.",
+      "access_policy": "공개 공식 문서 CC-BY-4.0; 필요한 발췌·출처·변환 정보만 공개 예제에 포함하고 전체 원본은 ignored data 경로에 보존한다.",
+      "external_processing": "공개 HTTPS 원본 다운로드와 현재 작성 에이전트만 사용; credentialed API, 외부 생성 API, 실제 클러스터 호출 없음",
+      "target_size": 12
+    },
+    "sources": [
+      {
+        "id": "k8s-lifecycle",
+        "sha256": "1d81a56b63aa75e10d3cea41978420da7c046027a143c56852f6698ff5e6623c",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none; byte-for-byte UTF-8 Markdown snapshot",
+        "losses": [],
+        "split_group": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
+        "raw_url": "https://raw.githubusercontent.com/kubernetes/website/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+        "title": "Pod Lifecycle",
+        "upstream_commit": "ed70e311737a341574ed5758b7af24e3bba232cb",
+        "upstream_path": "content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+        "blob_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+        "fetched_at": "2026-10-27T17:01:28.886531+00:00",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_source_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE",
+        "attribution": "Kubernetes Authors and kubernetes/website contributors",
+        "content_kind": "official_documentation; command/output examples are not production logs"
+      },
+      {
+        "id": "k8s-debug-running",
+        "sha256": "ec96ce1a6c370020a9162cae98aba5b1a04113365815613ecdb1f658cfa2e08f",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none; byte-for-byte UTF-8 Markdown snapshot",
+        "losses": [],
+        "split_group": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+        "raw_url": "https://raw.githubusercontent.com/kubernetes/website/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+        "title": "Debug Running Pods",
+        "upstream_commit": "ed70e311737a341574ed5758b7af24e3bba232cb",
+        "upstream_path": "content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+        "blob_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+        "fetched_at": "2026-10-27T17:01:29.473960+00:00",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_source_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE",
+        "attribution": "Kubernetes Authors and kubernetes/website contributors",
+        "content_kind": "official_documentation; command/output examples are not production logs"
+      },
+      {
+        "id": "k8s-images",
+        "sha256": "019267d271888ab7e9b505c748a5bd0b7f99029a2270fb08390f43f94d5ddf5e",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none; byte-for-byte UTF-8 Markdown snapshot",
+        "losses": [],
+        "split_group": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+        "path": "data/public-cases/support/originals/images.md",
+        "url": "https://kubernetes.io/docs/concepts/containers/images/",
+        "raw_url": "https://raw.githubusercontent.com/kubernetes/website/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/containers/images.md",
+        "title": "Images",
+        "upstream_commit": "ed70e311737a341574ed5758b7af24e3bba232cb",
+        "upstream_path": "content/en/docs/concepts/containers/images.md",
+        "blob_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/containers/images.md",
+        "fetched_at": "2026-10-27T17:01:42.879024+00:00",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_source_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE",
+        "attribution": "Kubernetes Authors and kubernetes/website contributors",
+        "content_kind": "official_documentation; command/output examples are not production logs"
+      }
+    ],
+    "review": {
+      "policy": "independent",
+      "approved_by": "",
+      "approved_at": "",
+      "calibration": "미수행. 작성자가 원문 대조한 후보 라벨이며 독립 검토자의 정답·오답·경계 사례 대조와 사람 간 일치도 연구는 수행하지 않았다.",
+      "disagreements": "아직 독립 검토 전이므로 불일치 유무를 판단하지 않았다."
+    },
+    "judging": {
+      "criteria": "2: 필요한 오류 의미·조건·진단 명령을 직접 뒷받침함. 1: 관련 진단 맥락이지만 요구된 의미/명령/조건을 완성하지 못함. 0: 다른 장애 단계로 질문을 뒷받침하지 못함(예: FailedScheduling 질의의 ImagePullBackOff). 복합 문항은 evidence_sets의 AND를 모두 만족해야 함. 미기재 결과는 미판정이며 0이 아님.",
+      "coverage": "sampled",
+      "candidate_scope": "세 원본에서 선택한 14개 근거 단위; 작성자가 문항별 직접·부분 관련 및 혼동 근거만 표기했다. 실제 검색 후보 풀·전체 청크별 qrels 판정은 수행하지 않았다."
+    },
+    "provenance": {
+      "method": "공개 공식 문서에서 필요한 연속 발췌를 선택하고 한국어 합성 질문·정답·루브릭을 작성. 입력 상태는 합성이고 FailedScheduling 출력은 명시된 문서 예제이다.",
+      "generator": "case-support-author; current agent runtime; exact model ID not exposed",
+      "prompt_version": "public-support-case-v1",
+      "settings": "No direct generation API; seed and sampling parameters not exposed or controlled; no real queries; no approval claimed.",
+      "created_at": "2026-10-27T17:04:25.288747+00:00"
+    },
+    "attribution": "Kubernetes Authors and kubernetes/website contributors",
+    "license": "CC-BY-4.0 for upstream excerpts and derived support case content",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "transformation_notice": "원본은 byte-for-byte 보존. 공개 번들은 필요한 연속 구간 발췌와 한국어 합성 질의·답변·판정 루브릭을 추가한 파생 자료이며 upstream의 승인/보증을 의미하지 않는다."
+  },
+  "evidence": [
+    {
+      "id": "e-status-phase",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 6727,
+        "end": 7205,
+        "start_line": 122,
+        "end_line": 127
+      },
+      "content": "When a pod is failing to start repeatedly, `CrashLoopBackOff` may appear in the `Status` field of some kubectl commands.\nSimilarly, when a pod is being deleted, `Terminating` may appear in the `Status` field of some kubectl commands.\n\nMake sure not to confuse _Status_, a kubectl display field for user intuition, with the pod's `phase`.\nPod phase is an explicit part of the Kubernetes data model and of the\n[Pod API](/docs/reference/kubernetes-api/workload-resources/pod-v1/). ",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-crash-backoff",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 10900,
+        "end": 11339,
+        "start_line": 204,
+        "end_line": 208
+      },
+      "content": "1. **Repeated crashes**: After the initial crash Kubernetes applies an exponential\n   backoff delay for subsequent restarts, described in [`restartPolicy`](#restart-policy).\n   This prevents rapid, repeated restart attempts from overloading the system.\n1. **CrashLoopBackOff state**: This indicates that the backoff delay mechanism is currently\n   in effect for a given container that is in a crash loop, failing and restarting repeatedly.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-crash-causes",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 12052,
+        "end": 12600,
+        "start_line": 222,
+        "end_line": 232
+      },
+      "content": "The `CrashLoopBackOff` can be caused by issues like the following:\n\n* Application errors that cause the container to exit.\n* Configuration errors, such as incorrect environment variables or missing\n  configuration files.\n* Resource constraints, where the container might not have enough memory or CPU\n  to start properly.\n* Health checks failing if the application doesn't start serving within the\n  expected time.\n* Container liveness probes or startup probes returning a `Failure` result\n  as mentioned in the [probes section](#container-probes).",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-crash-diagnostics",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 12602,
+        "end": 13001,
+        "start_line": 234,
+        "end_line": 239
+      },
+      "content": "To investigate the root cause of a `CrashLoopBackOff` issue, a user can:\n\n1. **Check logs**: Use `kubectl logs <name-of-pod>` to check the logs of the container.\n   This is often the most direct way to diagnose the issue causing the crashes.\n1. **Inspect events**: Use `kubectl describe pod <name-of-pod>` to see events\n   for the Pod, which can provide hints about configuration or resource issues.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-pending-phase",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 5737,
+        "end": 6009,
+        "start_line": 114,
+        "end_line": 114
+      },
+      "content": "`Pending`   | The Pod has been accepted by the Kubernetes cluster, but one or more of the containers has not been set up and made ready to run. This includes time a Pod spends waiting to be scheduled as well as the time spent downloading container images over the network.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-waiting",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 9165,
+        "end": 9659,
+        "start_line": 172,
+        "end_line": 178
+      },
+      "content": "If a container is not in either the `Running` or `Terminated` state, it is `Waiting`.\nA container in the `Waiting` state is still running the operations it requires in\norder to complete start up: for example, pulling the container image from a container\nimage registry, or applying {{< glossary_tooltip text=\"Secret\" term_id=\"secret\" >}}\ndata.\nWhen you use `kubectl` to query a Pod with a container that is `Waiting`, you also see\na Reason field to summarize why the container is in that state.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-terminated",
+      "source_id": "k8s-lifecycle",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 10064,
+        "end": 10359,
+        "start_line": 189,
+        "end_line": 192
+      },
+      "content": "A container in the `Terminated` state began execution and then either ran to\ncompletion or failed for some reason. When you use `kubectl` to query a Pod with\na container that is `Terminated`, you see a reason, an exit code, and the start and\nfinish time for that container's period of execution.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-logs-current",
+      "source_id": "k8s-debug-running",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 12478,
+        "end": 12588,
+        "start_line": 336,
+        "end_line": 340
+      },
+      "content": "First, look at the logs of the affected container:\n\n```shell\nkubectl logs ${POD_NAME} -c ${CONTAINER_NAME}\n```",
+      "content_kind": "documentation_command_example",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-logs-previous",
+      "source_id": "k8s-debug-running",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 12590,
+        "end": 12758,
+        "start_line": 342,
+        "end_line": 346
+      },
+      "content": "If your container has previously crashed, you can access the previous container's crash log with:\n\n```shell\nkubectl logs ${POD_NAME} -c ${CONTAINER_NAME} --previous\n```",
+      "content_kind": "documentation_command_example",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-failed-scheduling-example",
+      "source_id": "k8s-debug-running",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 7300,
+        "end": 7707,
+        "start_line": 185,
+        "end_line": 187
+      },
+      "content": "    1m\t\t    48s\t\t    7\t    {default-scheduler }\t\t\t        Warning\t\tFailedScheduling\tpod (nginx-deployment-1370807587-fz9sd) failed to fit in any node\n  fit failure on node (kubernetes-node-6ta5): Node didn't have enough resource: CPU, requested: 1000, used: 1420, capacity: 2000\n  fit failure on node (kubernetes-node-wul5): Node didn't have enough resource: CPU, requested: 1000, used: 1100, capacity: 2000",
+      "content_kind": "documentation_diagnostic_output_example; not actual production logs",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-image-backoff",
+      "source_id": "k8s-images",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 9317,
+        "end": 9779,
+        "start_line": 182,
+        "end_line": 188
+      },
+      "content": "The status `ImagePullBackOff` means that a container could not start because Kubernetes\ncould not pull a container image (for reasons such as invalid image name, or pulling\nfrom a private registry without `imagePullSecret`). The `BackOff` part indicates\nthat Kubernetes will keep trying to pull the image, with an increasing back-off delay.\n\nKubernetes raises the delay between each attempt until it reaches a compiled-in limit,\nwhich is 300 seconds (5 minutes).",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-secret-scope",
+      "source_id": "k8s-images",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 15265,
+        "end": 15547,
+        "start_line": 297,
+        "end_line": 300
+      },
+      "content": "Kubernetes supports specifying container image registry keys on a Pod.\nAll `imagePullSecrets` must be Secrets that exist in the same\n{{< glossary_tooltip term_id=\"namespace\" >}} as the\nPod. These Secrets must be of type `kubernetes.io/dockercfg` or `kubernetes.io/dockerconfigjson`.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-pull-policy-default",
+      "source_id": "k8s-images",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 7826,
+        "end": 8002,
+        "start_line": 150,
+        "end_line": 152
+      },
+      "content": "- if you omit the `imagePullPolicy` field, and you specify a tag for the container\n  image that isn't `:latest`, the `imagePullPolicy` is automatically set to\n  `IfNotPresent`.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    },
+    {
+      "id": "e-pull-policy-update",
+      "source_id": "k8s-images",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 8017,
+        "end": 8465,
+        "start_line": 155,
+        "end_line": 161
+      },
+      "content": "The value of `imagePullPolicy` of the container is always set when the object is\nfirst _created_, and is not updated if the image's tag or digest later changes.\n\nFor example, if you create a Deployment with an image whose tag is _not_\n`:latest`, and later update that Deployment's image to a `:latest` tag, the\n`imagePullPolicy` field will _not_ change to `Always`. You must manually change\nthe pull policy of any object after its initial creation.",
+      "content_kind": "documentation_prose",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "license": "CC-BY-4.0",
+      "transformation": "Verbatim contiguous excerpt; Markdown and original spelling retained."
+    }
+  ],
+  "items": [
+    {
+      "id": "support-01",
+      "query": "kubectl의 STATUS에 CrashLoopBackOff가 보입니다. 이 토큰은 무슨 뜻이고 Pod의 phase 이름인가요?",
+      "split": "dev",
+      "leakage_group": "crash-loop",
+      "query_type": "error-token-lookup",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "컨테이너가 반복해서 실패하고 재시작되는 중에 재시작 간 backoff 지연이 적용되고 있다는 뜻이다. 일부 kubectl 명령의 표시용 Status에 나타날 수 있지만 이를 Pod API의 phase와 혼동하면 안 된다.",
+      "evidence_sets": [
+        [
+          "e-status-phase",
+          "e-crash-backoff"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-status-phase": 2,
+        "e-crash-backoff": 2,
+        "e-crash-causes": 1,
+        "e-image-backoff": 0
+      },
+      "rubric": [
+        "반복 실패·재시작과 backoff 지연을 모두 설명한다.",
+        "kubectl 표시용 Status와 Pod API phase를 구분한다.",
+        "토큰만으로 특정 장애 원인을 단정하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-02",
+      "query": "ImagePullBackOff는 이미지 다운로드를 포기했다는 뜻인가요? 문서에 나온 원인 예시와 재시도 간격 상한도 알려주세요.",
+      "split": "dev",
+      "leakage_group": "image-pull",
+      "query_type": "error-token-lookup",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "컨테이너 이미지를 pull하지 못해 시작할 수 없다는 뜻이다. 잘못된 이미지 이름이나 imagePullSecret 없이 private registry에서 pull하는 경우 등이 예시다. Kubernetes는 증가하는 backoff 지연으로 계속 재시도하며 지연 상한은 300초(5분)다.",
+      "evidence_sets": [
+        [
+          "e-image-backoff"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-image-backoff": 2,
+        "e-crash-backoff": 0
+      },
+      "rubric": [
+        "이미지 pull 실패로 시작할 수 없음을 설명한다.",
+        "원인 예시를 확정 원인과 구분한다.",
+        "계속 재시도하며 간격의 상한이 300초/5분이라고 답한다. 총 재시도 시간·실패 횟수의 상한으로 바꾸지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-03",
+      "query": "한 Pod에 컨테이너가 여러 개 있습니다. 방금 죽고 재시작한 컨테이너의 이전 실행 로그를 보는 명령은 무엇인가요? Pod와 컨테이너 이름은 자리표시자로 써주세요.",
+      "split": "dev",
+      "leakage_group": "previous-container-logs",
+      "query_type": "diagnostic-action",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "kubectl logs ${POD_NAME} -c ${CONTAINER_NAME} --previous 를 사용한다. -c로 대상 컨테이너를 지정하고 --previous로 이전에 종료된 컨테이너 실행의 crash log를 요청한다.",
+      "evidence_sets": [
+        [
+          "e-logs-previous"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-logs-previous": 2,
+        "e-logs-current": 1,
+        "e-image-backoff": 0
+      },
+      "rubric": [
+        "kubectl logs, Pod 이름, -c 컨테이너 이름, --previous를 포함한다.",
+        "현재 실행의 로그와 이전 실행의 로그를 구분한다.",
+        "명령 실행 성공이나 실제 로그 확보를 주장하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-04",
+      "query": "합성 진단 입력(운영 로그 아님): Pod의 STATUS가 CrashLoopBackOff이고 컨테이너가 재시작됐습니다. 원인을 좁히기 위해 어떤 이벤트와 이전 실행 로그를 어떤 명령으로 확인하나요?",
+      "split": "dev",
+      "leakage_group": "crash-loop",
+      "query_type": "multi-evidence-diagnostic-action",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "kubectl describe pod <name-of-pod> 로 Pod 이벤트를 확인하고, kubectl logs ${POD_NAME} -c ${CONTAINER_NAME} --previous 로 대상 컨테이너의 이전 실행 crash log를 확인한다. 이벤트는 구성·리소스 문제의 단서를 줄 수 있다. 이 입력만으로 원인을 확정하지 않는다.",
+      "evidence_sets": [
+        [
+          "e-crash-diagnostics",
+          "e-logs-previous"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-crash-diagnostics": 2,
+        "e-logs-previous": 2
+      },
+      "rubric": [
+        "Pod 이벤트용 describe 명령과 이전 컨테이너용 --previous 로그 명령을 둘 다 제시한다.",
+        "두 근거의 결합이 필요하며 한 명령만 제시하면 불완전하다.",
+        "CrashLoopBackOff를 원인으로 삼아 임의의 수정 명령을 처방하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      },
+      "diagnostic_input_origin": "synthetic; no production logs or cluster access"
+    },
+    {
+      "id": "support-05",
+      "query": "CrashLoopBackOff라는 상태만 있으면 메모리 부족이 확정된 건가요? 공식 문서의 다른 원인 예시도 들어 설명해주세요.",
+      "split": "dev",
+      "leakage_group": "crash-loop",
+      "query_type": "symptom-vs-root-cause",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "아니다. 이 상태는 반복 실패·재시작에 backoff가 적용된 현상이지 메모리 부족이라는 단일 원인을 확정하지 않는다. 문서는 애플리케이션 오류, 환경 변수나 설정 파일 문제, CPU·메모리 같은 리소스 제약, 헬스 체크 및 liveness/startup probe 실패 등을 원인 예시로 든다.",
+      "evidence_sets": [
+        [
+          "e-crash-backoff",
+          "e-crash-causes"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-crash-backoff": 2,
+        "e-crash-causes": 2,
+        "e-crash-diagnostics": 1
+      },
+      "rubric": [
+        "메모리 부족 확정이라는 전제를 거부한다.",
+        "상태/증상과 실제 원인을 구분하고 문서의 다른 원인 예시를 두 가지 이상 든다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-06",
+      "query": "Debug Running Pods의 문서 예제(운영 로그 아님)에 FailedScheduling와 \"Node didn't have enough resource: CPU\"가 나옵니다. 이 예제에서 확인된 문제는 이미지 pull 실패인가요, 스케줄링 리소스 부족인가요?",
+      "split": "dev",
+      "leakage_group": "documentation-failed-scheduling",
+      "query_type": "documentation-message-diagnosis",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "해당 문서 예제에서는 스케줄러가 Pod를 노드에 배치하지 못했고 CPU 리소스가 충분하지 않았다는 메시지가 근거다. ImagePullBackOff나 이미지 pull 실패를 진단한 예제가 아니다.",
+      "evidence_sets": [
+        [
+          "e-failed-scheduling-example"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-failed-scheduling-example": 2,
+        "e-image-backoff": 0
+      },
+      "rubric": [
+        "문서 예제라는 범위를 유지한다.",
+        "FailedScheduling와 CPU 부족 메시지를 근거로 스케줄링 리소스 부족이라고 답한다.",
+        "모든 FailedScheduling가 CPU 부족이라는 일반화나 실제 환경의 원인 확정을 하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      },
+      "diagnostic_input_origin": "official documentation example; not production logs"
+    },
+    {
+      "id": "support-07",
+      "query": "private registry에서 이미지를 받는 Pod에 imagePullSecrets를 직접 연결하려고 합니다. Secret은 어느 namespace에 있어야 하고 허용되는 type은 무엇인가요?",
+      "split": "dev",
+      "leakage_group": "image-pull",
+      "query_type": "configuration-constraints",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "참조하는 Secret은 그 Pod와 같은 namespace에 있어야 한다. Secret type은 kubernetes.io/dockercfg 또는 kubernetes.io/dockerconfigjson이어야 한다.",
+      "evidence_sets": [
+        [
+          "e-secret-scope"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-secret-scope": 2,
+        "e-image-backoff": 1
+      },
+      "rubric": [
+        "같은 namespace 조건을 명시한다.",
+        "허용되는 두 Secret type을 정확히 제시한다.",
+        "실제 자격 증명이나 Secret 값을 요구하거나 만들어내지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-08",
+      "query": "imagePullPolicy를 생략하고 :v1 태그로 만든 Deployment의 기본값은 무엇인가요? 나중에 이미지 태그만 :latest로 바꾸면 policy도 자동으로 Always가 되나요?",
+      "split": "dev",
+      "leakage_group": "image-pull-policy",
+      "query_type": "conditional-behavior",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "처음 생성할 때 :latest가 아닌 태그이고 imagePullPolicy를 생략했다면 기본값은 IfNotPresent다. 이후 이미지 태그만 :latest로 바꾸어도 이미 설정된 imagePullPolicy는 자동으로 Always로 바뀌지 않는다. 필요하면 pull policy도 직접 변경해야 한다.",
+      "evidence_sets": [
+        [
+          "e-pull-policy-default",
+          "e-pull-policy-update"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-pull-policy-default": 2,
+        "e-pull-policy-update": 2
+      },
+      "rubric": [
+        "최초 기본값 IfNotPresent와 이후 tag 변경 시 policy가 자동 변경되지 않는다는 두 조건을 모두 설명한다.",
+        "새 객체의 :latest 기본값과 기존 객체 업데이트 동작을 혼동하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-09",
+      "query": "Pod phase가 Pending이면 반드시 아직 노드에 스케줄되지 않은 상태인가요? 컨테이너 이미지 다운로드 중인 경우와 Waiting의 Reason도 함께 설명해주세요.",
+      "split": "dev",
+      "leakage_group": "pod-vs-container-state",
+      "query_type": "multi-evidence-state-distinction",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "반드시 그런 것은 아니다. Pending phase에는 스케줄링을 기다리는 시간뿐 아니라 컨테이너 이미지를 네트워크로 다운로드하는 시간도 포함된다. 컨테이너의 Waiting은 이미지 pull이나 Secret 적용 같은 시작 작업을 진행하는 상태일 수 있고, kubectl로 조회하면 Waiting 이유를 요약한 Reason 필드도 볼 수 있다.",
+      "evidence_sets": [
+        [
+          "e-pending-phase",
+          "e-waiting"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-pending-phase": 2,
+        "e-waiting": 2,
+        "e-image-backoff": 1
+      },
+      "rubric": [
+        "Pending만으로 미스케줄링을 확정하지 않는다.",
+        "Pod phase와 개별 컨테이너 state를 구분한다.",
+        "이미지 다운로드도 Pending에 포함됨과 Waiting의 Reason 필드를 모두 설명한다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-10",
+      "query": "컨테이너 state가 Terminated면 무조건 오류로 죽은 건가요? kubectl에서 어떤 종료 정보를 확인할 수 있나요?",
+      "split": "dev",
+      "leakage_group": "termination-state",
+      "query_type": "state-interpretation",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "answer",
+      "reference_answer": "아니다. Terminated는 실행을 시작한 뒤 정상 완료했거나 어떤 이유로 실패한 상태다. kubectl로 Pod를 조회하면 종료 reason, exit code, 실행 시작 시각과 종료 시각을 확인할 수 있다.",
+      "evidence_sets": [
+        [
+          "e-terminated"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-terminated": 2
+      },
+      "rubric": [
+        "정상 완료와 실패가 모두 가능하다고 답한다.",
+        "reason, exit code, 시작·종료 시각을 제시한다.",
+        "exit code나 로그가 없는 상태에서 특정 원인을 단정하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      }
+    },
+    {
+      "id": "support-11",
+      "query": "합성 진단 입력(운영 로그 아님): \"STATUS=CrashLoopBackOff\". 지금 장애의 정확한 원인과 한 번에 해결하는 수정값을 알려주세요.",
+      "split": "dev",
+      "leakage_group": "crash-loop",
+      "query_type": "insufficient-diagnostics",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "clarify",
+      "reference_answer": "이 토큰만으로 정확한 원인이나 수정값을 정할 수 없다. 대상 Pod·컨테이너를 식별하고 Pod 이벤트와 컨테이너 로그, 재시작했다면 이전 실행 로그를 요청한다. 예를 들어 kubectl describe pod <name-of-pod> 및 kubectl logs ${POD_NAME} -c ${CONTAINER_NAME} --previous 결과가 필요하다.",
+      "evidence_sets": [],
+      "relevance_judgments": {
+        "e-crash-causes": 2,
+        "e-crash-diagnostics": 2,
+        "e-logs-previous": 2
+      },
+      "rubric": [
+        "원인과 수정값을 임의로 확정하지 않는다.",
+        "대상 Pod/컨테이너 및 이벤트·현재/이전 실행 로그 등 진단에 필요한 구체적인 추가 정보를 요청한다.",
+        "운영 로그가 제공됐거나 명령이 실행됐다고 주장하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      },
+      "rationale": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 있으므로 추가 진단 정보를 요청한다.",
+      "diagnostic_input_origin": "synthetic; one status token only; no production logs or cluster access"
+    },
+    {
+      "id": "support-12",
+      "query": "이 세 공식 문서만 근거로, 우리 회사 checkout 서비스가 2026-10-27 09:00 KST에 CrashLoopBackOff를 일으킨 정확한 배포 커밋과 실제 재시작 횟수를 알려주세요.",
+      "split": "dev",
+      "leakage_group": "organization-incident",
+      "query_type": "scoped-unanswerable",
+      "origin": "synthetic",
+      "author": "case-support-author",
+      "expected_action": "abstain",
+      "reference_answer": "이 고정 문서 코퍼스에는 해당 회사 서비스의 배포 이력이나 실제 장애 기록이 없어 요청한 커밋과 재시작 횟수를 확인할 수 없다.",
+      "evidence_sets": [],
+      "relevance_judgments": {},
+      "rubric": [
+        "세 공식 문서의 범위에서 해당 서비스의 실제 커밋·횟수를 알 수 없다고 답한다.",
+        "일반 문서 예제의 이름·횟수·시각을 실제 회사 장애의 데이터로 바꾸지 않는다.",
+        "조회하지 않은 실제 클러스터나 배포 이력에 접근했다고 주장하지 않는다."
+      ],
+      "verification": {
+        "status": "pending",
+        "reviewer": "",
+        "method": "llm",
+        "independent": false,
+        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+      },
+      "rationale": "평가 코퍼스는 고정 커밋의 일반 Kubernetes 문서 세 파일뿐이다. 문서의 출력 예제는 실제 회사 장애 기록이 아니므로 날짜·서비스별 커밋 및 실제 재시작 수의 근거가 없다.",
+      "answerability_check": {
+        "method": "bounded",
+        "source_ids": [
+          "k8s-lifecycle",
+          "k8s-debug-running",
+          "k8s-images"
+        ],
+        "notes": "세 원본의 제목·범위·목차와 선택 진단 구간을 대조하고 전체 파일에서 checkout, 2026-10-27 식별 문자열을 검색했다. 해당 회사 장애 기록을 찾지 못했다. 이는 제한 검토이며 전체 코퍼스의 의미적 부재나 실제 시스템/외부 자료의 부재를 증명하지 않는다."
+      }
+    }
+  ]
+}

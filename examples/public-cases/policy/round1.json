@@ -1,0 +1,51 @@
+{
+  "case_id": "github-copilot-policy",
+  "round": 1,
+  "audit_kind": "mechanical author audit only; independent semantic review pending",
+  "checked_at": "2026-10-27T17:04:19.825399+00:00",
+  "working_directory": "repository root",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "skills/rag-dataset-builder/scripts/dataset.py",
+        "validate",
+        "examples/public-cases/policy/dataset.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"valid\", \"items\": 12, \"task\": \"rag\", \"frozen\": false}",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-c",
+        "<source_hash_and_offset_check_python>"
+      ],
+      "source_hash_and_offset_check_python": "import json, hashlib\nfrom pathlib import Path\nroot = Path.cwd()\nd = json.loads((root / \"examples/public-cases/policy/dataset.json\").read_text())\ns = json.loads((root / \"examples/public-cases/policy/sources.json\").read_text())\nfor src in d[\"manifest\"][\"sources\"]:\n    p = root / src[\"path\"]\n    assert p.is_file(), str(p)\n    assert hashlib.sha256(p.read_bytes()).hexdigest() == src[\"sha256\"], str(p)\n    assert src[\"raw_url\"].removeprefix(\"https://raw.githubusercontent.com/github/docs/\").split(\"/\")[0] == src[\"upstream_commit\"], src[\"id\"]\n    assert next(x for x in s[\"sources\"] if x[\"id\"] == src[\"id\"]) == src\nfor artifact in s[\"license_provenance\"]:\n    assert hashlib.sha256((root / artifact[\"path\"]).read_bytes()).hexdigest() == artifact[\"sha256\"], artifact[\"path\"]\nfor evidence in d[\"evidence\"]:\n    locator = evidence[\"locator\"]\n    text = (root / locator[\"path\"]).read_text(encoding=\"utf-8\")\n    assert text[locator[\"start\"]:locator[\"end\"]] == evidence[\"content\"], evidence[\"id\"]\n    assert next(src for src in d[\"manifest\"][\"sources\"] if src[\"id\"] == evidence[\"source_id\"])[\"path\"] == locator[\"path\"]\nassert len(d[\"items\"]) == 12\nassert all(q[\"origin\"] == \"synthetic\" and q[\"author\"] == \"case-policy-author\" for q in d[\"items\"])\nassert all(q[\"verification\"][\"status\"] == \"pending\" and not q[\"verification\"][\"independent\"] and not q[\"verification\"][\"reviewer\"] for q in d[\"items\"])\nassert d[\"manifest\"][\"status\"] == \"draft\" and d[\"manifest\"][\"review\"][\"approved_by\"] == \"\" and d[\"manifest\"][\"review\"][\"approved_at\"] == \"\"\nprint(json.dumps({\"source_hashes_checked\": len(d[\"manifest\"][\"sources\"]), \"license_provenance_hashes_checked\": len(s[\"license_provenance\"]), \"evidence_offsets_checked\": len(d[\"evidence\"]), \"synthetic_pending_items_checked\": len(d[\"items\"]), \"review\": \"pending; no approval or freeze\", \"result\": \"pass\"}))\n",
+      "exit_code": 0,
+      "stdout": "{\"source_hashes_checked\": 3, \"license_provenance_hashes_checked\": 2, \"evidence_offsets_checked\": 15, \"synthetic_pending_items_checked\": 12, \"review\": \"pending; no approval or freeze\", \"result\": \"pass\"}",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "check-ignore",
+        "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "data/public-cases/policy/license-changes.md",
+        "data/public-cases/policy/free-access-cancellation-note.md"
+      ],
+      "exit_code": 0,
+      "stdout": "data/public-cases/policy/view-and-change-your-copilot-plan.md\ndata/public-cases/policy/license-changes.md\ndata/public-cases/policy/free-access-cancellation-note.md",
+      "stderr": ""
+    }
+  ],
+  "initial_audit_correction": "An initial ad hoc pinned-URL assertion used split(\"/\")[4] (repository name) instead of the commit segment and failed before offset checks. The mechanical check was corrected to strip the fixed raw URL prefix. No source or label changed for this harness correction.",
+  "excluded": [
+    "Independent semantic approval/calibration",
+    "Live retrieval/answer performance",
+    "Account/subscription changes",
+    "Commit/push/publication"
+  ],
+  "status": "pass"
+}

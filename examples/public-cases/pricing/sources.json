@@ -1,0 +1,251 @@
+{
+  "case_id": "public-cloudflare-workers-pricing",
+  "snapshot_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+  "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+  "official_pages_checked": [
+    "https://developers.cloudflare.com/workers/platform/pricing/",
+    "https://developers.cloudflare.com/workers/platform/limits/"
+  ],
+  "sources": [
+    {
+      "id": "cf-pricing-original",
+      "sha256": "433c1ef43e3adc53b7272a02b0ddb893f9514ac99c949635f7ff90423f819d75",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "None; original UTF-8 MDX bytes at a pinned production commit.",
+      "losses": [],
+      "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "path": "data/public-cases/pricing/pricing.mdx",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/pricing.mdx",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+      "attribution": "Cloudflare, Inc. and contributors",
+      "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+      "corpus_role": "provenance_original; only declared text evidence is a public candidate unit"
+    },
+    {
+      "id": "cf-limits-original",
+      "sha256": "707eb71f26a93061771979b386ebce8374680f64864d61f750d20f265ec62a3e",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "None; original UTF-8 MDX bytes at a pinned production commit.",
+      "losses": [],
+      "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "path": "data/public-cases/pricing/limits.mdx",
+      "url": "https://developers.cloudflare.com/workers/platform/limits/",
+      "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/limits.mdx",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+      "attribution": "Cloudflare, Inc. and contributors",
+      "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+      "corpus_role": "provenance_original; only declared text evidence is a public candidate unit"
+    },
+    {
+      "id": "cf-workers-derived-table",
+      "sha256": "adb3dc62e2cee210e60041946175fba287999850a1f9d9334f57f5b5140710a9",
+      "modality": "table",
+      "representation": "derived",
+      "transformation": "case-pricing-manual-table-v1: select Workers Free/Paid Standard rows; split monthly inclusion from overage; expand 1 million to 1000000; convert 30 seconds and 5 minutes to CPU milliseconds; retain MB (not MiB); split Free/Paid memory rows; add scope notes from pinned paragraphs. No HTML rendering or transcluded component expansion.",
+      "losses": [
+        "Partial corpus: excludes other products, examples, legacy/Enterprise contracts, caching exceptions and Cron/Queue limits.",
+        "Row keys and columns are author-created; formatting, links and most footnotes are omitted."
+      ],
+      "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "path": "examples/public-cases/pricing/pricing.csv",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "upstream_source_ids": [
+        "cf-pricing-original",
+        "cf-limits-original"
+      ],
+      "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+      "attribution": "Adapted from Cloudflare, Inc. and contributors; modifications by case-pricing-author",
+      "sheet": "pricing",
+      "row_key_column": "row_key",
+      "fetched_at": "2026-10-27T17:01:10.083286+00:00"
+    }
+  ],
+  "license_snapshot": {
+    "filename": "LICENSE",
+    "repository_path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+    "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+    "bytes": 18656,
+    "path": "data/public-cases/pricing/LICENSE",
+    "license": "CC-BY-4.0"
+  },
+  "attribution": "Cloudflare, Inc. and contributors. Source MDX and LICENSE from cloudflare/cloudflare-docs at the pinned commit. Selected facts normalized into pricing.csv and Korean synthetic questions by case-pricing-author; changes are described in transformation. No endorsement implied.",
+  "derived_table": {
+    "path": "examples/public-cases/pricing/pricing.csv",
+    "sha256": "adb3dc62e2cee210e60041946175fba287999850a1f9d9334f57f5b5140710a9",
+    "sheet": "pricing",
+    "row_key_column": "row_key",
+    "columns": [
+      "row_key",
+      "plan",
+      "metric",
+      "value",
+      "unit",
+      "period",
+      "allowance_kind",
+      "overage_usd",
+      "overage_quantity",
+      "overage_unit",
+      "notes"
+    ],
+    "row_provenance": {
+      "paid_base": [
+        {
+          "source_id": "cf-pricing-original",
+          "locator": {
+            "path": "data/public-cases/pricing/pricing.mdx",
+            "start": 580,
+            "end": 630
+          },
+          "span_sha256": "25efc92327b5d9bb321e642be28a693608a6fa31fcce70eb81fa60e3a9f557fd"
+        }
+      ],
+      "free_requests": [
+        {
+          "source_id": "cf-pricing-original",
+          "locator": {
+            "path": "data/public-cases/pricing/pricing.mdx",
+            "start": 2442,
+            "end": 2963
+          },
+          "span_sha256": "57a4bcf5a63574c93dc184fa4e960e534a74bd35fe08adbac3f139bc44c68c34"
+        },
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 508,
+            "end": 624
+          },
+          "span_sha256": "c159b8013fe65866876cbf183844d32c70056e87203612b4f19767ed11aff0bb"
+        },
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 10959,
+            "end": 11067
+          },
+          "span_sha256": "addcaaeb577eb43645a8cf639b469360e371757618ede309e3b642a89fa46345"
+        }
+      ],
+      "standard_requests": [
+        {
+          "source_id": "cf-pricing-original",
+          "locator": {
+            "path": "data/public-cases/pricing/pricing.mdx",
+            "start": 2964,
+            "end": 3485
+          },
+          "span_sha256": "1d4df8b1c42f5874b08c3aafbffca764636fb3db60de9001ee06cd470cd5e900"
+        }
+      ],
+      "standard_cpu": [
+        {
+          "source_id": "cf-pricing-original",
+          "locator": {
+            "path": "data/public-cases/pricing/pricing.mdx",
+            "start": 2964,
+            "end": 3485
+          },
+          "span_sha256": "1d4df8b1c42f5874b08c3aafbffca764636fb3db60de9001ee06cd470cd5e900"
+        }
+      ],
+      "paid_request_limit": [
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 508,
+            "end": 624
+          },
+          "span_sha256": "c159b8013fe65866876cbf183844d32c70056e87203612b4f19767ed11aff0bb"
+        }
+      ],
+      "free_http_cpu": [
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 3959,
+            "end": 4070
+          },
+          "span_sha256": "6b1033c43d4b76bd835e4e3b0669d6127ff27119069810cb39d094ba19fcbd59"
+        }
+      ],
+      "paid_http_cpu_default": [
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 3959,
+            "end": 4070
+          },
+          "span_sha256": "6b1033c43d4b76bd835e4e3b0669d6127ff27119069810cb39d094ba19fcbd59"
+        }
+      ],
+      "paid_http_cpu_max": [
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 3959,
+            "end": 4070
+          },
+          "span_sha256": "6b1033c43d4b76bd835e4e3b0669d6127ff27119069810cb39d094ba19fcbd59"
+        }
+      ],
+      "free_memory": [
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 742,
+            "end": 858
+          },
+          "span_sha256": "84d853527d4c9a148f449f0f33cda4824e64ede49245550bec970a95ea1a6a4f"
+        },
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 6816,
+            "end": 6862
+          },
+          "span_sha256": "6451ad9e995fe9e69d0aedd4435e69cfd22d9b809a335cc1b33a2dc130f76312"
+        }
+      ],
+      "paid_memory": [
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 742,
+            "end": 858
+          },
+          "span_sha256": "84d853527d4c9a148f449f0f33cda4824e64ede49245550bec970a95ea1a6a4f"
+        },
+        {
+          "source_id": "cf-limits-original",
+          "locator": {
+            "path": "data/public-cases/pricing/limits.mdx",
+            "start": 6816,
+            "end": 6862
+          },
+          "span_sha256": "6451ad9e995fe9e69d0aedd4435e69cfd22d9b809a335cc1b33a2dc130f76312"
+        }
+      ]
+    }
+  },
+  "snapshot_policy": "Full original MDX and license snapshots stay in ignored data/public-cases/pricing/. Public files contain only selected attributed facts and short excerpts. The evaluation corpus consists of the ten table-row evidence units and four declared text excerpts, not all linked/transcluded documents.",
+  "excluded_conflict": "Pricing MDX describes a 15-minute Cron/Queue maximum generally; limits MDX distinguishes Cron intervals shorter than 1 hour (30 seconds) and intervals at least 1 hour (15 minutes). No Cron/Queue answer or reconciliation is authored."
+}

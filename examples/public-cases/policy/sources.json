@@ -1,0 +1,95 @@
+{
+  "case_id": "github-copilot-policy",
+  "corpus_snapshot": "github-docs-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+  "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+  "source_count": 3,
+  "sources": [
+    {
+      "id": "copilot-plan",
+      "title": "Viewing and changing your GitHub Copilot plan",
+      "sha256": "5aedc3cc29662f5ef98fa4609780710c2c86a01b6f43615a96f6b2307413d15a",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+      "losses": [],
+      "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/content/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan.md",
+      "upstream_path": "content/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan.md",
+      "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+    },
+    {
+      "id": "copilot-license",
+      "title": "Making changes to your GitHub Copilot license",
+      "sha256": "c4d2fc694a0285166f64e845bfcb56fecf748579161023dbb960e0899e60903b",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+      "losses": [],
+      "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "path": "data/public-cases/policy/license-changes.md",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/license-changes",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/content/copilot/reference/copilot-billing/license-changes.md",
+      "upstream_path": "content/copilot/reference/copilot-billing/license-changes.md",
+      "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+    },
+    {
+      "id": "copilot-free-exception",
+      "title": "Free-access cancellation exception (GitHub Docs reusable)",
+      "sha256": "807ef3ad53c4663ad6acb0109e6a0745b051d48a13038526fc47fea35ae90b21",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+      "losses": [],
+      "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "path": "data/public-cases/policy/free-access-cancellation-note.md",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/data/reusables/copilot/free-access-cancellation-note.md",
+      "upstream_path": "data/reusables/copilot/free-access-cancellation-note.md",
+      "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+    }
+  ],
+  "license_provenance": [
+    {
+      "role": "license-provenance-only; excluded from evaluation corpus",
+      "path": "data/public-cases/policy/github-docs-LICENSE.txt",
+      "upstream_path": "LICENSE",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/LICENSE",
+      "sha256": "12d3a82a7d1378e6f597ec23d63a081aeb6ec4bc8de2a76ee9dc96c34c6d7a1b",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00"
+    },
+    {
+      "role": "license-provenance-only; excluded from evaluation corpus",
+      "path": "data/public-cases/policy/github-docs-README.md",
+      "upstream_path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/README.md",
+      "sha256": "1adc06cb1008208c356da0982fc8b81ee6d006695aae02f8464370ad87d78a5d",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00"
+    }
+  ],
+  "license_scope": "Pinned upstream README states CC BY 4.0 applies to documentation/content in assets, content, and data folders. All three corpus documents are in content/ or data/.",
+  "storage": "Full unmodified source snapshots and upstream license evidence are local ignored data/public-cases/policy/. Only short attributed evidence excerpts, dataset labels and this provenance manifest are intended as reviewable example artifacts. No publish, commit or push performed.",
+  "offset_convention": "Unicode code points in complete UTF-8 raw Markdown file, zero-based, end-exclusive. Paths are repository-relative.",
+  "rendered_verification": {
+    "checked_at": "2026-10-27T17:03:04.655545+00:00",
+    "method": "Author read the two official docs.github.com pages with web browsing and compared policies with the same raw document bodies; no full renderer executed.",
+    "urls": [
+      "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+      "https://docs.github.com/en/copilot/reference/copilot-billing/license-changes"
+    ],
+    "limits": "Raw Markdown preserves unresolved Liquid tokens and transclusion directives. Only the separately snapshotted free-access reusable is evaluated. Other reused body content, menu steps, exact UI labels, seat-assignment auto-cancellation and detailed recovery procedures are excluded."
+  }
+}

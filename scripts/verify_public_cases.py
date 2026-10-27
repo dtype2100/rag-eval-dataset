@@ -1,6 +1,7 @@
 """Audit public-case snapshots and evidence locations; does not grade RAG quality."""
 
 import argparse
+import copy
 import csv
 import hashlib
 import importlib.util
@@ -103,16 +104,54 @@ def audit_dataset(data, root, *, fetch=False):
     return {"status": "valid", "dataset_id": data["manifest"]["dataset_id"], "sources_checked": len(sources), "evidence_checked": len(data["evidence"]), "cells_checked": cells_checked, "items": len(data["items"]), "semantic_truth_verified": False}
 
 
+def exercise_dataset(data, root):
+    """Corrupt copies only; no source or dataset file is modified."""
+    contract.require(data["manifest"]["status"] == "draft", "exercise", "use a draft so seal failure cannot mask a control")
+    rejected = []
+    for name in ("source_hash", "evidence_location", "missing_sufficient_evidence", "split_leak", "self_review"):
+        mutated = copy.deepcopy(data)
+        answer = next((item for item in mutated["items"] if item["expected_action"] == "answer"), None)
+        contract.require(answer is not None, "exercise", "requires at least one answer item")
+        if name == "source_hash":
+            mutated["manifest"]["sources"][0]["sha256"] = "0" * 64
+        elif name == "evidence_location":
+            evidence = mutated["evidence"][0]
+            if evidence["modality"] == "table":
+                key = evidence["locator"]["columns"][0]
+                evidence["locator"]["values"][key] += " [corrupted]"
+            else:
+                evidence["content"] += " [corrupted]"
+        elif name == "missing_sufficient_evidence":
+            answer["evidence_sets"] = []
+        elif name == "split_leak":
+            duplicate = copy.deepcopy(answer)
+            duplicate.update(id=answer["id"] + "-controlled-leak", split="dev" if answer["split"] == "test" else "test")
+            mutated["items"].append(duplicate)
+        else:
+            answer["verification"].update(status="accepted", reviewer=answer["author"], independent=True, notes="Controlled invalid self-review")
+        try:
+            audit_dataset(mutated, root)
+        except ValueError as exc:
+            rejected.append({"control": name, "result": "rejected", "reason": str(exc)})
+        else:
+            raise ValueError(f"exercise: failed to reject {name}")
+    return rejected
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path)
     parser.add_argument("--root", type=Path, default=REPO)
     parser.add_argument("--fetch", action="store_true", help="Fetch missing ignored snapshots from pinned official GitHub URLs")
+    parser.add_argument("--exercise", action="store_true", help="Reject five deliberately corrupted copies without changing inputs")
     parser.add_argument("--out", type=Path)
     args = parser.parse_args()
     try:
         data = json.loads(args.input.read_text(encoding="utf-8"), object_pairs_hook=contract.unique_object, parse_constant=contract.reject_constant)
         result = audit_dataset(data, args.root, fetch=args.fetch)
+        if args.exercise:
+            controls = exercise_dataset(data, args.root)
+            result.update(controls_rejected=len(controls), controls=controls)
         serialized = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
         if args.out:
             with args.out.open("x", encoding="utf-8") as stream:

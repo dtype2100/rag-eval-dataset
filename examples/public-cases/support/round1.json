@@ -1,0 +1,271 @@
+{
+  "case_id": "support",
+  "round": 1,
+  "checked_at": "2026-10-27T17:05:25.194999+00:00",
+  "performed_by": "case-support-author",
+  "review_independence": false,
+  "status": "author-mechanical-checks-passed; independent semantic review pending",
+  "dataset_path": "examples/public-cases/support/dataset.json",
+  "dataset_file_sha256": "849fd0eca5d21da36bfde760768e56ecc99d7e4e9013ffa82797686bb00dcc57",
+  "counts": {
+    "sources": 3,
+    "evidence": 14,
+    "items": 12,
+    "origin": {
+      "synthetic": 12
+    },
+    "actions": {
+      "answer": 10,
+      "clarify": 1,
+      "abstain": 1
+    },
+    "verification": {
+      "pending": 12
+    },
+    "splits": {
+      "dev": 12
+    }
+  },
+  "checks": {
+    "existing_validator": {
+      "command": "python3 skills/rag-dataset-builder/scripts/dataset.py validate examples/public-cases/support/dataset.json",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"valid\", \"items\": 12, \"task\": \"rag\", \"frozen\": false}",
+      "stderr": "",
+      "result": {
+        "status": "valid",
+        "items": 12,
+        "task": "rag",
+        "frozen": false
+      }
+    },
+    "source_hashes": [
+      {
+        "source_id": "k8s-lifecycle",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "expected_sha256": "1d81a56b63aa75e10d3cea41978420da7c046027a143c56852f6698ff5e6623c",
+        "actual_sha256": "1d81a56b63aa75e10d3cea41978420da7c046027a143c56852f6698ff5e6623c",
+        "match": true,
+        "bytes": 56400
+      },
+      {
+        "source_id": "k8s-debug-running",
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "expected_sha256": "ec96ce1a6c370020a9162cae98aba5b1a04113365815613ecdb1f658cfa2e08f",
+        "actual_sha256": "ec96ce1a6c370020a9162cae98aba5b1a04113365815613ecdb1f658cfa2e08f",
+        "match": true,
+        "bytes": 28330
+      },
+      {
+        "source_id": "k8s-images",
+        "path": "data/public-cases/support/originals/images.md",
+        "expected_sha256": "019267d271888ab7e9b505c748a5bd0b7f99029a2270fb08390f43f94d5ddf5e",
+        "actual_sha256": "019267d271888ab7e9b505c748a5bd0b7f99029a2270fb08390f43f94d5ddf5e",
+        "match": true,
+        "bytes": 28900
+      }
+    ],
+    "license_snapshot": {
+      "path": "data/public-cases/support/originals/LICENSE",
+      "expected_sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "actual_sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "match": true
+    },
+    "unicode_codepoint_offsets_and_lines": [
+      {
+        "evidence_id": "e-status-phase",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 6727,
+        "end": 7205,
+        "start_line": 122,
+        "end_line": 127,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-crash-backoff",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 10900,
+        "end": 11339,
+        "start_line": 204,
+        "end_line": 208,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-crash-causes",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 12052,
+        "end": 12600,
+        "start_line": 222,
+        "end_line": 232,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-crash-diagnostics",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 12602,
+        "end": 13001,
+        "start_line": 234,
+        "end_line": 239,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-pending-phase",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 5737,
+        "end": 6009,
+        "start_line": 114,
+        "end_line": 114,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-waiting",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 9165,
+        "end": 9659,
+        "start_line": 172,
+        "end_line": 178,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-terminated",
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 10064,
+        "end": 10359,
+        "start_line": 189,
+        "end_line": 192,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-logs-current",
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 12478,
+        "end": 12588,
+        "start_line": 336,
+        "end_line": 340,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-logs-previous",
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 12590,
+        "end": 12758,
+        "start_line": 342,
+        "end_line": 346,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-failed-scheduling-example",
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 7300,
+        "end": 7707,
+        "start_line": 185,
+        "end_line": 187,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-image-backoff",
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 9317,
+        "end": 9779,
+        "start_line": 182,
+        "end_line": 188,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-secret-scope",
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 15265,
+        "end": 15547,
+        "start_line": 297,
+        "end_line": 300,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-pull-policy-default",
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 7826,
+        "end": 8002,
+        "start_line": 150,
+        "end_line": 152,
+        "content_match": true,
+        "line_match": true
+      },
+      {
+        "evidence_id": "e-pull-policy-update",
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 8017,
+        "end": 8465,
+        "start_line": 155,
+        "end_line": 161,
+        "content_match": true,
+        "line_match": true
+      }
+    ],
+    "bounded_unanswerable_identifier_search": {
+      "method": "Case-insensitive whole-file literal identifier search, plus author inspection of document scope and selected diagnostic passages. Limited absence check, not exhaustive semantic review.",
+      "results": [
+        {
+          "source_id": "k8s-lifecycle",
+          "search_terms": {
+            "checkout": [],
+            "2026-10-27": []
+          },
+          "matching_lines": 0
+        },
+        {
+          "source_id": "k8s-debug-running",
+          "search_terms": {
+            "checkout": [],
+            "2026-10-27": []
+          },
+          "matching_lines": 0
+        },
+        {
+          "source_id": "k8s-images",
+          "search_terms": {
+            "checkout": [],
+            "2026-10-27": []
+          },
+          "matching_lines": 0
+        }
+      ]
+    },
+    "ignored_source_snapshots": {
+      "command": "git check-ignore --stdin",
+      "exit_code": 0,
+      "paths": [
+        "data/public-cases/support/originals/pod-lifecycle.md",
+        "data/public-cases/support/originals/debug-running-pod.md",
+        "data/public-cases/support/originals/images.md"
+      ]
+    },
+    "origin_author_and_pending_flags": {
+      "passed": true,
+      "all_synthetic": true,
+      "all_pending": true,
+      "approval_present": false
+    }
+  },
+  "authoring_corrections": [
+    "Selected Images as the third corpus source to ground ImagePullBackOff; intake-only Debug Pods is excluded.",
+    "Kept unanswerability check bounded to document scope/selected passages and literal incident identifiers; no exhaustive semantic absence claim."
+  ],
+  "unresolved": [
+    "All 12 items require a separate independent source/answer/rubric review before acceptance.",
+    "No judge calibration, disagreement resolution, human approval, or dataset freeze.",
+    "No production queries/logs, RAG execution, retrieval candidate pooling, embedding comparison, or user-impact measurement."
+  ],
+  "interpretation": "Passing structure, checksums and locators establishes reproducible source references only; it does not establish answer correctness, operational representativeness or system quality."
+}
