@@ -102,10 +102,10 @@
     ],
     "review": {
       "policy": "independent",
-      "approved_by": "",
-      "approved_at": "",
-      "calibration": "미수행. 작성자가 원문 대조한 후보 라벨이며 독립 검토자의 정답·오답·경계 사례 대조와 사람 간 일치도 연구는 수행하지 않았다.",
-      "disagreements": "아직 독립 검토 전이므로 불일치 유무를 판단하지 않았다."
+      "approved_by": "/root/case_table; case-pricing-author acting as independent support reviewer",
+      "approved_at": "2026-10-27T17:10:33.093232+00:00",
+      "calibration": "Independent reviewer first answered all twelve source-grounded questions without seeing generated answers, then compared answer/action/evidence. See review-blind.json and round2.json. No human agreement study.",
+      "disagreements": "See round2.json and round2-adjustments/addendum where present. Required revisions are resolved; no unresolved item is included."
     },
     "judging": {
       "criteria": "2: 필요한 오류 의미·조건·진단 명령을 직접 뒷받침함. 1: 관련 진단 맥락이지만 요구된 의미/명령/조건을 완성하지 못함. 0: 다른 장애 단계로 질문을 뒷받침하지 못함(예: FailedScheduling 질의의 ImagePullBackOff). 복합 문항은 evidence_sets의 AND를 모두 만족해야 함. 미기재 결과는 미판정이며 0이 아님.",
@@ -393,11 +393,11 @@
         "토큰만으로 특정 장애 원인을 단정하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-01."
       }
     },
     {
@@ -425,11 +425,11 @@
         "계속 재시도하며 간격의 상한이 300초/5분이라고 답한다. 총 재시도 시간·실패 횟수의 상한으로 바꾸지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-02."
       }
     },
     {
@@ -458,11 +458,11 @@
         "명령 실행 성공이나 실제 로그 확보를 주장하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-03."
       }
     },
     {
@@ -491,11 +491,11 @@
         "CrashLoopBackOff를 원인으로 삼아 임의의 수정 명령을 처방하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-04."
       },
       "diagnostic_input_origin": "synthetic; no production logs or cluster access"
     },
@@ -525,11 +525,11 @@
         "상태/증상과 실제 원인을 구분하고 문서의 다른 원인 예시를 두 가지 이상 든다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-05."
       }
     },
     {
@@ -557,11 +557,11 @@
         "모든 FailedScheduling가 CPU 부족이라는 일반화나 실제 환경의 원인 확정을 하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-06."
       },
       "diagnostic_input_origin": "official documentation example; not production logs"
     },
@@ -590,11 +590,11 @@
         "실제 자격 증명이나 Secret 값을 요구하거나 만들어내지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-07."
       }
     },
     {
@@ -622,11 +622,11 @@
         "새 객체의 :latest 기본값과 기존 객체 업데이트 동작을 혼동하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-08."
       }
     },
     {
@@ -656,11 +656,11 @@
         "이미지 다운로드도 Pending에 포함됨과 Waiting의 Reason 필드를 모두 설명한다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-09."
       }
     },
     {
@@ -687,11 +687,11 @@
         "exit code나 로그가 없는 상태에서 특정 원인을 단정하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-10."
       }
     },
     {
@@ -716,13 +716,13 @@
         "운영 로그가 제공됐거나 명령이 실행됐다고 주장하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-11."
       },
-      "rationale": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 있으므로 추가 진단 정보를 요청한다.",
+      "rationale": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 없으므로 추가 진단 정보를 요청한다.",
       "diagnostic_input_origin": "synthetic; one status token only; no production logs or cluster access"
     },
     {
@@ -743,11 +743,11 @@
         "조회하지 않은 실제 클러스터나 배포 이력에 접근했다고 주장하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "작성자가 원문을 대조해 만든 후보. 독립적인 원문·정답·대체 근거 검토 전이며 승인하지 않았다."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item support-12."
       },
       "rationale": "평가 코퍼스는 고정 커밋의 일반 Kubernetes 문서 세 파일뿐이다. 문서의 출력 예제는 실제 회사 장애 기록이 아니므로 날짜·서비스별 커밋 및 실제 재시작 수의 근거가 없다.",
       "answerability_check": {

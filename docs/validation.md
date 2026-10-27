@@ -52,3 +52,8 @@ python3 skills/rag-dataset-builder/scripts/dataset.py validate /tmp/unique-toy-v
 ```
 
 이미 존재하는 출력 경로는 새 경로로 바꾼다. 실제 평가셋은 생성 실행별 코퍼스·검토 기준으로 다시 검증해야 한다.
+
+
+## 2026-10-28 추가: 공개 서비스 자료 주제 검증
+
+정책·요금표·기술지원 3주제를 각각 3회 검증했다. 공식 원문8개+파생표1개, 합성 질문36개·근거43개, 변조 통제15개 거절. 독립 검토에서 rationale 오류1개를 수정했고, 요금 질문1개를 명확히 했다. 표 content-only 변조 검사를 추가해 전체43개 자동 테스트가 통과했다. 상세 기록은 [public-case-results.md](public-case-results.md). 기존33개는 초기 구현 시점의 기록이다. 운영 RAG·고객 로그·임베딩 성능은 여전히 검증하지 않았다.

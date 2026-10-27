@@ -43,3 +43,8 @@ python3 skills/rag-dataset-builder/scripts/dataset.py validate examples/public-c
 원본: **Kubernetes Authors and kubernetes/website contributors**, 위의 세 문서, 고정 커밋 및 다운로드 시각은 `sources.json` 참조. 원본 저장소의 [LICENSE](https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE)는 [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)이다.
 
 변경: 필요한 연속 구간을 원문 그대로 발췌하고 한국어 합성 질문·정답·루브릭·메타데이터를 추가했다. 이 지원 사례의 발췌 및 파생 콘텐츠에도 CC BY 4.0을 적용한다. Kubernetes 프로젝트가 이 사례를 승인하거나 보증했다는 뜻은 아니다. 조사 중 받은 `debug-pods.md`와 `README.md`는 평가 코퍼스에 넣지 않았으며 `LICENSE`는 라이선스 증빙으로만 보존했다.
+
+
+## 후속 검증 완료
+
+작성 직후 pending 기록은 round1.json의 이력이다. 독립 source-first 검토(round2.json 및 수정 addendum)를 거쳐 승인했고, round3.json에 5개 오류 주입 거절·동결·원문 재검증 결과를 기록했다. 최종본은 dataset.v1.json이며 실제 고객 로그/운영 RAG/임베딩 모델 검증은 아니다.

@@ -1,0 +1,122 @@
+{
+  "case_id": "support",
+  "sources": [
+    {
+      "id": "k8s-lifecycle",
+      "sha256": "1d81a56b63aa75e10d3cea41978420da7c046027a143c56852f6698ff5e6623c",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 Markdown snapshot",
+      "losses": [],
+      "split_group": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+      "path": "data/public-cases/support/originals/pod-lifecycle.md",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
+      "raw_url": "https://raw.githubusercontent.com/kubernetes/website/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+      "title": "Pod Lifecycle",
+      "upstream_commit": "ed70e311737a341574ed5758b7af24e3bba232cb",
+      "upstream_path": "content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+      "blob_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+      "fetched_at": "2026-10-27T17:01:28.886531+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "content_kind": "official_documentation; command/output examples are not production logs"
+    },
+    {
+      "id": "k8s-debug-running",
+      "sha256": "ec96ce1a6c370020a9162cae98aba5b1a04113365815613ecdb1f658cfa2e08f",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 Markdown snapshot",
+      "losses": [],
+      "split_group": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+      "path": "data/public-cases/support/originals/debug-running-pod.md",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+      "raw_url": "https://raw.githubusercontent.com/kubernetes/website/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+      "title": "Debug Running Pods",
+      "upstream_commit": "ed70e311737a341574ed5758b7af24e3bba232cb",
+      "upstream_path": "content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+      "blob_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+      "fetched_at": "2026-10-27T17:01:29.473960+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "content_kind": "official_documentation; command/output examples are not production logs"
+    },
+    {
+      "id": "k8s-images",
+      "sha256": "019267d271888ab7e9b505c748a5bd0b7f99029a2270fb08390f43f94d5ddf5e",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 Markdown snapshot",
+      "losses": [],
+      "split_group": "kubernetes-website-ed70e311737a341574ed5758b7af24e3bba232cb",
+      "path": "data/public-cases/support/originals/images.md",
+      "url": "https://kubernetes.io/docs/concepts/containers/images/",
+      "raw_url": "https://raw.githubusercontent.com/kubernetes/website/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/containers/images.md",
+      "title": "Images",
+      "upstream_commit": "ed70e311737a341574ed5758b7af24e3bba232cb",
+      "upstream_path": "content/en/docs/concepts/containers/images.md",
+      "blob_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/content/en/docs/concepts/containers/images.md",
+      "fetched_at": "2026-10-27T17:01:42.879024+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source_url": "https://github.com/kubernetes/website/blob/ed70e311737a341574ed5758b7af24e3bba232cb/LICENSE",
+      "attribution": "Kubernetes Authors and kubernetes/website contributors",
+      "content_kind": "official_documentation; command/output examples are not production logs"
+    }
+  ],
+  "scope": "고정 커밋 ed70e311737a341574ed5758b7af24e3bba232cb의 세 출처 원본 본문과 명시된 문서 출력 예제. 실제 회사 장애 기록과 연결된 페이지는 제외한다.",
+  "questions": [
+    {
+      "id": "support-01",
+      "query": "kubectl의 STATUS에 CrashLoopBackOff가 보입니다. 이 토큰은 무슨 뜻이고 Pod의 phase 이름인가요?"
+    },
+    {
+      "id": "support-02",
+      "query": "ImagePullBackOff는 이미지 다운로드를 포기했다는 뜻인가요? 문서에 나온 원인 예시와 재시도 간격 상한도 알려주세요."
+    },
+    {
+      "id": "support-03",
+      "query": "한 Pod에 컨테이너가 여러 개 있습니다. 방금 죽고 재시작한 컨테이너의 이전 실행 로그를 보는 명령은 무엇인가요? Pod와 컨테이너 이름은 자리표시자로 써주세요."
+    },
+    {
+      "id": "support-04",
+      "query": "합성 진단 입력(운영 로그 아님): Pod의 STATUS가 CrashLoopBackOff이고 컨테이너가 재시작됐습니다. 원인을 좁히기 위해 어떤 이벤트와 이전 실행 로그를 어떤 명령으로 확인하나요?"
+    },
+    {
+      "id": "support-05",
+      "query": "CrashLoopBackOff라는 상태만 있으면 메모리 부족이 확정된 건가요? 공식 문서의 다른 원인 예시도 들어 설명해주세요."
+    },
+    {
+      "id": "support-06",
+      "query": "Debug Running Pods의 문서 예제(운영 로그 아님)에 FailedScheduling와 \"Node didn't have enough resource: CPU\"가 나옵니다. 이 예제에서 확인된 문제는 이미지 pull 실패인가요, 스케줄링 리소스 부족인가요?"
+    },
+    {
+      "id": "support-07",
+      "query": "private registry에서 이미지를 받는 Pod에 imagePullSecrets를 직접 연결하려고 합니다. Secret은 어느 namespace에 있어야 하고 허용되는 type은 무엇인가요?"
+    },
+    {
+      "id": "support-08",
+      "query": "imagePullPolicy를 생략하고 :v1 태그로 만든 Deployment의 기본값은 무엇인가요? 나중에 이미지 태그만 :latest로 바꾸면 policy도 자동으로 Always가 되나요?"
+    },
+    {
+      "id": "support-09",
+      "query": "Pod phase가 Pending이면 반드시 아직 노드에 스케줄되지 않은 상태인가요? 컨테이너 이미지 다운로드 중인 경우와 Waiting의 Reason도 함께 설명해주세요."
+    },
+    {
+      "id": "support-10",
+      "query": "컨테이너 state가 Terminated면 무조건 오류로 죽은 건가요? kubectl에서 어떤 종료 정보를 확인할 수 있나요?"
+    },
+    {
+      "id": "support-11",
+      "query": "합성 진단 입력(운영 로그 아님): \"STATUS=CrashLoopBackOff\". 지금 장애의 정확한 원인과 한 번에 해결하는 수정값을 알려주세요."
+    },
+    {
+      "id": "support-12",
+      "query": "이 세 공식 문서만 근거로, 우리 회사 checkout 서비스가 2026-10-27 09:00 KST에 CrashLoopBackOff를 일으킨 정확한 배포 커밋과 실제 재시작 횟수를 알려주세요."
+    }
+  ]
+}

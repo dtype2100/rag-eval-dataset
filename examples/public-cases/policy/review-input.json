@@ -1,0 +1,113 @@
+{
+  "case_id": "policy",
+  "sources": [
+    {
+      "id": "copilot-plan",
+      "title": "Viewing and changing your GitHub Copilot plan",
+      "sha256": "5aedc3cc29662f5ef98fa4609780710c2c86a01b6f43615a96f6b2307413d15a",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+      "losses": [],
+      "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/content/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan.md",
+      "upstream_path": "content/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan.md",
+      "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+    },
+    {
+      "id": "copilot-license",
+      "title": "Making changes to your GitHub Copilot license",
+      "sha256": "c4d2fc694a0285166f64e845bfcb56fecf748579161023dbb960e0899e60903b",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+      "losses": [],
+      "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "path": "data/public-cases/policy/license-changes.md",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/license-changes",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/content/copilot/reference/copilot-billing/license-changes.md",
+      "upstream_path": "content/copilot/reference/copilot-billing/license-changes.md",
+      "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+    },
+    {
+      "id": "copilot-free-exception",
+      "title": "Free-access cancellation exception (GitHub Docs reusable)",
+      "sha256": "807ef3ad53c4663ad6acb0109e6a0745b051d48a13038526fc47fea35ae90b21",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+      "losses": [],
+      "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "path": "data/public-cases/policy/free-access-cancellation-note.md",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+      "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/data/reusables/copilot/free-access-cancellation-note.md",
+      "upstream_path": "data/reusables/copilot/free-access-cancellation-note.md",
+      "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+      "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+    }
+  ],
+  "scope": "Only the three files listed in manifest.sources at pinned github/docs commit 2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431; raw Markdown text task, not template execution or linked-document traversal.",
+  "questions": [
+    {
+      "id": "policy-q01",
+      "query": "I pay for my own Copilot plan. If I cancel it today, when do my current features stop, and what plan do I move to?"
+    },
+    {
+      "id": "policy-q02",
+      "query": "I want to move my personal Copilot subscription down one plan level. Does the lower plan start as soon as I confirm?"
+    },
+    {
+      "id": "policy-q03",
+      "query": "Will canceling my personal Copilot plan give me a refund for days left in the current billing cycle?"
+    },
+    {
+      "id": "policy-q04",
+      "query": "If I upgrade my personal Copilot plan mid-cycle, when does it start and how is the new plan charge calculated?"
+    },
+    {
+      "id": "policy-q05",
+      "query": "Our organization adds a Copilot seat mid-cycle and pays by credit card. How are the added seat charge and access handled?"
+    },
+    {
+      "id": "policy-q06",
+      "query": "In our organization, how does unassigning a Copilot seat differ from revoking it, and when does the reduced seat count affect billing?"
+    },
+    {
+      "id": "policy-q07",
+      "query": "We disable Copilot for our organization mid-cycle and later reenable it during the same cycle. What happens to access and billing?"
+    },
+    {
+      "id": "policy-q08",
+      "query": "I get Copilot free as a verified student. Can I cancel that plan using the usual cancellation flow, and what can I do instead?"
+    },
+    {
+      "id": "policy-q09",
+      "query": "Copilot is charging an old personal account that I cannot sign in to or identify. What does this policy say to try, and what help can I request if that fails?"
+    },
+    {
+      "id": "policy-q10",
+      "query": "For my personally billed Copilot plan, what will I have after the current cycle ends if I cancel now, and will unused time be refunded?"
+    },
+    {
+      "id": "policy-q11",
+      "query": "What is the guaranteed number of hours for GitHub Support to resolve a locked-account Copilot billing cancellation request?"
+    },
+    {
+      "id": "policy-q12",
+      "query": "Can I cancel my Copilot plan?"
+    }
+  ]
+}

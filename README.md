@@ -61,5 +61,16 @@ freeze는 미확인 접수 정보·미검토 항목을 거절하며 기존 출�
 - [데이터별 분석 기준](skills/rag-dataset-builder/references/data-types.md)
 - [세 차례 외부 자료 조사·개선](docs/iterations.md)
 - [검증 계획·결과·한계](docs/validation.md)
+- [공개 서비스 자료 3주제 × 3회 검증](docs/public-case-results.md): GitHub 정책, Cloudflare 요금표, Kubernetes 기술지원. 공식 원문 8개·파생 표 1개, 합성 문항 36개·근거 43개. 운영 RAG 성능 검증은 아닙니다.
+
+공개 사례의 원문 대조와 오류 주입 재현:
+
+```sh
+python3 scripts/verify_public_cases.py examples/public-cases/policy/dataset.json --fetch --exercise
+python3 scripts/verify_public_cases.py examples/public-cases/pricing/dataset.json --fetch --exercise
+python3 scripts/verify_public_cases.py examples/public-cases/support/dataset.json --fetch --exercise
+```
+
+원문 위치/셀 대조용 `scripts/verify_public_cases.py`는 이 저장소의 사례 검증 도구입니다. 스킬 폴더만 설치하면 포함되지 않습니다.
 
 이 스킬은 적용 범위 내 평가셋 구축을 돕습니다. 모든 입력에서 정답셋을 만들 수 있거나, 구조 검사를 통과한 정답이 참이라는 보장은 하지 않습니다.

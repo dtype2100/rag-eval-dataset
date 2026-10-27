@@ -18,3 +18,10 @@ jobs:
       - run: python skills/rag-dataset-builder/scripts/dataset.py validate examples/toy/dataset.json
       - run: python skills/rag-dataset-builder/scripts/dataset.py freeze examples/toy/dataset.json --out "$RUNNER_TEMP/toy-dataset.v1.json"
       - run: python skills/rag-dataset-builder/scripts/dataset.py validate "$RUNNER_TEMP/toy-dataset.v1.json"
+      - name: Reproduce public-source cases and deliberate corruption checks
+        run: |
+          for topic in policy pricing support; do
+            python scripts/verify_public_cases.py "examples/public-cases/$topic/dataset.json" --fetch --exercise
+            python skills/rag-dataset-builder/scripts/dataset.py freeze "examples/public-cases/$topic/dataset.json" --out "$RUNNER_TEMP/$topic.v1.json"
+            python scripts/verify_public_cases.py "$RUNNER_TEMP/$topic.v1.json"
+          done

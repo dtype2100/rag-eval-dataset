@@ -1,0 +1,916 @@
+{
+  "manifest": {
+    "schema_version": "1.0",
+    "dataset_id": "public-cloudflare-workers-pricing",
+    "version": "0.1-draft",
+    "status": "frozen",
+    "corpus_snapshot": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9-selected-v1",
+    "task": "rag",
+    "split_policy": "query-disjoint",
+    "coverage": [
+      "Official Cloudflare Workers Free/Paid Standard pricing facts and HTTP limits at a pinned public production snapshot.",
+      "A real derived CSV table with 10 stable row keys, numerical units, periods, included usage and overage rates.",
+      "12 Korean synthetic items: 10 answer, 1 bounded abstain, 1 clarify; includes conjunctive evidence and deterministic arithmetic."
+    ],
+    "limitations": [
+      "Draft pending independent source review; author checks do not establish semantic approval.",
+      "All 12 queries are synthetic; no production user logs, RAG access, model API generation or model-performance measurement.",
+      "Public illustrative test items, not an uncontaminated private holdout; no dev split or source-disjoint claim.",
+      "Candidate corpus is 10 selected table rows plus 4 declared text excerpts; raw MDX is retained as provenance and contains unexpanded Render imports.",
+      "Bounded answerability review does not prove absence across all Cloudflare material or private Enterprise contracts.",
+      "Cron/Queue limits are excluded because pricing and interval-specific limits wording differ; no silent reconciliation.",
+      "Caching, static assets, legacy models, other Workers products, taxes, discounts, currency conversion and account-specific contract rates are outside calculation scope.",
+      "Prices and limits are snapshot facts; live pages may change after fetch. MB is retained and never normalized to MiB.",
+      "Relevance labels cover selected evidence units only; unjudged retrieved candidates require review instead of automatic zero."
+    ],
+    "intake": {
+      "data_description": "Two official Cloudflare Workers MDX pricing/limits sources and a normalized CSV table; attributed CC-BY-4.0 facts/excerpts.",
+      "user_task": "Korean developers locate plan prices and execution limits without mixing billing units, periods or technical caps, calculate a scoped example, and request missing/private inputs.",
+      "query_language": "ko",
+      "scope": "Pinned production commit, selected Workers Free and Paid Standard HTTP/request/CPU/memory facts; 14 declared evidence units.",
+      "access_policy": "Public official Cloudflare docs under repository CC-BY-4.0; no account login or confidential material.",
+      "external_processing": "Only public official web/raw GitHub source retrieval; no credentialed generation API or customer data transmission.",
+      "target_size": 12
+    },
+    "sources": [
+      {
+        "id": "cf-pricing-original",
+        "sha256": "433c1ef43e3adc53b7272a02b0ddb893f9514ac99c949635f7ff90423f819d75",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "None; original UTF-8 MDX bytes at a pinned production commit.",
+        "losses": [],
+        "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+        "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/pricing.mdx",
+        "license": "CC-BY-4.0",
+        "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+        "attribution": "Cloudflare, Inc. and contributors",
+        "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+        "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+        "corpus_role": "provenance_original; only declared text evidence is a public candidate unit"
+      },
+      {
+        "id": "cf-limits-original",
+        "sha256": "707eb71f26a93061771979b386ebce8374680f64864d61f750d20f265ec62a3e",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "None; original UTF-8 MDX bytes at a pinned production commit.",
+        "losses": [],
+        "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+        "path": "data/public-cases/pricing/limits.mdx",
+        "url": "https://developers.cloudflare.com/workers/platform/limits/",
+        "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/limits.mdx",
+        "license": "CC-BY-4.0",
+        "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+        "attribution": "Cloudflare, Inc. and contributors",
+        "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+        "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+        "corpus_role": "provenance_original; only declared text evidence is a public candidate unit"
+      },
+      {
+        "id": "cf-workers-derived-table",
+        "sha256": "adb3dc62e2cee210e60041946175fba287999850a1f9d9334f57f5b5140710a9",
+        "modality": "table",
+        "representation": "derived",
+        "transformation": "case-pricing-manual-table-v1: select Workers Free/Paid Standard rows; split monthly inclusion from overage; expand 1 million to 1000000; convert 30 seconds and 5 minutes to CPU milliseconds; retain MB (not MiB); split Free/Paid memory rows; add scope notes from pinned paragraphs. No HTML rendering or transcluded component expansion.",
+        "losses": [
+          "Partial corpus: excludes other products, examples, legacy/Enterprise contracts, caching exceptions and Cron/Queue limits.",
+          "Row keys and columns are author-created; formatting, links and most footnotes are omitted."
+        ],
+        "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+        "path": "examples/public-cases/pricing/pricing.csv",
+        "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+        "upstream_source_ids": [
+          "cf-pricing-original",
+          "cf-limits-original"
+        ],
+        "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+        "license": "CC-BY-4.0",
+        "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+        "attribution": "Adapted from Cloudflare, Inc. and contributors; modifications by case-pricing-author",
+        "sheet": "pricing",
+        "row_key_column": "row_key",
+        "fetched_at": "2026-10-27T17:01:10.083286+00:00"
+      }
+    ],
+    "review": {
+      "policy": "independent",
+      "approved_by": "case-policy-reviewer",
+      "approved_at": "2026-10-27T17:10:33.093232+00:00",
+      "calibration": "Independent reviewer first answered all twelve source-grounded questions without seeing generated answers, then compared answer/action/evidence. See review-blind.json and round2.json. No human agreement study.",
+      "disagreements": "See round2.json and round2-adjustments/addendum where present. Required revisions are resolved; no unresolved item is included."
+    },
+    "judging": {
+      "criteria": "2: directly states a requested price, unit, period, limit, required calculation input, or missing-input basis; 1: same plan/product context but insufficient for that requested fact (e.g. Standard rate for private Enterprise contract); 0: unrelated. For conjunctive questions all evidence in one sufficient set is required. Unjudged candidates are not automatic negatives.",
+      "coverage": "sampled",
+      "candidate_scope": "Author selected 10 CSV rows plus 4 source-text snippets. Sparse qrels inspect sufficient and a few confusable units; no retrieval pool, exhaustive qrels, production candidate search or unjudged-rate estimate."
+    },
+    "provenance": {
+      "method": "case-pricing-author manually adapted public source facts and authored synthetic Korean questions/labels in the agent runtime; Python standard-library hash, cell, locator and Decimal arithmetic checks.",
+      "generator": "case-pricing-author; exact authoring runtime model ID is not exposed",
+      "prompt_version": "public-cases-pricing-v1",
+      "settings": "No direct model generation API; seed and sampling parameters uncontrolled. Parent agent will arrange independent review; author never self-approves.",
+      "created_at": "2026-10-27T17:04:29.420432+00:00"
+    },
+    "frozen_at": "2026-10-27T17:10:33.564528+00:00",
+    "payload_sha256": "469c806b242fd198bdafb4ff7bb1bbf102e2064fd301543f2262a9b51a967bb6"
+  },
+  "evidence": [
+    {
+      "id": "t-base",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "paid_base",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid Standard",
+          "metric": "minimum_subscription",
+          "value": "5",
+          "unit": "USD",
+          "period": "month",
+          "allowance_kind": "minimum_charge",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "Account minimum; not an additional per-Worker fee."
+        }
+      },
+      "content": "plan=Workers Paid Standard; metric=minimum_subscription; value=5; unit=USD; period=month; allowance_kind=minimum_charge; overage_usd=; overage_quantity=; overage_unit=; notes=Account minimum; not an additional per-Worker fee."
+    },
+    {
+      "id": "t-free-requests",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "free_requests",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Free",
+          "metric": "inbound_requests",
+          "value": "100000",
+          "unit": "request",
+          "period": "UTC_day",
+          "allowance_kind": "daily_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "Daily allowance; not a monthly pooled allowance."
+        }
+      },
+      "content": "plan=Workers Free; metric=inbound_requests; value=100000; unit=request; period=UTC_day; allowance_kind=daily_limit; overage_usd=; overage_quantity=; overage_unit=; notes=Daily allowance; not a monthly pooled allowance."
+    },
+    {
+      "id": "t-paid-requests",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "standard_requests",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid Standard",
+          "metric": "inbound_requests",
+          "value": "10000000",
+          "unit": "request",
+          "period": "month",
+          "allowance_kind": "included_usage",
+          "overage_usd": "0.30",
+          "overage_quantity": "1000000",
+          "overage_unit": "request",
+          "notes": "Ordinary dynamic inbound requests; usage above inclusion is billed."
+        }
+      },
+      "content": "plan=Workers Paid Standard; metric=inbound_requests; value=10000000; unit=request; period=month; allowance_kind=included_usage; overage_usd=0.30; overage_quantity=1000000; overage_unit=request; notes=Ordinary dynamic inbound requests; usage above inclusion is billed."
+    },
+    {
+      "id": "t-paid-cpu",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "standard_cpu",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid Standard",
+          "metric": "CPU_time",
+          "value": "30000000",
+          "unit": "CPU_ms",
+          "period": "month",
+          "allowance_kind": "included_usage",
+          "overage_usd": "0.02",
+          "overage_quantity": "1000000",
+          "overage_unit": "CPU_ms",
+          "notes": "Monthly billing inclusion; not a per-invocation execution limit."
+        }
+      },
+      "content": "plan=Workers Paid Standard; metric=CPU_time; value=30000000; unit=CPU_ms; period=month; allowance_kind=included_usage; overage_usd=0.02; overage_quantity=1000000; overage_unit=CPU_ms; notes=Monthly billing inclusion; not a per-invocation execution limit."
+    },
+    {
+      "id": "t-paid-request-limit",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "paid_request_limit",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid",
+          "metric": "request_count",
+          "value": "unlimited",
+          "unit": "request",
+          "period": "day",
+          "allowance_kind": "technical_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "No daily count limit; this does not mean all requests are free."
+        }
+      },
+      "content": "plan=Workers Paid; metric=request_count; value=unlimited; unit=request; period=day; allowance_kind=technical_limit; overage_usd=; overage_quantity=; overage_unit=; notes=No daily count limit; this does not mean all requests are free."
+    },
+    {
+      "id": "t-free-http-cpu",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "free_http_cpu",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Free",
+          "metric": "CPU_time",
+          "value": "10",
+          "unit": "CPU_ms",
+          "period": "HTTP_invocation",
+          "allowance_kind": "execution_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "HTTP-request CPU execution limit, not a monthly allowance."
+        }
+      },
+      "content": "plan=Workers Free; metric=CPU_time; value=10; unit=CPU_ms; period=HTTP_invocation; allowance_kind=execution_limit; overage_usd=; overage_quantity=; overage_unit=; notes=HTTP-request CPU execution limit, not a monthly allowance."
+    },
+    {
+      "id": "t-paid-http-default",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "paid_http_cpu_default",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid",
+          "metric": "CPU_time",
+          "value": "30000",
+          "unit": "CPU_ms",
+          "period": "HTTP_invocation",
+          "allowance_kind": "default_execution_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "Default 30 seconds; can be configured up to the maximum."
+        }
+      },
+      "content": "plan=Workers Paid; metric=CPU_time; value=30000; unit=CPU_ms; period=HTTP_invocation; allowance_kind=default_execution_limit; overage_usd=; overage_quantity=; overage_unit=; notes=Default 30 seconds; can be configured up to the maximum."
+    },
+    {
+      "id": "t-paid-http-max",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "paid_http_cpu_max",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid",
+          "metric": "CPU_time",
+          "value": "300000",
+          "unit": "CPU_ms",
+          "period": "HTTP_invocation",
+          "allowance_kind": "maximum_execution_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "Configurable maximum 5 minutes; not the default."
+        }
+      },
+      "content": "plan=Workers Paid; metric=CPU_time; value=300000; unit=CPU_ms; period=HTTP_invocation; allowance_kind=maximum_execution_limit; overage_usd=; overage_quantity=; overage_unit=; notes=Configurable maximum 5 minutes; not the default."
+    },
+    {
+      "id": "t-free-memory",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "free_memory",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Free",
+          "metric": "memory",
+          "value": "128",
+          "unit": "MB",
+          "period": "isolate",
+          "allowance_kind": "execution_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "Per isolate, including JavaScript heap and WebAssembly allocations."
+        }
+      },
+      "content": "plan=Workers Free; metric=memory; value=128; unit=MB; period=isolate; allowance_kind=execution_limit; overage_usd=; overage_quantity=; overage_unit=; notes=Per isolate, including JavaScript heap and WebAssembly allocations."
+    },
+    {
+      "id": "t-paid-memory",
+      "source_id": "cf-workers-derived-table",
+      "modality": "table",
+      "locator": {
+        "sheet": "pricing",
+        "row": "paid_memory",
+        "columns": [
+          "plan",
+          "metric",
+          "value",
+          "unit",
+          "period",
+          "allowance_kind",
+          "overage_usd",
+          "overage_quantity",
+          "overage_unit",
+          "notes"
+        ],
+        "values": {
+          "plan": "Workers Paid",
+          "metric": "memory",
+          "value": "128",
+          "unit": "MB",
+          "period": "isolate",
+          "allowance_kind": "execution_limit",
+          "overage_usd": "",
+          "overage_quantity": "",
+          "overage_unit": "",
+          "notes": "Per isolate, including JavaScript heap and WebAssembly allocations."
+        }
+      },
+      "content": "plan=Workers Paid; metric=memory; value=128; unit=MB; period=isolate; allowance_kind=execution_limit; overage_usd=; overage_quantity=; overage_unit=; notes=Per isolate, including JavaScript heap and WebAssembly allocations."
+    },
+    {
+      "id": "p-base",
+      "source_id": "cf-pricing-original",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 580,
+        "end": 630
+      },
+      "content": "minimum charge of $5 USD per month for an account."
+    },
+    {
+      "id": "p-egress",
+      "source_id": "cf-pricing-original",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/pricing/pricing.mdx",
+        "start": 742,
+        "end": 827
+      },
+      "content": "There are no additional charges for data transfer (egress) or throughput (bandwidth)."
+    },
+    {
+      "id": "l-reset",
+      "source_id": "cf-limits-original",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 10959,
+        "end": 11067
+      },
+      "content": "Accounts on the Workers Free plan have a daily request limit of 100,000 requests, resetting at midnight UTC."
+    },
+    {
+      "id": "l-memory-scope",
+      "source_id": "cf-limits-original",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/pricing/limits.mdx",
+        "start": 6816,
+        "end": 6862
+      },
+      "content": "This limit is per-isolate, not per-invocation."
+    }
+  ],
+  "items": [
+    {
+      "id": "pricing-01",
+      "query": "Workers 무료 플랜의 요청 수 한도는 몇 건이고, 기간 단위는 무엇인가요?",
+      "split": "test",
+      "leakage_group": "free-request-allowance",
+      "query_type": "numeric-lookup",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "Workers Free는 하루 100,000건입니다. 월 100,000건이 아닙니다.",
+      "evidence_sets": [
+        [
+          "t-free-requests"
+        ],
+        [
+          "l-reset"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-free-requests": 2,
+        "l-reset": 2,
+        "t-paid-requests": 1
+      },
+      "rubric": [
+        "100,000건과 하루 단위를 모두 명시한다.",
+        "월간 포함량이나 유료 플랜 단가로 바꾸지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-01."
+      }
+    },
+    {
+      "id": "pricing-02",
+      "query": "Workers Paid의 Standard에서 월간 요청은 몇 건까지 포함되고 초과분은 얼마인가요?",
+      "split": "test",
+      "leakage_group": "paid-request-price",
+      "query_type": "included-and-overage",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "매월 요청 10,000,000건이 포함되고, 초과 요청 1,000,000건당 USD 0.30입니다.",
+      "evidence_sets": [
+        [
+          "t-paid-requests"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-paid-requests": 2
+      },
+      "rubric": [
+        "월 10,000,000건 포함과 초과 1,000,000건당 USD 0.30을 구분한다.",
+        "요청당 USD 0.30 또는 10,000,000건당 USD 0.30으로 답하지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-02."
+      }
+    },
+    {
+      "id": "pricing-03",
+      "query": "Standard CPU 사용료의 포함량과 추가 요금을 CPU 밀리초 기준으로 알려주세요.",
+      "split": "test",
+      "leakage_group": "paid-cpu-price",
+      "query_type": "unit-consistency",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "월 30,000,000 CPU 밀리초가 포함되며, 초과 1,000,000 CPU 밀리초당 USD 0.02입니다.",
+      "evidence_sets": [
+        [
+          "t-paid-cpu"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-paid-cpu": 2
+      },
+      "rubric": [
+        "CPU 밀리초, 월간 포함량 30,000,000, 초과 1,000,000당 USD 0.02를 명시한다.",
+        "CPU 초나 HTTP 요청 수로 단위를 섞지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-03."
+      }
+    },
+    {
+      "id": "pricing-04",
+      "query": "한 계정에서 Workers Paid Standard를 시작할 때 월 최소 요금은 얼마이며, 데이터 전송에 별도 egress 요금이 붙나요?",
+      "split": "test",
+      "leakage_group": "subscription-egress",
+      "query_type": "multi-evidence",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "계정당 월 최소 USD 5입니다. 이 문서는 데이터 전송(egress)과 처리량(bandwidth)에 추가 요금이 없다고 명시합니다.",
+      "evidence_sets": [
+        [
+          "t-base",
+          "p-egress"
+        ],
+        [
+          "p-base",
+          "p-egress"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-base": 2,
+        "p-egress": 2,
+        "p-base": 2
+      },
+      "rubric": [
+        "월 최소 USD 5와 계정 기준을 명시한다.",
+        "데이터 전송/egress 추가 요금 없음을 함께 답한다.",
+        "최소 요금을 모든 사용량이 무제한 포함된 정액제라고 설명하지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-04."
+      }
+    },
+    {
+      "id": "pricing-05",
+      "query": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 일반 동적 요청 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
+      "split": "test",
+      "leakage_group": "limit-versus-price",
+      "query_type": "multi-source-condition",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "아닙니다. Paid에는 일일 요청 수의 기술적 한도가 없지만 Standard의 월 포함량은 1,000만 건이고, 초과 100만 건당 USD 0.30이 적용됩니다. 일반 동적 요청 1,200만 건이면 요청 초과 요금만 USD 0.60입니다(월 최소 요금과 CPU 요금은 별도).",
+      "evidence_sets": [
+        [
+          "t-paid-request-limit",
+          "t-paid-requests"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-paid-request-limit": 2,
+        "t-paid-requests": 2
+      },
+      "rubric": [
+        "기술적 요청 수 제한과 무료 포함량을 구분한다.",
+        "초과 200만 건 × USD 0.30/100만 건 = USD 0.60을 말한다.",
+        "USD 0.60을 전체 월 청구액이라고 부르지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-05."
+      }
+    },
+    {
+      "id": "pricing-06",
+      "query": "Workers Paid의 HTTP 요청 한 번에 설정되는 기본 CPU 한도와 올릴 수 있는 최대값을 밀리초로 알려주세요.",
+      "split": "test",
+      "leakage_group": "paid-http-cpu-limits",
+      "query_type": "unit-conversion",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "기본값은 30,000 CPU 밀리초(30초), 설정 가능한 최대값은 300,000 CPU 밀리초(5분)입니다.",
+      "evidence_sets": [
+        [
+          "t-paid-http-default",
+          "t-paid-http-max"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-paid-http-default": 2,
+        "t-paid-http-max": 2
+      },
+      "rubric": [
+        "기본 30,000ms와 최대 300,000ms를 구분한다.",
+        "HTTP 요청 범위를 유지하며 Cron/Queue에 일반화하지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-06."
+      }
+    },
+    {
+      "id": "pricing-07",
+      "query": "Workers를 무료에서 유료로 바꾸면 메모리 한도가 128 MB보다 커지나요? 이 메모리는 요청 하나 기준인가요?",
+      "split": "test",
+      "leakage_group": "memory-plan-scope",
+      "query_type": "multi-evidence",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "두 플랜 모두 128 MB이며 유료로 바꾼다는 이유로 늘지 않습니다. 이 한도는 개별 요청이 아니라 isolate당 한도입니다.",
+      "evidence_sets": [
+        [
+          "t-free-memory",
+          "t-paid-memory"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-free-memory": 2,
+        "t-paid-memory": 2,
+        "l-memory-scope": 2
+      },
+      "rubric": [
+        "Free와 Paid가 모두 128 MB임을 답한다.",
+        "MB를 MiB로 고치지 않는다.",
+        "isolate당이며 요청당이 아님을 명시한다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-07."
+      }
+    },
+    {
+      "id": "pricing-08",
+      "query": "무료 Workers 요청 할당량은 몇 건이고 언제 다시 초기화되나요? UTC로 알려주세요.",
+      "split": "test",
+      "leakage_group": "free-reset-time",
+      "query_type": "multi-source-lookup",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "하루 100,000건이며 매일 UTC 자정(00:00 UTC)에 초기화됩니다.",
+      "evidence_sets": [
+        [
+          "t-free-requests",
+          "l-reset"
+        ],
+        [
+          "l-reset"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-free-requests": 2,
+        "l-reset": 2
+      },
+      "rubric": [
+        "하루 100,000건과 UTC 자정을 모두 답한다.",
+        "한국 시간 자정 또는 월초 초기화라고 답하지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-08."
+      }
+    },
+    {
+      "id": "pricing-09",
+      "query": "다른 Workers 제품이나 캐시·정적 자산은 쓰지 않는 Standard 계정입니다. 한 달 동적 인바운드 요청 1,200만 건, 요청당 CPU 5ms일 때 기본요금·요청 초과분·CPU 초과분과 합계는 얼마인가요? 세금·할인·기타 계정 사용량은 제외하세요.",
+      "split": "test",
+      "leakage_group": "ordinary-monthly-cost",
+      "query_type": "calculation",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "월 최소 요금 USD 5.00 + 요청 초과 요금 USD 0.60 + CPU 초과 요금 USD 0.60 = 합계 USD 6.20입니다. 요청 초과분은 (12,000,000-10,000,000)/1,000,000×0.30입니다. 총 CPU는 60,000,000ms이고 CPU 초과분은 (60,000,000-30,000,000)/1,000,000×0.02입니다.",
+      "evidence_sets": [
+        [
+          "t-base",
+          "t-paid-requests",
+          "t-paid-cpu"
+        ],
+        [
+          "p-base",
+          "t-paid-requests",
+          "t-paid-cpu"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-base": 2,
+        "t-paid-requests": 2,
+        "t-paid-cpu": 2,
+        "p-base": 2
+      },
+      "rubric": [
+        "요청 총량을 12,000,000, CPU 총량을 60,000,000ms로 계산한다.",
+        "포함량을 빼고 요청 USD 0.60, CPU USD 0.60을 계산한다.",
+        "월 기본 USD 5.00을 포함해 USD 6.20로 답한다. 금액 허용오차 USD 0.005.",
+        "세금·할인·기타 제품·캐시·정적 자산 없는 가정을 유지한다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-09."
+      }
+    },
+    {
+      "id": "pricing-10",
+      "query": "무료 HTTP CPU 10ms와 Standard의 월 3,000만 CPU ms는 같은 종류의 한도인가요?",
+      "split": "test",
+      "leakage_group": "cpu-execution-versus-billing",
+      "query_type": "unit-scope-comparison",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "answer",
+      "reference_answer": "다릅니다. Free의 10ms는 HTTP 요청 한 번의 CPU 실행 한도이고, Standard의 30,000,000 CPU ms는 한 달 요금에 포함되는 CPU 사용량입니다. 월간 포함량은 요청 한 번의 실행 한도를 뜻하지 않습니다.",
+      "evidence_sets": [
+        [
+          "t-free-http-cpu",
+          "t-paid-cpu"
+        ]
+      ],
+      "relevance_judgments": {
+        "t-free-http-cpu": 2,
+        "t-paid-cpu": 2
+      },
+      "rubric": [
+        "Free의 요청당 실행 한도와 Standard의 월간 요금 포함량을 분리한다.",
+        "두 수치를 나누어 유료의 요청당 한도라고 주장하지 않는다."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-10."
+      }
+    },
+    {
+      "id": "pricing-11",
+      "query": "우리 회사가 별도로 체결한 Enterprise 계약에서는 초과 요청 100만 건당 정확히 얼마를 내나요?",
+      "split": "test",
+      "leakage_group": "private-enterprise-contract",
+      "query_type": "scoped-unanswerability",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "abstain",
+      "reference_answer": "",
+      "evidence_sets": [],
+      "relevance_judgments": {
+        "t-paid-requests": 1
+      },
+      "rubric": [
+        "제공된 공개 스냅샷에는 회사의 Enterprise 개별 계약 단가가 없다고 답한다.",
+        "Standard의 USD 0.30을 Enterprise 확정 단가로 적용하지 않는다.",
+        "정확한 단가는 회사 계약서 또는 Account Manager 확인이 필요하다고 안내할 수 있다."
+      ],
+      "rationale": "고정 코퍼스는 공개 Workers 요금/한도에서 선택한 표 10행과 원문 발췌 4개뿐이다. 특정 회사의 비공개 Enterprise 계약은 제공되지 않았고 공개 Standard 단가로 대체할 수 없다.",
+      "answerability_check": {
+        "method": "bounded",
+        "source_ids": [
+          "cf-pricing-original",
+          "cf-limits-original",
+          "cf-workers-derived-table"
+        ],
+        "notes": "선언된 공개 후보 근거 14개와 두 원문의 Enterprise/contract 언급을 저자가 확인했다. 원문은 Enterprise 청구가 계약 사용 모델에 따른다고만 설명하며 특정 회사 단가를 주지 않는다. 연결된 전체 Cloudflare 문서나 실제 비공개 계약을 조사한 것은 아니다."
+      },
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-11."
+      }
+    },
+    {
+      "id": "pricing-12",
+      "query": "Standard에서 1,200만 건 처리하면 CPU까지 포함해 월 총 얼마인가요?",
+      "split": "test",
+      "leakage_group": "missing-cpu-input",
+      "query_type": "missing-input-clarify",
+      "origin": "synthetic",
+      "author": "case-pricing-author",
+      "expected_action": "clarify",
+      "reference_answer": "월 1,200만 건이 모두 일반 동적 요청인지, 월 총 CPU 밀리초(또는 요청당 평균 CPU 시간)가 얼마인지 확인해야 합니다. 전체 계정 요금을 묻는다면 다른 제품 사용량도 알려주세요.",
+      "evidence_sets": [],
+      "relevance_judgments": {
+        "t-paid-requests": 2,
+        "t-paid-cpu": 2,
+        "t-base": 1
+      },
+      "rubric": [
+        "총 CPU 사용량 또는 요청당 평균 CPU 시간을 묻는다.",
+        "월간 동적 요청인지와 캐시/정적 자산 등 요청 구성의 가정을 확인한다.",
+        "CPU 사용량을 임의로 가정해 확정 총액을 만들지 않는다."
+      ],
+      "rationale": "월 요청 수만으로는 CPU 초과 요금을 결정할 수 없고 요청 구성도 불명확하다. 스냅샷의 요청·CPU 별도 과금 구조에 따라 누락 입력을 되묻는다.",
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-12."
+      }
+    }
+  ]
+}

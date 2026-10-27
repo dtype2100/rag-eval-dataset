@@ -1,0 +1,13 @@
+{
+  "case": "pricing",
+  "changes": [
+    {
+      "item_id": "pricing-05",
+      "field": "query",
+      "before": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
+      "after": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 일반 동적 요청 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
+      "reason": "Move the billable dynamic-request assumption already in the answer into the question; not a rate or answer change.",
+      "review": "independent addendum requested"
+    }
+  ]
+}

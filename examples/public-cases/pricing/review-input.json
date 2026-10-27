@@ -1,0 +1,117 @@
+{
+  "case_id": "pricing",
+  "sources": [
+    {
+      "id": "cf-pricing-original",
+      "sha256": "433c1ef43e3adc53b7272a02b0ddb893f9514ac99c949635f7ff90423f819d75",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "None; original UTF-8 MDX bytes at a pinned production commit.",
+      "losses": [],
+      "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "path": "data/public-cases/pricing/pricing.mdx",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/pricing.mdx",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+      "attribution": "Cloudflare, Inc. and contributors",
+      "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+      "corpus_role": "provenance_original; only declared text evidence is a public candidate unit"
+    },
+    {
+      "id": "cf-limits-original",
+      "sha256": "707eb71f26a93061771979b386ebce8374680f64864d61f750d20f265ec62a3e",
+      "modality": "text",
+      "representation": "native",
+      "transformation": "None; original UTF-8 MDX bytes at a pinned production commit.",
+      "losses": [],
+      "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "path": "data/public-cases/pricing/limits.mdx",
+      "url": "https://developers.cloudflare.com/workers/platform/limits/",
+      "raw_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/limits.mdx",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+      "attribution": "Cloudflare, Inc. and contributors",
+      "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "fetched_at": "2026-10-27T17:01:10.083286+00:00",
+      "corpus_role": "provenance_original; only declared text evidence is a public candidate unit"
+    },
+    {
+      "id": "cf-workers-derived-table",
+      "sha256": "adb3dc62e2cee210e60041946175fba287999850a1f9d9334f57f5b5140710a9",
+      "modality": "table",
+      "representation": "derived",
+      "transformation": "case-pricing-manual-table-v1: select Workers Free/Paid Standard rows; split monthly inclusion from overage; expand 1 million to 1000000; convert 30 seconds and 5 minutes to CPU milliseconds; retain MB (not MiB); split Free/Paid memory rows; add scope notes from pinned paragraphs. No HTML rendering or transcluded component expansion.",
+      "losses": [
+        "Partial corpus: excludes other products, examples, legacy/Enterprise contracts, caching exceptions and Cron/Queue limits.",
+        "Row keys and columns are author-created; formatting, links and most footnotes are omitted."
+      ],
+      "split_group": "cloudflare-workers-b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "path": "examples/public-cases/pricing/pricing.csv",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "upstream_source_ids": [
+        "cf-pricing-original",
+        "cf-limits-original"
+      ],
+      "upstream_commit": "b58f85a4393a6074c50daf9f57c383d2a25f44a9",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE",
+      "attribution": "Adapted from Cloudflare, Inc. and contributors; modifications by case-pricing-author",
+      "sheet": "pricing",
+      "row_key_column": "row_key",
+      "fetched_at": "2026-10-27T17:01:10.083286+00:00"
+    }
+  ],
+  "scope": "Pinned production commit, selected Workers Free and Paid Standard HTTP/request/CPU/memory facts; 14 declared evidence units.",
+  "questions": [
+    {
+      "id": "pricing-01",
+      "query": "Workers 무료 플랜의 요청 수 한도는 몇 건이고, 기간 단위는 무엇인가요?"
+    },
+    {
+      "id": "pricing-02",
+      "query": "Workers Paid의 Standard에서 월간 요청은 몇 건까지 포함되고 초과분은 얼마인가요?"
+    },
+    {
+      "id": "pricing-03",
+      "query": "Standard CPU 사용료의 포함량과 추가 요금을 CPU 밀리초 기준으로 알려주세요."
+    },
+    {
+      "id": "pricing-04",
+      "query": "한 계정에서 Workers Paid Standard를 시작할 때 월 최소 요금은 얼마이며, 데이터 전송에 별도 egress 요금이 붙나요?"
+    },
+    {
+      "id": "pricing-05",
+      "query": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 월 1,200만 건을 보내도 요청 사용료가 0인가요?"
+    },
+    {
+      "id": "pricing-06",
+      "query": "Workers Paid의 HTTP 요청 한 번에 설정되는 기본 CPU 한도와 올릴 수 있는 최대값을 밀리초로 알려주세요."
+    },
+    {
+      "id": "pricing-07",
+      "query": "Workers를 무료에서 유료로 바꾸면 메모리 한도가 128 MB보다 커지나요? 이 메모리는 요청 하나 기준인가요?"
+    },
+    {
+      "id": "pricing-08",
+      "query": "무료 Workers 요청 할당량은 몇 건이고 언제 다시 초기화되나요? UTC로 알려주세요."
+    },
+    {
+      "id": "pricing-09",
+      "query": "다른 Workers 제품이나 캐시·정적 자산은 쓰지 않는 Standard 계정입니다. 한 달 동적 인바운드 요청 1,200만 건, 요청당 CPU 5ms일 때 기본요금·요청 초과분·CPU 초과분과 합계는 얼마인가요? 세금·할인·기타 계정 사용량은 제외하세요."
+    },
+    {
+      "id": "pricing-10",
+      "query": "무료 HTTP CPU 10ms와 Standard의 월 3,000만 CPU ms는 같은 종류의 한도인가요?"
+    },
+    {
+      "id": "pricing-11",
+      "query": "우리 회사가 별도로 체결한 Enterprise 계약에서는 초과 요청 100만 건당 정확히 얼마를 내나요?"
+    },
+    {
+      "id": "pricing-12",
+      "query": "Standard에서 1,200만 건 처리하면 CPU까지 포함해 월 총 얼마인가요?"
+    }
+  ]
+}

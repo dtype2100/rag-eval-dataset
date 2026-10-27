@@ -1,0 +1,685 @@
+{
+  "manifest": {
+    "schema_version": "1.0",
+    "dataset_id": "public-github-copilot-policy",
+    "version": "0.1.0",
+    "status": "frozen",
+    "corpus_snapshot": "github-docs-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+    "task": "rag",
+    "split_policy": "query-disjoint",
+    "coverage": [
+      "Three openly licensed official GitHub Docs raw Markdown source snapshots pinned to one commit.",
+      "Synthetic personal-plan cancellation/downgrade/upgrade, organization-seat billing and access, free-access exceptions, locked-account support escalation, conjunctive evidence, bounded abstention and entitlement clarification.",
+      "12 synthetic English questions: 10 answer, 1 abstain, 1 clarify; 2 dev and 10 test. Related personal-cancellation items share one leakage_group within test."
+    ],
+    "limitations": [
+      "All questions are synthetic; no actual customer questions or representative production query distribution were available.",
+      "Public development/demo case, not an uncontaminated private final holdout or evidence of production RAG performance.",
+      "Independent semantic review, rubric calibration and dispute resolution are pending; no item is approved or frozen.",
+      "Raw Markdown includes unresolved Liquid variables/transclusions. Only directly present body prose and the saved free-access reusable are evaluated; exact UI menus, other reused prose, linked policy pages and account-specific facts are outside scope.",
+      "Named Copilot/GitHub Support/Free values in English reference paraphrases were cross-checked against the official rendered pages; no general template renderer was executed.",
+      "The abstention check is bounded to the three saved raw documents; it does not establish absence across all linked support material or contractual SLAs.",
+      "Qrels are manually selected, not retrieval-pooled or exhaustive across possible chunks; unjudged results require additional judgment and are not automatically irrelevant.",
+      "Policy reflects the pinned upstream snapshot, not guaranteed future behavior. No subscription/account/service changes were made."
+    ],
+    "intake": {
+      "data_description": "Parent-approved public-source case: official English GitHub Copilot subscription/cancellation/support policy in three raw Markdown snapshots, with synthetic evaluation questions.",
+      "user_task": "Find the documented cancellation, billing/access timing, entitlement exceptions and locked-account support escalation; answer only from the pinned corpus, ask for missing entitlement context, and abstain on unsupported guarantees.",
+      "query_language": "en",
+      "scope": "Only the three files listed in manifest.sources at pinned github/docs commit 2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431; raw Markdown text task, not template execution or linked-document traversal.",
+      "access_policy": "Public official documentation, CC-BY-4.0; no private/customer logs, credentials or account access.",
+      "external_processing": "Authorized public-document web browsing/download and local authoring/validation only; no credentialed generation/service API or account mutation.",
+      "target_size": 12
+    },
+    "sources": [
+      {
+        "id": "copilot-plan",
+        "title": "Viewing and changing your GitHub Copilot plan",
+        "sha256": "5aedc3cc29662f5ef98fa4609780710c2c86a01b6f43615a96f6b2307413d15a",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+        "losses": [],
+        "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+        "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/content/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan.md",
+        "upstream_path": "content/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan.md",
+        "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+        "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+      },
+      {
+        "id": "copilot-license",
+        "title": "Making changes to your GitHub Copilot license",
+        "sha256": "c4d2fc694a0285166f64e845bfcb56fecf748579161023dbb960e0899e60903b",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+        "losses": [],
+        "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+        "path": "data/public-cases/policy/license-changes.md",
+        "url": "https://docs.github.com/en/copilot/reference/copilot-billing/license-changes",
+        "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/content/copilot/reference/copilot-billing/license-changes.md",
+        "upstream_path": "content/copilot/reference/copilot-billing/license-changes.md",
+        "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+        "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+      },
+      {
+        "id": "copilot-free-exception",
+        "title": "Free-access cancellation exception (GitHub Docs reusable)",
+        "sha256": "807ef3ad53c4663ad6acb0109e6a0745b051d48a13038526fc47fea35ae90b21",
+        "modality": "text",
+        "representation": "native",
+        "transformation": "none; byte-for-byte UTF-8 raw Markdown snapshot, including front matter and Liquid template tokens",
+        "losses": [],
+        "split_group": "github-docs-copilot-policy-2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+        "path": "data/public-cases/policy/free-access-cancellation-note.md",
+        "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+        "raw_url": "https://raw.githubusercontent.com/github/docs/2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431/data/reusables/copilot/free-access-cancellation-note.md",
+        "upstream_path": "data/reusables/copilot/free-access-cancellation-note.md",
+        "upstream_commit": "2853a7b4a1bd4e17da2a43cf2c8d7306d7d4a431",
+        "fetched_at": "2026-10-27T17:03:04.655545+00:00",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "GitHub, Inc. and contributors, GitHub Docs; documentation licensed CC BY 4.0. Excerpts retain original Markdown; synthetic questions and English reference paraphrases are adaptations. No endorsement implied."
+      }
+    ],
+    "review": {
+      "policy": "independent",
+      "approved_by": "case-support-independent-policy-reviewer",
+      "approved_at": "2026-10-27T17:10:33.093232+00:00",
+      "calibration": "Independent reviewer first answered all twelve source-grounded questions without seeing generated answers, then compared answer/action/evidence. See review-blind.json and round2.json. No human agreement study.",
+      "disagreements": "See round2.json and round2-adjustments/addendum where present. Required revisions are resolved; no unresolved item is included.",
+      "status": "pending"
+    },
+    "judging": {
+      "criteria": "2 = directly supplies a requested policy fact or a necessary conjunct; 1 = related entitlement/access/billing context that cannot alone answer the question; 0 = unrelated to the requested scenario. For the organization unassignment/revocation boundary, immediate revocation must not be replaced by end-of-cycle access. A missing qrel is unjudged, not 0.",
+      "candidate_scope": "Manually selected evidence units in the three pinned native Markdown files. Each listed qrel is an author draft judgment. No live retriever, pooling, exhaustive chunk judgments or rank score was run. Other candidate units/chunks need additional judgment.",
+      "coverage": "sampled"
+    },
+    "provenance": {
+      "method": "Agent-authored synthetic questions and draft labels grounded in saved official source snapshots; author inspection and local mechanical checks only.",
+      "generator": "case-policy-author; agent runtime does not expose exact model ID",
+      "prompt_version": "public-policy-case-v1",
+      "settings": "No direct generation API; no sampling parameters or seed controlled/exposed. All origin=synthetic. Public case, author not an independent reviewer.",
+      "created_at": "2026-10-27T17:03:04.655545+00:00"
+    },
+    "frozen_at": "2026-10-27T17:10:33.287908+00:00",
+    "payload_sha256": "1c2b1cca05b7234d7c7ad20f40ae035861e139a0cb709185c9b10d01302a2ef9"
+  },
+  "evidence": [
+    {
+      "id": "e-personal-scope",
+      "source_id": "copilot-plan",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "start": 2611,
+        "end": 2743
+      },
+      "content": "The billing and licensing steps described in this article apply only if you can sign in to the personal account billed for the plan."
+    },
+    {
+      "id": "e-owner-scope",
+      "source_id": "copilot-plan",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "start": 2745,
+        "end": 2917
+      },
+      "content": "If you have access to {% data variables.product.prodname_copilot %} through an organization or enterprise, your plan can be modified by an organization or enterprise owner."
+    },
+    {
+      "id": "e-downgrade-time",
+      "source_id": "copilot-plan",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "start": 4357,
+        "end": 4469
+      },
+      "content": "Downgrade to the plan level below your current plan, which switches you at the start of your next billing cycle."
+    },
+    {
+      "id": "e-personal-cancel",
+      "source_id": "copilot-plan",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "start": 4591,
+        "end": 4879
+      },
+      "content": "You can cancel your {% data variables.product.prodname_copilot_short %} plan at any time. You’ll retain access to your current features until your billing cycle ends. You will automatically be downgraded to {% data variables.copilot.copilot_free_short %} at the end of your billing cycle."
+    },
+    {
+      "id": "e-org-cancel-exception",
+      "source_id": "copilot-plan",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "start": 4881,
+        "end": 5199
+      },
+      "content": "{% data reusables.copilot.free-access-cancellation-note %} If you have access to {% data variables.product.prodname_copilot_short %} through an organization or enterprise, you will not be able to cancel your plan. In these cases, you can disable {% data variables.product.prodname_copilot_short %} in your environment."
+    },
+    {
+      "id": "e-locked-account",
+      "source_id": "copilot-plan",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+        "start": 5853,
+        "end": 6521
+      },
+      "content": "If you can't sign in to the personal account billed for your plan—for example, because you no longer have access to its work or school email or are blocked by account recovery—try the available account recovery methods. See [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials). If you still can't access the account or identify which account is being charged, contact {% data variables.contact.contact_support_page %} to request help stopping future {% data variables.product.prodname_copilot_short %} charges or to request removal of the payment method from the locked account."
+    },
+    {
+      "id": "e-personal-upgrade",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 1455,
+        "end": 1753
+      },
+      "content": "* **Upgrading:** If you upgrade your plan (for example, from {% data variables.copilot.copilot_pro_short %} to {% data variables.copilot.copilot_pro_plus_short %}), the change is **immediate**. You are charged the full price of the new plan, minus the amount you already paid for your current plan."
+    },
+    {
+      "id": "e-personal-no-refund",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 1754,
+        "end": 1872
+      },
+      "content": "* **Downgrading/canceling:** Access remains until the end of the current billing cycle. **No refund for unused time**."
+    },
+    {
+      "id": "e-reset-rule",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 1912,
+        "end": 2258
+      },
+      "content": "Paying for, renewing, upgrading, downgrading, converting from a trial, or resuming a plan after a lapse does not grant a fresh {% data variables.product.prodname_ai_credits_short %} allowance immediately. Your included monthly allowance resets at 00:00:00 UTC on the first day of each calendar month, regardless of your subscription billing date."
+    },
+    {
+      "id": "e-org-add",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 2814,
+        "end": 3200
+      },
+      "content": "* **Billing:** Additional {% data variables.product.prodname_copilot_short %} seats are billed for the remainder of the current billing cycle. Charges are prorated based on the date seats are added. If you pay by credit card or PayPal, you will need to pay the prorated amount for new seats upfront.\n* **Access:** Users assigned to new seats get access **immediately** after assignment."
+    },
+    {
+      "id": "e-org-remove-billing",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 3222,
+        "end": 3441
+      },
+      "content": "* **Billing:**\n  * Billing for that user stops at the end of the cycle.\n  * Reduced seat count takes effect at the start of the **next billing cycle**.\n  * **No refunds are issued for unused time in the current cycle.**"
+    },
+    {
+      "id": "e-org-remove-access",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 3442,
+        "end": 3683
+      },
+      "content": "* **Access:**\n  * If a seat is unassigned during a billing cycle, the affected user can still access {% data variables.product.prodname_copilot_short %} until the end of the cycle.\n  * If a seat is revoked, users lose access **immediately.**"
+    },
+    {
+      "id": "e-org-disabled",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 3700,
+        "end": 4236
+      },
+      "content": "* If **{% data variables.product.prodname_copilot_short %} is disabled at the organization level or licensed users are removed from the organization**: Affected users lose access to {% data variables.product.prodname_copilot_short %} immediately. Billing for affected users stops at the end of the cycle. If a user is restored to the organization or {% data variables.product.prodname_copilot_short %} is reenabled during the billing cycle, the users regain access to {% data variables.product.prodname_copilot_short %} **immediately**."
+    },
+    {
+      "id": "e-enterprise-removal",
+      "source_id": "copilot-license",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/license-changes.md",
+        "start": 5232,
+        "end": 5607
+      },
+      "content": "* **If an organization with {% data variables.product.prodname_copilot_short %} seats is removed from an enterprise**: Billing for those seats will stop at the end of the billing cycle. The users who had seats assigned by the removed organization will lose access to {% data variables.product.prodname_copilot_short %} unless they receive a seat through another organization."
+    },
+    {
+      "id": "e-free-exception",
+      "source_id": "copilot-free-exception",
+      "modality": "text",
+      "locator": {
+        "path": "data/public-cases/policy/free-access-cancellation-note.md",
+        "start": 0,
+        "end": 210
+      },
+      "content": "If you have been granted free access to {% data variables.product.prodname_copilot_short %} as a verified student, teacher, or maintainer of a popular open source project, you won’t be able to cancel your plan."
+    }
+  ],
+  "items": [
+    {
+      "id": "policy-q01",
+      "query": "I pay for my own Copilot plan. If I cancel it today, when do my current features stop, and what plan do I move to?",
+      "split": "test",
+      "leakage_group": "personal-cancellation-effects",
+      "query_type": "conditional-fact",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "You retain your current features until the current billing cycle ends, then you are automatically downgraded to Copilot Free.",
+      "evidence_sets": [
+        [
+          "e-personal-cancel"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-personal-cancel": 2,
+        "e-personal-no-refund": 1,
+        "e-org-add": 0
+      },
+      "rubric": [
+        "Conditions the answer on a personal billed plan.",
+        "States end of the current billing cycle, not immediate loss.",
+        "States automatic downgrade to Copilot Free."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q01."
+      }
+    },
+    {
+      "id": "policy-q02",
+      "query": "I want to move my personal Copilot subscription down one plan level. Does the lower plan start as soon as I confirm?",
+      "split": "test",
+      "leakage_group": "policy-q02",
+      "query_type": "timing",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "No. The downgrade to the plan level below your current plan takes effect at the start of your next billing cycle.",
+      "evidence_sets": [
+        [
+          "e-downgrade-time"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-downgrade-time": 2,
+        "e-personal-no-refund": 1,
+        "e-personal-upgrade": 0
+      },
+      "rubric": [
+        "States start of the next billing cycle.",
+        "Does not confuse an immediate upgrade with a downgrade."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q02."
+      }
+    },
+    {
+      "id": "policy-q03",
+      "query": "Will canceling my personal Copilot plan give me a refund for days left in the current billing cycle?",
+      "split": "test",
+      "leakage_group": "personal-cancellation-effects",
+      "query_type": "refund-condition",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "No refund is issued for unused time; access remains until the end of the current billing cycle.",
+      "evidence_sets": [
+        [
+          "e-personal-no-refund"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-personal-no-refund": 2,
+        "e-personal-cancel": 1,
+        "e-free-exception": 0
+      },
+      "rubric": [
+        "States no refund for unused time.",
+        "Keeps the answer within ordinary personal-plan cancellation in this snapshot; does not invent discretionary outcomes."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q03."
+      }
+    },
+    {
+      "id": "policy-q04",
+      "query": "If I upgrade my personal Copilot plan mid-cycle, when does it start and how is the new plan charge calculated?",
+      "split": "dev",
+      "leakage_group": "policy-q04",
+      "query_type": "billing-condition",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "The upgrade is immediate. You are charged the full price of the new plan minus the amount you already paid for your current plan.",
+      "evidence_sets": [
+        [
+          "e-personal-upgrade"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-personal-upgrade": 2,
+        "e-personal-no-refund": 1,
+        "e-org-add": 0
+      },
+      "rubric": [
+        "States immediate upgrade.",
+        "Uses full new-plan price minus already-paid current-plan amount; does not substitute the organization-seat proration formula."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q04."
+      }
+    },
+    {
+      "id": "policy-q05",
+      "query": "Our organization adds a Copilot seat mid-cycle and pays by credit card. How are the added seat charge and access handled?",
+      "split": "dev",
+      "leakage_group": "policy-q05",
+      "query_type": "billing-condition",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "The added seat is billed for the remainder of the current cycle, prorated from the date it is added. The prorated amount must be paid upfront when paying by credit card. The assigned user gets access immediately after assignment.",
+      "evidence_sets": [
+        [
+          "e-org-add"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-org-add": 2,
+        "e-org-remove-billing": 1,
+        "e-personal-upgrade": 0
+      },
+      "rubric": [
+        "Includes remainder-of-cycle proration and upfront credit-card payment.",
+        "States immediate access after assignment."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q05."
+      }
+    },
+    {
+      "id": "policy-q06",
+      "query": "In our organization, how does unassigning a Copilot seat differ from revoking it, and when does the reduced seat count affect billing?",
+      "split": "test",
+      "leakage_group": "policy-q06",
+      "query_type": "conditional-comparison",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "An unassigned seat keeps user access through the end of the billing cycle; revocation removes access immediately. Billing for that user stops at cycle end, the reduced seat count takes effect at the start of the next cycle, and unused current-cycle time is not refunded.",
+      "evidence_sets": [
+        [
+          "e-org-remove-billing",
+          "e-org-remove-access"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-org-remove-billing": 2,
+        "e-org-remove-access": 2,
+        "e-org-disabled": 1,
+        "e-reset-rule": 0
+      },
+      "rubric": [
+        "Distinguishes unassignment from revocation and preserves the immediate-loss exception.",
+        "States billing stop at cycle end and reduced count at next-cycle start.",
+        "States no unused-time refund."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q06."
+      }
+    },
+    {
+      "id": "policy-q07",
+      "query": "We disable Copilot for our organization mid-cycle and later reenable it during the same cycle. What happens to access and billing?",
+      "split": "test",
+      "leakage_group": "policy-q07",
+      "query_type": "conditional-exception",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "Affected users lose Copilot access immediately when it is disabled. Billing for affected users stops at the end of the cycle. If Copilot is reenabled during that cycle, users regain access immediately.",
+      "evidence_sets": [
+        [
+          "e-org-disabled"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-org-disabled": 2,
+        "e-org-remove-access": 1,
+        "e-org-remove-billing": 1,
+        "e-free-exception": 0
+      },
+      "rubric": [
+        "States immediate loss and immediate restoration during the same cycle.",
+        "States billing stops at the end of the cycle, not immediately."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q07."
+      }
+    },
+    {
+      "id": "policy-q08",
+      "query": "I get Copilot free as a verified student. Can I cancel that plan using the usual cancellation flow, and what can I do instead?",
+      "split": "test",
+      "leakage_group": "policy-q08",
+      "query_type": "eligibility-exception",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "No. Someone granted free access as a verified student cannot cancel that plan. They can disable Copilot in their environment instead.",
+      "evidence_sets": [
+        [
+          "e-free-exception",
+          "e-org-cancel-exception"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-free-exception": 2,
+        "e-org-cancel-exception": 2,
+        "e-personal-cancel": 1,
+        "e-personal-upgrade": 0
+      },
+      "rubric": [
+        "Applies the verified-free-access exception.",
+        "Says disabling Copilot in the environment is the available alternative; does not invent refund or billing consequences."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q08."
+      }
+    },
+    {
+      "id": "policy-q09",
+      "query": "Copilot is charging an old personal account that I cannot sign in to or identify. What does this policy say to try, and what help can I request if that fails?",
+      "split": "test",
+      "leakage_group": "policy-q09",
+      "query_type": "support-escalation",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "Try the available account recovery methods. If you still cannot access the account or identify which account is being charged, contact GitHub Support to request help stopping future Copilot charges or removing the payment method from the locked account.",
+      "evidence_sets": [
+        [
+          "e-locked-account"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-locked-account": 2,
+        "e-personal-scope": 1,
+        "e-personal-upgrade": 0
+      },
+      "rubric": [
+        "Tries available account recovery methods first.",
+        "Identifies the condition for support escalation and the two stated requests.",
+        "Does not promise a support response time, successful recovery, refund, or that this assistant has canceled anything."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q09."
+      }
+    },
+    {
+      "id": "policy-q10",
+      "query": "For my personally billed Copilot plan, what will I have after the current cycle ends if I cancel now, and will unused time be refunded?",
+      "split": "test",
+      "leakage_group": "personal-cancellation-effects",
+      "query_type": "multi-evidence",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "answer",
+      "reference_answer": "You keep your current features until the cycle ends, then you are automatically downgraded to Copilot Free. There is no refund for unused time in the current billing cycle.",
+      "evidence_sets": [
+        [
+          "e-personal-cancel",
+          "e-personal-no-refund"
+        ]
+      ],
+      "relevance_judgments": {
+        "e-personal-cancel": 2,
+        "e-personal-no-refund": 2,
+        "e-downgrade-time": 1,
+        "e-org-add": 0
+      },
+      "rubric": [
+        "Requires both cancellation/downgrade behavior from the plan document and the no-unused-time-refund rule from the license document.",
+        "Retrieving only one conjunct is insufficient for a fully correct answer."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q10."
+      }
+    },
+    {
+      "id": "policy-q11",
+      "query": "What is the guaranteed number of hours for GitHub Support to resolve a locked-account Copilot billing cancellation request?",
+      "split": "test",
+      "leakage_group": "policy-q11",
+      "query_type": "unanswerable",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "abstain",
+      "reference_answer": "",
+      "evidence_sets": [],
+      "relevance_judgments": {
+        "e-locked-account": 1,
+        "e-personal-upgrade": 0
+      },
+      "rubric": [
+        "States that the reviewed source scope does not establish a guaranteed resolution time.",
+        "Does not invent an SLA or infer a deadline from the ability to contact support."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q11."
+      },
+      "rationale": "The reviewed fixed scope contains account-recovery and support-escalation directions but no guaranteed resolution deadline. This is a bounded absence finding, not a claim about all GitHub support contracts or linked documents.",
+      "answerability_check": {
+        "method": "bounded",
+        "source_ids": [
+          "copilot-plan",
+          "copilot-license",
+          "copilot-free-exception"
+        ],
+        "notes": "Author inspected all three saved raw Markdown files. Liquid directives and outbound links were not recursively expanded; support terms, entitlement-specific contracts, actual ticket state and other GitHub documents are outside this snapshot. No SLA was found within this bounded scope."
+      }
+    },
+    {
+      "id": "policy-q12",
+      "query": "Can I cancel my Copilot plan?",
+      "split": "test",
+      "leakage_group": "policy-q12",
+      "query_type": "clarify-entitlement",
+      "origin": "synthetic",
+      "author": "case-policy-author",
+      "expected_action": "clarify",
+      "reference_answer": "Is it a personally billed subscription you can sign in to, free access as a verified student/teacher/open-source maintainer, or access supplied by an organization or enterprise?",
+      "evidence_sets": [],
+      "relevance_judgments": {
+        "e-personal-scope": 1,
+        "e-personal-cancel": 1,
+        "e-org-cancel-exception": 1,
+        "e-free-exception": 1,
+        "e-owner-scope": 1,
+        "e-reset-rule": 0
+      },
+      "rubric": [
+        "Asks how access is provided, because the policy distinguishes personally billed, verified-free and organization/enterprise access.",
+        "May mention the need to sign in to the personal billed account.",
+        "Does not assume a paid personal subscription or claim cancellation has been performed."
+      ],
+      "verification": {
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
+        "method": "llm",
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q12."
+      },
+      "rationale": "The question omits the access/billing arrangement. The saved policy permits personal cancellation but excludes organization/enterprise and verified-free access, so an unconditional yes/no would not be supported for this user."
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+{
+  "case_id": "policy",
+  "round": 2,
+  "reviewer": "case-support-independent-policy-reviewer",
+  "method": "llm",
+  "independent": true,
+  "reviewed_at": "2026-10-27T17:08:25.050103+00:00",
+  "protocol": {
+    "blind_answer_file": "examples/public-cases/policy/review-blind.json",
+    "blind_answer_file_sha256": "42e5eca1bca1b204a4a217ef497435525dc1e6b09da15921272cde678af5a93d",
+    "blind_saved_before_dataset_read": true,
+    "source_scope": "Only review-input.json and its three pinned local source originals before blind answers were saved; dataset.json read only afterward.",
+    "network_used": false,
+    "subagents_used": false,
+    "template_renderer_executed": false,
+    "linked_documents_followed": false,
+    "dataset_modified": false,
+    "human_review": false
+  },
+  "reviewed_dataset_file_sha256": "064f336acff4ae8ae67d4c16b5b70ae3f167e4cd73843cc32b3765f0c5810b43",
+  "counts": {
+    "reviewed": 12,
+    "accepted": 12,
+    "needs_revision": 0,
+    "expected_actions": {
+      "answer": 10,
+      "abstain": 1,
+      "clarify": 1
+    },
+    "source_hash_matches": 3,
+    "evidence_offset_matches": 15
+  },
+  "items": [
+    {
+      "item_id": "policy-q01",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "Personal billed cancellation retains features to cycle end and then downgrades to the free-plan variable. The reference answer preserves the timing and destination; one cancellation excerpt suffices.",
+      "checked_evidence_ids": [
+        "e-personal-cancel"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-personal-cancel",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4591,
+          "end": 4879,
+          "start_line": 66,
+          "end_line": 66,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q02",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "The lower plan starts at the next billing cycle, not immediately. The raw plan article directly states this.",
+      "checked_evidence_ids": [
+        "e-downgrade-time"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-downgrade-time",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4357,
+          "end": 4469,
+          "start_line": 60,
+          "end_line": 60,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q03",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "The Personal accounts section directly says no refund for unused time and continued access to cycle end. The rubric confines the statement to the ordinary policy rather than every possible dispute.",
+      "checked_evidence_ids": [
+        "e-personal-no-refund"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-personal-no-refund",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 1754,
+          "end": 1872,
+          "start_line": 31,
+          "end_line": 31,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q04",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "Immediate personal upgrade and full new-plan price minus current-plan amount already paid match the source exactly. The rubric correctly rejects substituting seat-addition proration.",
+      "checked_evidence_ids": [
+        "e-personal-upgrade"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-personal-upgrade",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 1455,
+          "end": 1753,
+          "start_line": 30,
+          "end_line": 30,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q05",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "Organization seat-addition proration, upfront credit-card payment and immediate access after assignment are all present in one selected excerpt.",
+      "checked_evidence_ids": [
+        "e-org-add"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-org-add",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 2814,
+          "end": 3200,
+          "start_line": 47,
+          "end_line": 48,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q06",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "The required evidence set correctly combines removal billing and removal access. Unassigned access continues to cycle end, revoked access ends immediately, billing stops at cycle end and reduced count applies next cycle. The source also states no unused-time refund.",
+      "checked_evidence_ids": [
+        "e-org-remove-billing",
+        "e-org-remove-access"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-org-remove-billing",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 3222,
+          "end": 3441,
+          "start_line": 52,
+          "end_line": 55,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-org-remove-access",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 3442,
+          "end": 3683,
+          "start_line": 56,
+          "end_line": 58,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q07",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "The reference answer reproduces the source’s organization-disable timing and same-cycle immediate restoration without inventing a reenabling fee, double charge or refund. Billing-at-cycle-end is the stated rule; exact reenabling invoicing mechanics are outside the question/source.",
+      "checked_evidence_ids": [
+        "e-org-disabled"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-org-disabled",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 3700,
+          "end": 4236,
+          "start_line": 62,
+          "end_line": 62,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q08",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "The saved free-access reusable explicitly excludes verified students from cancellation. The raw plan paragraph contains that exact reusable directive followed by organization/enterprise exceptions and the alternative of disabling Copilot in the environment. The AND set includes both the reusable and surrounding paragraph, so it does not infer the student exception from the unresolved include token alone.",
+      "checked_evidence_ids": [
+        "e-free-exception",
+        "e-org-cancel-exception"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-org-cancel-exception",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4881,
+          "end": 5199,
+          "start_line": 68,
+          "end_line": 68,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-free-exception",
+          "source_id": "copilot-free-exception",
+          "path": "data/public-cases/policy/free-access-cancellation-note.md",
+          "start": 0,
+          "end": 210,
+          "start_line": 1,
+          "end_line": 1,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q09",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "Recovery first, then Support if account access/identification still fails, with stopping future charges or removing the locked-account payment method as requests. No guaranteed outcome or deadline is added.",
+      "checked_evidence_ids": [
+        "e-locked-account"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-locked-account",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 5853,
+          "end": 6521,
+          "start_line": 78,
+          "end_line": 78,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q10",
+      "status": "accepted",
+      "independent_expected_action": "answer",
+      "submitted_expected_action": "answer",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "The answer needs both cancellation/downgrade behavior and the personal no-unused-time-refund rule. Its AND set and rubric retain both conjuncts.",
+      "checked_evidence_ids": [
+        "e-personal-cancel",
+        "e-personal-no-refund"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-personal-cancel",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4591,
+          "end": 4879,
+          "start_line": 66,
+          "end_line": 66,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-personal-no-refund",
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 1754,
+          "end": 1872,
+          "start_line": 31,
+          "end_line": 31,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q11",
+      "status": "accepted",
+      "independent_expected_action": "abstain",
+      "submitted_expected_action": "abstain",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "No guaranteed resolution-hours value is stated in the three complete raw files reviewed. Abstention is bounded to that corpus and explicitly excludes linked contracts/SLAs; the empty sufficient-evidence set is appropriate.",
+      "checked_evidence_ids": [
+        "e-locked-account"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-locked-account",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 5853,
+          "end": 6521,
+          "start_line": 78,
+          "end_line": 78,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    },
+    {
+      "item_id": "policy-q12",
+      "status": "accepted",
+      "independent_expected_action": "clarify",
+      "submitted_expected_action": "clarify",
+      "answer_alignment": "consistent with independent blind answer and pinned source",
+      "conditions_and_exceptions": "preserved",
+      "evidence_set_assessment": "Cancellation depends on access/billing arrangement and personal-account accessibility. A clarification request avoids an unconditional yes from the generic cancellation sentence and covers verified-free and organization/enterprise exceptions.",
+      "checked_evidence_ids": [
+        "e-personal-scope",
+        "e-personal-cancel",
+        "e-org-cancel-exception",
+        "e-free-exception",
+        "e-owner-scope"
+      ],
+      "source_evidence_locators": [
+        {
+          "evidence_id": "e-personal-scope",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 2611,
+          "end": 2743,
+          "start_line": 28,
+          "end_line": 28,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-owner-scope",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 2745,
+          "end": 2917,
+          "start_line": 30,
+          "end_line": 30,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-personal-cancel",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4591,
+          "end": 4879,
+          "start_line": 66,
+          "end_line": 66,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-org-cancel-exception",
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4881,
+          "end": 5199,
+          "start_line": 68,
+          "end_line": 68,
+          "content_matches_source": true
+        },
+        {
+          "evidence_id": "e-free-exception",
+          "source_id": "copilot-free-exception",
+          "path": "data/public-cases/policy/free-access-cancellation-note.md",
+          "start": 0,
+          "end": 210,
+          "start_line": 1,
+          "end_line": 1,
+          "content_matches_source": true
+        }
+      ],
+      "required_revisions": [],
+      "notes": [
+        "Reviewer acceptance is recorded only here; dataset verification and approval fields were not changed."
+      ]
+    }
+  ],
+  "cross_cutting_findings": [
+    {
+      "severity": "verified-boundary",
+      "topic": "Liquid reusable and free-access exception",
+      "finding": "The reusable is a separately saved, hash-checked source. The parent paragraph’s exact include reference links it to the cancellation exceptions context. The student alternative requires both pieces and the submitted evidence set includes both. No general Liquid expansion or hidden reusable prose was assumed.",
+      "required_revision": false
+    },
+    {
+      "severity": "verified-boundary",
+      "topic": "Personal upgrade versus organization seats",
+      "finding": "The personal upgrade subtracts the amount already paid from the full new-plan price. Organization seat additions instead prorate the remaining cycle and require upfront credit-card payment. Submitted answers preserve the distinction.",
+      "required_revision": false
+    },
+    {
+      "severity": "verified-boundary",
+      "topic": "Access versus billing timing",
+      "finding": "Unassignment and revocation have different access timing; end-of-cycle billing/reduced next-cycle count are separate. The submitted conjunction and rubric preserve the immediate revocation exception.",
+      "required_revision": false
+    },
+    {
+      "severity": "scope-note",
+      "topic": "Named product variables and rendered-page provenance",
+      "finding": "The reference names Copilot Free and GitHub Support are reasonable glosses of the raw variable identifiers. This independent local review did not verify the manifest’s claimed rendered-page cross-check or template outputs. It validates the policy semantics and conditions in the pinned raw files.",
+      "required_revision": false
+    },
+    {
+      "severity": "scope-note",
+      "topic": "Unjudged and alternative passages",
+      "finding": "The license file repeats some personal upgrade/cancellation facts in its summary/table. These are legitimate additional retrieval candidates; absence from the selected 15 evidence units must remain unjudged, as the manifest states. No false exhaustiveness claim or automatic-negative treatment was found.",
+      "required_revision": false
+    }
+  ],
+  "calibration": {
+    "performed": "Source-condition contrasts during this independent LLM review; no separate production judge or inter-rater experiment.",
+    "cases": [
+      {
+        "item_id": "policy-q04",
+        "correct_boundary": "Immediate personal upgrade; full new price minus current amount paid.",
+        "incorrect_boundary": "Use organization-seat remaining-cycle proration for a personal-plan upgrade.",
+        "source_verdict": "Correct boundary directly supported; incorrect boundary rejected."
+      },
+      {
+        "item_id": "policy-q06",
+        "correct_boundary": "Unassignment retains access to cycle end; revocation removes access immediately.",
+        "incorrect_boundary": "Both operations retain access until cycle end.",
+        "source_verdict": "The immediate revocation exception makes the second answer wrong."
+      },
+      {
+        "item_id": "policy-q11",
+        "correct_boundary": "No guaranteed hours in the pinned corpus.",
+        "incorrect_boundary": "Promise a fixed 24-hour resolution.",
+        "source_verdict": "A numeric guarantee is unsupported; bounded abstention is appropriate."
+      }
+    ]
+  },
+  "disagreements": {
+    "item_label_mismatches_detected": 0,
+    "unresolved_required_revisions": 0,
+    "notes": "No substantive answer/action/evidence-set mismatch found in these 12 inspected items. This is one independent LLM review, not a measured human agreement rate."
+  },
+  "limitations": [
+    "Independent LLM review only; no actual human review or approval claimed.",
+    "No rendered website, linked terms/support SLA, live account, billing transaction, model output, retrieval run or operational effect was inspected.",
+    "Public synthetic example; review does not establish real-query representativeness or uncontaminated holdout status.",
+    "Dataset item verification and manifest approval fields remain untouched."
+  ],
+  "recommendation": "All 12 item candidates are eligible for acceptance under an independent-LLM review policy; the parent must record any actual acceptance and freeze decisions separately."
+}

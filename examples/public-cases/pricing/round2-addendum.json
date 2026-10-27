@@ -1,0 +1,24 @@
+{
+  "case_id": "pricing",
+  "item_id": "pricing-05",
+  "reviewer": "case-policy-reviewer",
+  "reviewed_at": "2026-10-27T17:09:01.399831+00:00",
+  "status": "accepted",
+  "review_kind": "Question clarification addendum to independent round2 semantic review; no dataset approval fields changed.",
+  "prior_question": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
+  "current_question": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 일반 동적 요청 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
+  "current_dataset_sha256": "dce04784944da7086acdc5560d8674253f77eeb39c93ce67ae0798de049e8ac0",
+  "decision_ko": "질문에 일반 동적 요청이라는 과금 조건을 명시한 수정은 기존 독립 판단과 일치한다. 이전 정답이 이미 그 조건을 제한했으며 질문도 이제 같은 범위를 직접 표현한다. 요청 초과 USD 0.60이라는 정답과 두 근거의 AND 집합을 유지해도 된다.",
+  "expected_action": "answer",
+  "reference_answer_unchanged": true,
+  "evidence_sets_unchanged": true,
+  "relevance_judgments_unchanged": true,
+  "source_hashes_still_match": true,
+  "required_revisions": [],
+  "relation_to_previous_review": "round2.json accepted 12/needs_revision 0 판단을 유지하며 pricing-05에 대한 비차단 명확화 관찰은 해소되었다.",
+  "scope_limits": [
+    "This addendum concerns only the pricing-05 wording clarification; it is unrelated to semantic approval of the reviewer-authored policy case.",
+    "Source/cell audit code review findings were sent separately to the parent and do not change the checked pricing facts.",
+    "No network, child agents, commits, dataset mutation, human review or production validation."
+  ]
+}

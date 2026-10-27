@@ -1,0 +1,334 @@
+{
+  "case_id": "policy",
+  "reviewer": "case-support-independent-policy-reviewer",
+  "method": "llm",
+  "independent": true,
+  "created_at": "2026-10-27T17:07:05.468230+00:00",
+  "blind_protocol": "Read only review-input.json and its three pinned local originals before writing this file. The generated dataset/reference answers, evidence units and rubrics have not yet been read.",
+  "network_used": false,
+  "template_execution": false,
+  "linked_documents_followed": false,
+  "source_hash_checks": [
+    {
+      "source_id": "copilot-plan",
+      "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+      "sha256": "5aedc3cc29662f5ef98fa4609780710c2c86a01b6f43615a96f6b2307413d15a",
+      "matches_declared": true
+    },
+    {
+      "source_id": "copilot-license",
+      "path": "data/public-cases/policy/license-changes.md",
+      "sha256": "c4d2fc694a0285166f64e845bfcb56fecf748579161023dbb960e0899e60903b",
+      "matches_declared": true
+    },
+    {
+      "source_id": "copilot-free-exception",
+      "path": "data/public-cases/policy/free-access-cancellation-note.md",
+      "sha256": "807ef3ad53c4663ad6acb0109e6a0745b051d48a13038526fc47fea35ae90b21",
+      "matches_declared": true
+    }
+  ],
+  "items": [
+    {
+      "item_id": "policy-q01",
+      "query": "I pay for my own Copilot plan. If I cancel it today, when do my current features stop, and what plan do I move to?",
+      "expected_action": "answer",
+      "independent_answer": "For a personally paid plan, current features remain through the current billing cycle. At its end the plan is automatically downgraded to the plan named by the raw token {% data variables.copilot.copilot_free_short %} (Copilot Free).",
+      "source_evidence": [
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4591,
+          "end": 4879,
+          "start_line": 66,
+          "end_line": 66,
+          "content": "You can cancel your {% data variables.product.prodname_copilot_short %} plan at any time. You’ll retain access to your current features until your billing cycle ends. You will automatically be downgraded to {% data variables.copilot.copilot_free_short %} at the end of your billing cycle."
+        }
+      ],
+      "notes": [
+        "Do not read the general any-time cancellation sentence as overriding organization or free-access exceptions.",
+        "Product variables remain raw; no template rendering was performed."
+      ]
+    },
+    {
+      "item_id": "policy-q02",
+      "query": "I want to move my personal Copilot subscription down one plan level. Does the lower plan start as soon as I confirm?",
+      "expected_action": "answer",
+      "independent_answer": "No. Confirming a one-level downgrade schedules the lower plan to begin at the start of the next billing cycle; choosing to keep the existing plan cancels the downgrade process.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4355,
+          "end": 4513,
+          "start_line": 60,
+          "end_line": 62,
+          "content": "* Downgrade to the plan level below your current plan, which switches you at the start of your next billing cycle.\n\n   Select the downgrade button to confirm."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "item_id": "policy-q03",
+      "query": "Will canceling my personal Copilot plan give me a refund for days left in the current billing cycle?",
+      "expected_action": "answer",
+      "independent_answer": "No. For personal account downgrades/cancellations the current access remains until the end of the billing cycle and unused time is not refunded.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 1455,
+          "end": 1872,
+          "start_line": 30,
+          "end_line": 31,
+          "content": "* **Upgrading:** If you upgrade your plan (for example, from {% data variables.copilot.copilot_pro_short %} to {% data variables.copilot.copilot_pro_plus_short %}), the change is **immediate**. You are charged the full price of the new plan, minus the amount you already paid for your current plan.\n* **Downgrading/canceling:** Access remains until the end of the current billing cycle. **No refund for unused time**."
+        }
+      ],
+      "notes": [
+        "Confine the no-unused-time-refund statement to the policy; do not broaden to every possible billing dispute or legal remedy."
+      ]
+    },
+    {
+      "item_id": "policy-q04",
+      "query": "If I upgrade my personal Copilot plan mid-cycle, when does it start and how is the new plan charge calculated?",
+      "expected_action": "answer",
+      "independent_answer": "The personal-plan upgrade takes effect immediately. The documented charge is the full price of the new plan minus the amount already paid for the current plan.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 1455,
+          "end": 1872,
+          "start_line": 30,
+          "end_line": 31,
+          "content": "* **Upgrading:** If you upgrade your plan (for example, from {% data variables.copilot.copilot_pro_short %} to {% data variables.copilot.copilot_pro_plus_short %}), the change is **immediate**. You are charged the full price of the new plan, minus the amount you already paid for your current plan.\n* **Downgrading/canceling:** Access remains until the end of the current billing cycle. **No refund for unused time**."
+        }
+      ],
+      "notes": [
+        "Do not substitute the seat-addition prorating rule for this personal upgrade rule."
+      ]
+    },
+    {
+      "item_id": "policy-q05",
+      "query": "Our organization adds a Copilot seat mid-cycle and pays by credit card. How are the added seat charge and access handled?",
+      "expected_action": "answer",
+      "independent_answer": "An added organization seat is billed for the remaining current cycle, prorated according to its addition date. Credit-card/PayPal payers pay that prorated amount upfront. The assigned user gains access immediately after assignment.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 2796,
+          "end": 3200,
+          "start_line": 45,
+          "end_line": 48,
+          "content": "### Adding seats\n\n* **Billing:** Additional {% data variables.product.prodname_copilot_short %} seats are billed for the remainder of the current billing cycle. Charges are prorated based on the date seats are added. If you pay by credit card or PayPal, you will need to pay the prorated amount for new seats upfront.\n* **Access:** Users assigned to new seats get access **immediately** after assignment."
+        }
+      ],
+      "notes": [
+        "The question specifies organization seats and a credit card, so the upfront-payment condition applies."
+      ]
+    },
+    {
+      "item_id": "policy-q06",
+      "query": "In our organization, how does unassigning a Copilot seat differ from revoking it, and when does the reduced seat count affect billing?",
+      "expected_action": "answer",
+      "independent_answer": "During the cycle, an unassigned user retains access until cycle end, while a revoked user loses access immediately. Billing for that user stops at cycle end; the lower seat count takes effect at the beginning of the next cycle. The current cycle has no unused-time refund.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 3202,
+          "end": 3683,
+          "start_line": 50,
+          "end_line": 58,
+          "content": "### Removing seats\n\n* **Billing:**\n  * Billing for that user stops at the end of the cycle.\n  * Reduced seat count takes effect at the start of the **next billing cycle**.\n  * **No refunds are issued for unused time in the current cycle.**\n* **Access:**\n  * If a seat is unassigned during a billing cycle, the affected user can still access {% data variables.product.prodname_copilot_short %} until the end of the cycle.\n  * If a seat is revoked, users lose access **immediately.**"
+        }
+      ],
+      "notes": [
+        "Keep access timing separate from billing timing."
+      ]
+    },
+    {
+      "item_id": "policy-q07",
+      "query": "We disable Copilot for our organization mid-cycle and later reenable it during the same cycle. What happens to access and billing?",
+      "expected_action": "answer",
+      "independent_answer": "Disabling Copilot at the organization level removes affected users’ access immediately; billing for affected users stops at the end of the cycle. Reenabling during that billing cycle restores access immediately.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 3700,
+          "end": 4236,
+          "start_line": 62,
+          "end_line": 62,
+          "content": "* If **{% data variables.product.prodname_copilot_short %} is disabled at the organization level or licensed users are removed from the organization**: Affected users lose access to {% data variables.product.prodname_copilot_short %} immediately. Billing for affected users stops at the end of the cycle. If a user is restored to the organization or {% data variables.product.prodname_copilot_short %} is reenabled during the billing cycle, the users regain access to {% data variables.product.prodname_copilot_short %} **immediately**."
+        }
+      ],
+      "notes": [
+        "The text does not establish a new upfront fee, double charge, refund, or precise invoicing event on reenabling; do not infer any of those."
+      ]
+    },
+    {
+      "item_id": "policy-q08",
+      "query": "I get Copilot free as a verified student. Can I cancel that plan using the usual cancellation flow, and what can I do instead?",
+      "expected_action": "answer",
+      "independent_answer": "No: the included free-access exception says verified students, teachers and qualifying open-source maintainers cannot cancel the free plan. The plan article offers disabling Copilot in the environment as the alternative in the cancellation-exceptions paragraph; no exact IDE click path is supplied in this fixed corpus.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-free-exception",
+          "path": "data/public-cases/policy/free-access-cancellation-note.md",
+          "start": 0,
+          "end": 210,
+          "start_line": 1,
+          "end_line": 1,
+          "content": "If you have been granted free access to {% data variables.product.prodname_copilot_short %} as a verified student, teacher, or maintainer of a popular open source project, you won’t be able to cancel your plan."
+        },
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4881,
+          "end": 5286,
+          "start_line": 68,
+          "end_line": 68,
+          "content": "{% data reusables.copilot.free-access-cancellation-note %} If you have access to {% data variables.product.prodname_copilot_short %} through an organization or enterprise, you will not be able to cancel your plan. In these cases, you can disable {% data variables.product.prodname_copilot_short %} in your environment. See [AUTOTITLE](/copilot/how-tos/copilot-in-your-ide/set-up-copilot/configure-in-ide)."
+        }
+      ],
+      "notes": [
+        "The free-access reusable itself provides only the cannot-cancel rule. The environment-disable alternative relies on the surrounding plan paragraph and cross-source include identity.",
+        "No Liquid execution or linked IDE-document traversal was performed."
+      ]
+    },
+    {
+      "item_id": "policy-q09",
+      "query": "Copilot is charging an old personal account that I cannot sign in to or identify. What does this policy say to try, and what help can I request if that fails?",
+      "expected_action": "answer",
+      "independent_answer": "Try the available account-recovery methods. If the personal account still cannot be accessed or the charged account cannot be identified, contact GitHub Support to request help stopping future Copilot charges or removing the payment method from the locked account.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 5853,
+          "end": 6521,
+          "start_line": 78,
+          "end_line": 78,
+          "content": "If you can't sign in to the personal account billed for your plan—for example, because you no longer have access to its work or school email or are blocked by account recovery—try the available account recovery methods. See [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials). If you still can't access the account or identify which account is being charged, contact {% data variables.contact.contact_support_page %} to request help stopping future {% data variables.product.prodname_copilot_short %} charges or to request removal of the payment method from the locked account."
+        }
+      ],
+      "notes": [
+        "The article promises neither a successful recovery, a refund, nor a resolution deadline."
+      ]
+    },
+    {
+      "item_id": "policy-q10",
+      "query": "For my personally billed Copilot plan, what will I have after the current cycle ends if I cancel now, and will unused time be refunded?",
+      "expected_action": "answer",
+      "independent_answer": "For a personally billed plan, access continues through the current billing cycle and the plan automatically downgrades to the plan identified by {% data variables.copilot.copilot_free_short %} at cycle end. Unused current-cycle time is not refunded.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4591,
+          "end": 4879,
+          "start_line": 66,
+          "end_line": 66,
+          "content": "You can cancel your {% data variables.product.prodname_copilot_short %} plan at any time. You’ll retain access to your current features until your billing cycle ends. You will automatically be downgraded to {% data variables.copilot.copilot_free_short %} at the end of your billing cycle."
+        },
+        {
+          "source_id": "copilot-license",
+          "path": "data/public-cases/policy/license-changes.md",
+          "start": 1455,
+          "end": 1872,
+          "start_line": 30,
+          "end_line": 31,
+          "content": "* **Upgrading:** If you upgrade your plan (for example, from {% data variables.copilot.copilot_pro_short %} to {% data variables.copilot.copilot_pro_plus_short %}), the change is **immediate**. You are charged the full price of the new plan, minus the amount you already paid for your current plan.\n* **Downgrading/canceling:** Access remains until the end of the current billing cycle. **No refund for unused time**."
+        }
+      ],
+      "notes": [
+        "Requires both the plan-transition statement and the personal cancellation billing rule."
+      ]
+    },
+    {
+      "item_id": "policy-q11",
+      "query": "What is the guaranteed number of hours for GitHub Support to resolve a locked-account Copilot billing cancellation request?",
+      "expected_action": "abstain",
+      "independent_answer": "This fixed three-file corpus does not establish a guaranteed number of hours for Support to resolve that request. Do not invent a deadline.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 5853,
+          "end": 6521,
+          "start_line": 78,
+          "end_line": 78,
+          "content": "If you can't sign in to the personal account billed for your plan—for example, because you no longer have access to its work or school email or are blocked by account recovery—try the available account recovery methods. See [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials). If you still can't access the account or identify which account is being charged, contact {% data variables.contact.contact_support_page %} to request help stopping future {% data variables.product.prodname_copilot_short %} charges or to request removal of the payment method from the locked account."
+        }
+      ],
+      "notes": [
+        "I read all three complete local files; recovery/support referral text exists, but no guaranteed support-resolution time is stated.",
+        "Absence claim is only within the pinned three-file raw-Markdown corpus, not every GitHub policy."
+      ]
+    },
+    {
+      "item_id": "policy-q12",
+      "query": "Can I cancel my Copilot plan?",
+      "expected_action": "clarify",
+      "independent_answer": "Ask whether this is a personally billed paid plan, free access granted as a verified student/teacher/qualifying maintainer, or organization/enterprise-provided access, and whether the billed personal account can be accessed. These cases determine whether cancellation is available and who can modify the plan.",
+      "source_evidence": [
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4591,
+          "end": 4879,
+          "start_line": 66,
+          "end_line": 66,
+          "content": "You can cancel your {% data variables.product.prodname_copilot_short %} plan at any time. You’ll retain access to your current features until your billing cycle ends. You will automatically be downgraded to {% data variables.copilot.copilot_free_short %} at the end of your billing cycle."
+        },
+        {
+          "source_id": "copilot-free-exception",
+          "path": "data/public-cases/policy/free-access-cancellation-note.md",
+          "start": 0,
+          "end": 210,
+          "start_line": 1,
+          "end_line": 1,
+          "content": "If you have been granted free access to {% data variables.product.prodname_copilot_short %} as a verified student, teacher, or maintainer of a popular open source project, you won’t be able to cancel your plan."
+        },
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 4881,
+          "end": 5286,
+          "start_line": 68,
+          "end_line": 68,
+          "content": "{% data reusables.copilot.free-access-cancellation-note %} If you have access to {% data variables.product.prodname_copilot_short %} through an organization or enterprise, you will not be able to cancel your plan. In these cases, you can disable {% data variables.product.prodname_copilot_short %} in your environment. See [AUTOTITLE](/copilot/how-tos/copilot-in-your-ide/set-up-copilot/configure-in-ide)."
+        },
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 2745,
+          "end": 2995,
+          "start_line": 30,
+          "end_line": 30,
+          "content": "If you have access to {% data variables.product.prodname_copilot %} through an organization or enterprise, your plan can be modified by an organization or enterprise owner. See [AUTOTITLE](/enterprise-cloud@latest/copilot/how-tos/administer-copilot)."
+        },
+        {
+          "source_id": "copilot-plan",
+          "path": "data/public-cases/policy/view-and-change-your-copilot-plan.md",
+          "start": 5853,
+          "end": 6521,
+          "start_line": 78,
+          "end_line": 78,
+          "content": "If you can't sign in to the personal account billed for your plan—for example, because you no longer have access to its work or school email or are blocked by account recovery—try the available account recovery methods. See [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials). If you still can't access the account or identify which account is being charged, contact {% data variables.contact.contact_support_page %} to request help stopping future {% data variables.product.prodname_copilot_short %} charges or to request removal of the payment method from the locked account."
+        }
+      ],
+      "notes": [
+        "Do not answer an unconditional yes based on the general cancellation sentence.",
+        "Organization/enterprise access is managed by its owner and the article says an individual cannot cancel that provided plan."
+      ]
+    }
+  ],
+  "limitations": [
+    "Independent LLM review, not human review.",
+    "Raw Liquid variable names are retained; obvious product-name glosses are explanatory and not a claim to have executed templates.",
+    "The free-access alternative requires both the reusable and its surrounding plan paragraph."
+  ]
+}

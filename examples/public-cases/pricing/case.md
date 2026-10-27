@@ -37,3 +37,8 @@ python3 scripts/verify_public_cases.py examples/public-cases/pricing/dataset.jso
 ## 출처 표시와 변경
 
 Cloudflare, Inc. 및 기여자들의 문서를 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)에 따라 사용했습니다. 해당 커밋의 [저장소 LICENSE](https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/LICENSE)와 [Pricing 원문](https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/pricing.mdx), [Limits 원문](https://github.com/cloudflare/cloudflare-docs/blob/b58f85a4393a6074c50daf9f57c383d2a25f44a9/src/content/docs/workers/platform/limits.mdx)을 보존한 링크로 확인할 수 있습니다. `case-pricing-author`가 필요한 사실을 선택하고 표 열·행 키를 새로 만들었으며, 백만 단위를 정수로 펼치고 초/분을 CPU 밀리초로 변환하고 한국어 합성 질의·정답을 작성했습니다. 원문의 링크·서식·대부분의 각주와 다른 제품 내용은 생략했습니다. Cloudflare의 후원이나 승인을 뜻하지 않습니다.
+
+
+## 후속 검증 완료
+
+작성 직후 pending 기록은 round1.json의 이력이다. 독립 source-first 검토(round2.json 및 수정 addendum)를 거쳐 승인했고, round3.json에 5개 오류 주입 거절·동결·원문 재검증 결과를 기록했다. 최종본은 dataset.v1.json이며 실제 고객 로그/운영 RAG/임베딩 모델 검증은 아니다.

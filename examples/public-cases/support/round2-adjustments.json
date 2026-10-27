@@ -1,0 +1,12 @@
+{
+  "case": "support",
+  "changes": [
+    {
+      "item_id": "support-11",
+      "field": "rationale",
+      "before": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 있으므로 추가 진단 정보를 요청한다.",
+      "after": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 없으므로 추가 진단 정보를 요청한다.",
+      "reason": "Independent reviewer identified negation typo contradicting clarify action; apply the exact requested correction."
+    }
+  ]
+}

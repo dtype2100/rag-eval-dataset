@@ -97,10 +97,10 @@
     ],
     "review": {
       "policy": "independent",
-      "approved_by": "",
-      "approved_at": "",
-      "calibration": "Independent judge calibration not performed. Author arithmetic and source-cell checks are in round1.json; they are not independent review.",
-      "disagreements": "No independent review yet. Excluded Cron/Queue wording discrepancy is recorded in sources.json."
+      "approved_by": "case-policy-reviewer",
+      "approved_at": "2026-10-27T17:10:33.093232+00:00",
+      "calibration": "Independent reviewer first answered all twelve source-grounded questions without seeing generated answers, then compared answer/action/evidence. See review-blind.json and round2.json. No human agreement study.",
+      "disagreements": "See round2.json and round2-adjustments/addendum where present. Required revisions are resolved; no unresolved item is included."
     },
     "judging": {
       "criteria": "2: directly states a requested price, unit, period, limit, required calculation input, or missing-input basis; 1: same plan/product context but insufficient for that requested fact (e.g. Standard rate for private Enterprise contract); 0: unrelated. For conjunctive questions all evidence in one sufficient set is required. Unjudged candidates are not automatic negatives.",
@@ -530,11 +530,11 @@
         "월간 포함량이나 유료 플랜 단가로 바꾸지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-01."
       }
     },
     {
@@ -560,11 +560,11 @@
         "요청당 USD 0.30 또는 10,000,000건당 USD 0.30으로 답하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-02."
       }
     },
     {
@@ -590,11 +590,11 @@
         "CPU 초나 HTTP 요청 수로 단위를 섞지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-03."
       }
     },
     {
@@ -628,16 +628,16 @@
         "최소 요금을 모든 사용량이 무제한 포함된 정액제라고 설명하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-04."
       }
     },
     {
       "id": "pricing-05",
-      "query": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
+      "query": "한도 표에 Workers Paid 요청 수가 무제한이라고 되어 있으면, Standard에서 일반 동적 요청 월 1,200만 건을 보내도 요청 사용료가 0인가요?",
       "split": "test",
       "leakage_group": "limit-versus-price",
       "query_type": "multi-source-condition",
@@ -661,11 +661,11 @@
         "USD 0.60을 전체 월 청구액이라고 부르지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-05."
       }
     },
     {
@@ -693,11 +693,11 @@
         "HTTP 요청 범위를 유지하며 Cron/Queue에 일반화하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-06."
       }
     },
     {
@@ -727,11 +727,11 @@
         "isolate당이며 요청당이 아님을 명시한다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-07."
       }
     },
     {
@@ -762,11 +762,11 @@
         "한국 시간 자정 또는 월초 초기화라고 답하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-08."
       }
     },
     {
@@ -804,11 +804,11 @@
         "세금·할인·기타 제품·캐시·정적 자산 없는 가정을 유지한다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-09."
       }
     },
     {
@@ -836,11 +836,11 @@
         "두 수치를 나누어 유료의 요청당 한도라고 주장하지 않는다."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-10."
       }
     },
     {
@@ -873,11 +873,11 @@
         "notes": "선언된 공개 후보 근거 14개와 두 원문의 Enterprise/contract 언급을 저자가 확인했다. 원문은 Enterprise 청구가 계약 사용 모델에 따른다고만 설명하며 특정 회사 단가를 주지 않는다. 연결된 전체 Cloudflare 문서나 실제 비공개 계약을 조사한 것은 아니다."
       },
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-11."
       }
     },
     {
@@ -903,11 +903,11 @@
       ],
       "rationale": "월 요청 수만으로는 CPU 초과 요금을 결정할 수 없고 요청 구성도 불명확하다. 스냅샷의 요청·CPU 별도 과금 구조에 따라 누락 입력을 되묻는다.",
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author drafted and ran structural/hash/cell/arithmetic checks; independent semantic source review has not occurred. This is not approval."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item pricing-12."
       }
     }
   ]

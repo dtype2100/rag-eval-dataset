@@ -98,6 +98,8 @@ def audit_dataset(data, root, *, fetch=False):
             values = contract.obj(loc.get("values"), f"evidence[{ident}].locator.values")
             contract.require(set(values) == set(loc["columns"]), f"evidence[{ident}].locator.values", "must cover exactly the referenced columns")
             contract.require(all(type(values[key]) is str and values[key] == matches[0][key] for key in loc["columns"]), f"evidence[{ident}].locator.values", "does not match table cells")
+            actual = "; ".join(f"{key}={matches[0][key]}" for key in loc["columns"])
+            contract.require(evidence["content"] == actual, f"evidence[{ident}].content", "does not match serialized table cells")
             cells_checked += len(values)
         else:
             raise ValueError(f"evidence[{ident}]: this auditor supports text, code, and CSV tables only")

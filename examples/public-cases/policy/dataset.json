@@ -92,10 +92,10 @@
     ],
     "review": {
       "policy": "independent",
-      "approved_by": "",
-      "approved_at": "",
-      "calibration": "Pending. Author checked mechanical offsets and drafted labels; independent source review and rubric calibration have not been performed.",
-      "disagreements": "Pending independent review; no agreement or absence of disagreements claimed.",
+      "approved_by": "case-support-independent-policy-reviewer",
+      "approved_at": "2026-10-27T17:10:33.093232+00:00",
+      "calibration": "Independent reviewer first answered all twelve source-grounded questions without seeing generated answers, then compared answer/action/evidence. See review-blind.json and round2.json. No human agreement study.",
+      "disagreements": "See round2.json and round2-adjustments/addendum where present. Required revisions are resolved; no unresolved item is included.",
       "status": "pending"
     },
     "judging": {
@@ -305,11 +305,11 @@
         "States automatic downgrade to Copilot Free."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q01."
       }
     },
     {
@@ -337,11 +337,11 @@
         "Does not confuse an immediate upgrade with a downgrade."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q02."
       }
     },
     {
@@ -369,11 +369,11 @@
         "Keeps the answer within ordinary personal-plan cancellation in this snapshot; does not invent discretionary outcomes."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q03."
       }
     },
     {
@@ -401,11 +401,11 @@
         "Uses full new-plan price minus already-paid current-plan amount; does not substitute the organization-seat proration formula."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q04."
       }
     },
     {
@@ -433,11 +433,11 @@
         "States immediate access after assignment."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q05."
       }
     },
     {
@@ -468,11 +468,11 @@
         "States no unused-time refund."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q06."
       }
     },
     {
@@ -501,11 +501,11 @@
         "States billing stops at the end of the cycle, not immediately."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q07."
       }
     },
     {
@@ -535,11 +535,11 @@
         "Says disabling Copilot in the environment is the available alternative; does not invent refund or billing consequences."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q08."
       }
     },
     {
@@ -568,11 +568,11 @@
         "Does not promise a support response time, successful recovery, refund, or that this assistant has canceled anything."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q09."
       }
     },
     {
@@ -602,11 +602,11 @@
         "Retrieving only one conjunct is insufficient for a fully correct answer."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q10."
       }
     },
     {
@@ -629,11 +629,11 @@
         "Does not invent an SLA or infer a deadline from the ability to contact support."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q11."
       },
       "rationale": "The reviewed fixed scope contains account-recovery and support-escalation directions but no guaranteed resolution deadline. This is a bounded absence finding, not a claim about all GitHub support contracts or linked documents.",
       "answerability_check": {
@@ -671,11 +671,11 @@
         "Does not assume a paid personal subscription or claim cancellation has been performed."
       ],
       "verification": {
-        "status": "pending",
-        "reviewer": "",
+        "status": "accepted",
+        "reviewer": "case-support-independent-policy-reviewer",
         "method": "llm",
-        "independent": false,
-        "notes": "Author source inspection and mechanical checks only. Independent semantic, alternative-evidence and naturalness review has not been performed; no approval claimed."
+        "independent": true,
+        "notes": "Independent source-first answers and comparison recorded in round2.json; amendments, if any, resolved in round2-addendum.json. Scope is pinned public documents and synthetic questions, not human or production validation. Item policy-q12."
       },
       "rationale": "The question omits the access/billing arrangement. The saved policy permits personal cancellation but excludes organization/enterprise and verified-free access, so an unconditional yes/no would not be supported for this user."
     }

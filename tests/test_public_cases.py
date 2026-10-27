@@ -119,6 +119,12 @@ class PublicCaseTests(unittest.TestCase):
             locator={"sheet": "pricing", "row": "free", "columns": ["included", "period"], "values": {"included": "100000", "period": "day"}})
         result = self.run_cli()
         self.assertEqual(result.returncode, 0, result.stderr)
+        original = copy.deepcopy(self.data)
+        self.data["evidence"][0]["content"] = "included=999999; period=month"
+        result = self.run_cli()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("content", result.stderr)
+        self.data = original
         self.data["evidence"][0]["locator"]["values"]["period"] = "month"
         result = self.run_cli()
         self.assertEqual(result.returncode, 1)

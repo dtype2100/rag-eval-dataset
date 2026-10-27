@@ -1,0 +1,58 @@
+{
+  "case_id": "support",
+  "round": 3,
+  "performed_at": "2026-10-27T17:10:33.093232+00:00",
+  "method": "source audit, five controlled corruptions of in-memory copies, freeze and re-audit",
+  "draft_file_sha256": "f664d4e279cdd348ade3348bd813bc6e033abc98d439c5a4bfd508fb6407425d",
+  "audit": {
+    "status": "valid",
+    "dataset_id": "public-support-kubernetes",
+    "sources_checked": 3,
+    "evidence_checked": 14,
+    "cells_checked": 0,
+    "items": 12,
+    "semantic_truth_verified": false,
+    "controls_rejected": 5,
+    "controls": [
+      {
+        "control": "source_hash",
+        "result": "rejected",
+        "reason": "sources[k8s-lifecycle].sha256: snapshot mismatch"
+      },
+      {
+        "control": "evidence_location",
+        "result": "rejected",
+        "reason": "evidence[e-status-phase].content: does not match source locator"
+      },
+      {
+        "control": "missing_sufficient_evidence",
+        "result": "rejected",
+        "reason": "items[support-01].evidence_sets: must not be empty"
+      },
+      {
+        "control": "split_leak",
+        "result": "rejected",
+        "reason": "items[support-01-controlled-leak].split: group crosses dev/test split"
+      },
+      {
+        "control": "self_review",
+        "result": "rejected",
+        "reason": "items[support-01].verification: accepted item needs an independent reviewer"
+      }
+    ]
+  },
+  "frozen_file": "examples/public-cases/support/dataset.v1.json",
+  "frozen_payload_sha256": "7054921d3a373ecfbad086712a993f1575a0684311e652a593f780099a4d6be1",
+  "frozen_audit": {
+    "status": "valid",
+    "dataset_id": "public-support-kubernetes",
+    "sources_checked": 3,
+    "evidence_checked": 14,
+    "cells_checked": 0,
+    "items": 12,
+    "semantic_truth_verified": false
+  },
+  "operational_rag_tested": false,
+  "human_reviewed": false,
+  "embedding_model_tested": false
+}

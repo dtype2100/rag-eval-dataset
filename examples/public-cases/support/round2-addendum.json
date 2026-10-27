@@ -1,0 +1,54 @@
+{
+  "case_id": "support",
+  "round": 2,
+  "record_type": "revision-resolution-addendum",
+  "reviewer": "/root/case_table; independent support reviewer",
+  "reviewed_at": "2026-10-27T17:09:45.617987+00:00",
+  "method": "llm",
+  "independent": true,
+  "scope": "Only support-11 rationale correction and consistency with the same item reference_answer/expected_action were rechecked. The other 11 items were not rereviewed.",
+  "prior_review_path": "examples/public-cases/support/round2.json",
+  "change_record_path": "examples/public-cases/support/round2-adjustments.json",
+  "reviewed_artifact": {
+    "path": "examples/public-cases/support/dataset.json",
+    "sha256": "601ad1f44a5ff1a4376c9b513bcbf804b83b1b086a021ef14e70deae57a81f2a"
+  },
+  "item_id": "support-11",
+  "prior_decision": "needs_revision",
+  "finding_status": "resolved",
+  "decision": "accepted",
+  "decision_meaning": "Independent recommendation concerning the previously identified defect; no dataset acceptance or manifest approval fields were written.",
+  "checked_values": {
+    "expected_action": "clarify",
+    "reference_answer": "이 토큰만으로 정확한 원인이나 수정값을 정할 수 없다. 대상 Pod·컨테이너를 식별하고 Pod 이벤트와 컨테이너 로그, 재시작했다면 이전 실행 로그를 요청한다. 예를 들어 kubectl describe pod <name-of-pod> 및 kubectl logs ${POD_NAME} -c ${CONTAINER_NAME} --previous 결과가 필요하다.",
+    "rationale": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 없으므로 추가 진단 정보를 요청한다."
+  },
+  "checks": [
+    {
+      "check": "exact_requested_rationale_correction",
+      "passed": true,
+      "details": "Actual dataset rationale exactly matches the recorded after value and requested 결정할 수 없으므로 correction."
+    },
+    {
+      "check": "expected_action_consistency",
+      "passed": true,
+      "details": "Insufficient environment evidence leads to requesting additional diagnostics, consistent with expected_action=clarify."
+    },
+    {
+      "check": "reference_answer_consistency",
+      "passed": true,
+      "details": "Both answer and rationale state that one CrashLoopBackOff token cannot determine the exact root cause or fix; the answer requests events and container logs including previous execution logs."
+    },
+    {
+      "check": "dataset_unchanged_by_reviewer",
+      "passed": true,
+      "details": "Only this new addendum was written. Dataset verification remains pending with blank reviewer."
+    }
+  ],
+  "required_changes_remaining_for_this_finding": [],
+  "relation_to_prior_counts": "The sole needs_revision finding in the prior 11 accepted / 1 needs_revision review is resolved. The earlier recommendations for the other 11 items are unchanged; this is not a new full-dataset review or freeze approval.",
+  "limitations": [
+    "No human review, operational execution, source re-audit, network access or subagent work.",
+    "Only support-11 answer/action/rationale consistency was rechecked. Dataset remains draft/pending."
+  ]
+}

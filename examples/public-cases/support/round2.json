@@ -1,0 +1,739 @@
+{
+  "case_id": "support",
+  "dataset_id": "public-support-kubernetes",
+  "round": 2,
+  "reviewer": "/root/case_table; case-pricing-author acting as independent support reviewer",
+  "method": "llm",
+  "independent": true,
+  "reviewed_at": "2026-10-27T17:09:01.550425+00:00",
+  "status": "independent-review-complete-one-revision-required",
+  "approval_recorded": false,
+  "independence": "This agent authored the pricing case, not the support case. It first read support/review-input.json and only its listed local originals, saved review-blind.json with 12 source-first answers, then read support/dataset.json. No support author reasoning or generated answers were read before the blind save.",
+  "blind_record": {
+    "path": "examples/public-cases/support/review-blind.json",
+    "sha256": "70a33d1ba63a9236fed13a0f862a4dec6b178ada7020132eb5860ec04bb72092",
+    "created_at": "2026-10-27T17:07:40.719668+00:00",
+    "items": 12
+  },
+  "reviewed_artifact": {
+    "path": "examples/public-cases/support/dataset.json",
+    "sha256": "601ad1f44a5ff1a4376c9b513bcbf804b83b1b086a021ef14e70deae57a81f2a",
+    "status_at_review": "draft"
+  },
+  "scope": "All 12 query/answer/action/evidence_sets/rubric pairs plus clarify/abstain rationale and scoped answerability were compared against the three original files at their specified hashes. Source reading was targeted to relevant sections and supplemented by whole-file exact-string absence scans; linked pages were excluded.",
+  "source_hash_checks": [
+    {
+      "source_id": "k8s-lifecycle",
+      "sha256": "1d81a56b63aa75e10d3cea41978420da7c046027a143c56852f6698ff5e6623c",
+      "matches_manifest": true
+    },
+    {
+      "source_id": "k8s-debug-running",
+      "sha256": "ec96ce1a6c370020a9162cae98aba5b1a04113365815613ecdb1f658cfa2e08f",
+      "matches_manifest": true
+    },
+    {
+      "source_id": "k8s-images",
+      "sha256": "019267d271888ab7e9b505c748a5bd0b7f99029a2270fb08390f43f94d5ddf5e",
+      "matches_manifest": true
+    }
+  ],
+  "evidence_locator_checks": [
+    {
+      "evidence_id": "e-status-phase",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 6727,
+        "end": 7205,
+        "start_line": 122,
+        "end_line": 127
+      }
+    },
+    {
+      "evidence_id": "e-crash-backoff",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 10900,
+        "end": 11339,
+        "start_line": 204,
+        "end_line": 208
+      }
+    },
+    {
+      "evidence_id": "e-crash-causes",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 12052,
+        "end": 12600,
+        "start_line": 222,
+        "end_line": 232
+      }
+    },
+    {
+      "evidence_id": "e-crash-diagnostics",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 12602,
+        "end": 13001,
+        "start_line": 234,
+        "end_line": 239
+      }
+    },
+    {
+      "evidence_id": "e-pending-phase",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 5737,
+        "end": 6009,
+        "start_line": 114,
+        "end_line": 114
+      }
+    },
+    {
+      "evidence_id": "e-waiting",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 9165,
+        "end": 9659,
+        "start_line": 172,
+        "end_line": 178
+      }
+    },
+    {
+      "evidence_id": "e-terminated",
+      "matches_original_substring": true,
+      "source_id": "k8s-lifecycle",
+      "locator": {
+        "path": "data/public-cases/support/originals/pod-lifecycle.md",
+        "start": 10064,
+        "end": 10359,
+        "start_line": 189,
+        "end_line": 192
+      }
+    },
+    {
+      "evidence_id": "e-logs-current",
+      "matches_original_substring": true,
+      "source_id": "k8s-debug-running",
+      "locator": {
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 12478,
+        "end": 12588,
+        "start_line": 336,
+        "end_line": 340
+      }
+    },
+    {
+      "evidence_id": "e-logs-previous",
+      "matches_original_substring": true,
+      "source_id": "k8s-debug-running",
+      "locator": {
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 12590,
+        "end": 12758,
+        "start_line": 342,
+        "end_line": 346
+      }
+    },
+    {
+      "evidence_id": "e-failed-scheduling-example",
+      "matches_original_substring": true,
+      "source_id": "k8s-debug-running",
+      "locator": {
+        "path": "data/public-cases/support/originals/debug-running-pod.md",
+        "start": 7300,
+        "end": 7707,
+        "start_line": 185,
+        "end_line": 187
+      }
+    },
+    {
+      "evidence_id": "e-image-backoff",
+      "matches_original_substring": true,
+      "source_id": "k8s-images",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 9317,
+        "end": 9779,
+        "start_line": 182,
+        "end_line": 188
+      }
+    },
+    {
+      "evidence_id": "e-secret-scope",
+      "matches_original_substring": true,
+      "source_id": "k8s-images",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 15265,
+        "end": 15547,
+        "start_line": 297,
+        "end_line": 300
+      }
+    },
+    {
+      "evidence_id": "e-pull-policy-default",
+      "matches_original_substring": true,
+      "source_id": "k8s-images",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 7826,
+        "end": 8002,
+        "start_line": 150,
+        "end_line": 152
+      }
+    },
+    {
+      "evidence_id": "e-pull-policy-update",
+      "matches_original_substring": true,
+      "source_id": "k8s-images",
+      "locator": {
+        "path": "data/public-cases/support/originals/images.md",
+        "start": 8017,
+        "end": 8465,
+        "start_line": 155,
+        "end_line": 161
+      }
+    }
+  ],
+  "calibration": {
+    "performed": "Source-first semantic cross-check of correct, incorrect and boundary interpretations, without a human agreement study.",
+    "cases": [
+      {
+        "positive": "support-03 requires -c and --previous for prior execution logs.",
+        "negative": "A current-log command without --previous does not answer the previous-execution request."
+      },
+      {
+        "positive": "support-02 ImagePullBackOff keeps retrying and has 300-second image-pull delay cap.",
+        "negative": "Do not interpret that cap as abandoning image pulls or confuse it with feature-gated crash restart delay."
+      },
+      {
+        "boundary": "support-06 contains explicit CPU shortage in a documentation scheduling example, while support-11 supplies only CrashLoopBackOff and cannot establish a real root cause."
+      }
+    ]
+  },
+  "counts": {
+    "items_reviewed": 12,
+    "accepted_recommendations": 11,
+    "needs_revision": 1,
+    "action_matches": 12,
+    "source_hashes_verified": 3,
+    "source_evidence_locators_verified": 14
+  },
+  "items": [
+    {
+      "item_id": "support-01",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "반복 실패·재시작에 backoff가 적용된다는 설명과 kubectl STATUS/Pod phase 구별이 독립 답변과 일치한다. 토큰에서 근본 원인을 특정하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "crash-loop",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 11153,
+            "end": 11521,
+            "start_line": 207,
+            "end_line": 211
+          }
+        },
+        {
+          "blind_evidence_key": "phase-display",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 6727,
+            "end": 7204,
+            "start_line": 122,
+            "end_line": 127
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-status-phase",
+          "e-crash-backoff"
+        ]
+      ],
+      "evidence_sufficiency_review": "두 근거가 각각 backoff와 phase 구별을 담당하며 AND 집합이 충분하다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-02",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "이미지 pull 실패, 잘못된 이미지 이름/Secret 없는 private registry 예시, 지속 재시도와 지연 상한 300초가 모두 원문과 일치한다. 300초를 포기 시점이나 총 재시도 시간으로 해석하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "pull-backoff",
+          "source_id": "k8s-images",
+          "locator": {
+            "path": "data/public-cases/support/originals/images.md",
+            "start": 9317,
+            "end": 9779,
+            "start_line": 182,
+            "end_line": 188
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-image-backoff"
+        ]
+      ],
+      "evidence_sufficiency_review": "e-image-backoff 하나가 질문의 모든 요구를 직접 뒷받침한다. CrashLoopBackOff 근거를 무관 0으로 구분한 것도 적절하다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-03",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "kubectl logs ${POD_NAME} -c ${CONTAINER_NAME} --previous는 원문과 일치한다. 다중 컨테이너 선택과 직전 종료 실행을 구별하며 현재 로그만으로 대체하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "logs",
+          "source_id": "k8s-debug-running",
+          "locator": {
+            "path": "data/public-cases/support/originals/debug-running-pod.md",
+            "start": 12435,
+            "end": 12754,
+            "start_line": 334,
+            "end_line": 345
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-logs-previous"
+        ]
+      ],
+      "evidence_sufficiency_review": "e-logs-previous가 충분하다. --previous 없는 e-logs-current는 부분 관련 1로 남겨 이전 로그의 정답으로 쓰지 않았다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-04",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "Pod Events를 위한 describe와 직전 실행 로그의 -c/--previous 두 명령이 독립 답변과 일치한다. 합성 입력을 실제 운영 로그로 바꾸거나 특정 수정값을 단정하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "crash-diagnosis",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 12602,
+            "end": 13591,
+            "start_line": 234,
+            "end_line": 248
+          }
+        },
+        {
+          "blind_evidence_key": "events-describe",
+          "source_id": "k8s-debug-running",
+          "locator": {
+            "path": "data/public-cases/support/originals/debug-running-pod.md",
+            "start": 4949,
+            "end": 5113,
+            "start_line": 130,
+            "end_line": 130
+          }
+        },
+        {
+          "blind_evidence_key": "logs",
+          "source_id": "k8s-debug-running",
+          "locator": {
+            "path": "data/public-cases/support/originals/debug-running-pod.md",
+            "start": 12435,
+            "end": 12754,
+            "start_line": 334,
+            "end_line": 345
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-crash-diagnostics",
+          "e-logs-previous"
+        ]
+      ],
+      "evidence_sufficiency_review": "e-crash-diagnostics와 e-logs-previous를 모두 요구하는 집합이 충분하다. 일반 logs 명령만으로 이전 실행 확인을 대체하지 않는다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-05",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "메모리 부족 확정을 거부하고 애플리케이션/구성/리소스/health check/probe 등 다른 가능 원인을 예시로 제시한다. 상태와 실제 원인의 구별이 원문 및 독립 답변과 일치한다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "crash-loop",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 11153,
+            "end": 11521,
+            "start_line": 207,
+            "end_line": 211
+          }
+        },
+        {
+          "blind_evidence_key": "crash-causes",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 12052,
+            "end": 12600,
+            "start_line": 222,
+            "end_line": 232
+          }
+        },
+        {
+          "blind_evidence_key": "crash-diagnosis",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 12602,
+            "end": 13591,
+            "start_line": 234,
+            "end_line": 248
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-crash-backoff",
+          "e-crash-causes"
+        ]
+      ],
+      "evidence_sufficiency_review": "backoff 의미와 가능한 원인 목록의 결합이 충분하다. 원인 후보를 현재 장애의 확정 원인으로 바꾸지 않는다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-06",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "FailedScheduling 및 CPU 부족이라는 실제 문서 출력의 범위에서 스케줄링 리소스 부족이라고 판정한다. 이미지 pull 실패나 모든 FailedScheduling의 일반 원인으로 확대하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "scheduling",
+          "source_id": "k8s-debug-running",
+          "locator": {
+            "path": "data/public-cases/support/originals/debug-running-pod.md",
+            "start": 7300,
+            "end": 7950,
+            "start_line": 185,
+            "end_line": 190
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-failed-scheduling-example"
+        ]
+      ],
+      "evidence_sufficiency_review": "문서 출력 발췌에 스케줄링 실패와 CPU 부족이 직접 나타나므로 단일 근거가 충분하다. 일반 CrashLoopBackOff 문자열로 근본 원인을 찍는 상황과 다르다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-07",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "Pod와 같은 namespace 및 kubernetes.io/dockercfg 또는 kubernetes.io/dockerconfigjson 두 type이 원문 및 독립 답변과 정확히 일치한다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "pull-secrets",
+          "source_id": "k8s-images",
+          "locator": {
+            "path": "data/public-cases/support/originals/images.md",
+            "start": 15265,
+            "end": 15547,
+            "start_line": 297,
+            "end_line": 300
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-secret-scope"
+        ]
+      ],
+      "evidence_sufficiency_review": "e-secret-scope가 조건과 type을 모두 포함하므로 충분하다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-08",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "최초 non-latest 태그 기본값 IfNotPresent와 이후 태그만 latest로 변경해도 policy가 자동 변경되지 않는다는 설명이 독립 답변과 일치한다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "pull-default",
+          "source_id": "k8s-images",
+          "locator": {
+            "path": "data/public-cases/support/originals/images.md",
+            "start": 7826,
+            "end": 8002,
+            "start_line": 150,
+            "end_line": 152
+          }
+        },
+        {
+          "blind_evidence_key": "pull-fixed",
+          "source_id": "k8s-images",
+          "locator": {
+            "path": "data/public-cases/support/originals/images.md",
+            "start": 8017,
+            "end": 8465,
+            "start_line": 155,
+            "end_line": 161
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-pull-policy-default",
+          "e-pull-policy-update"
+        ]
+      ],
+      "evidence_sufficiency_review": "최초 기본값과 객체 생성 이후 업데이트 동작의 두 근거가 모두 필요하고 제시된 AND 집합이 충분하다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-09",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "Pending은 스케줄링 대기와 이미지 다운로드 시간을 포함하며 Waiting/Reason은 개별 컨테이너 상태라는 설명이 원문과 일치한다. Pending만으로 미스케줄링을 확정하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "pending",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 5737,
+            "end": 6009,
+            "start_line": 114,
+            "end_line": 114
+          }
+        },
+        {
+          "blind_evidence_key": "waiting",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 9165,
+            "end": 9659,
+            "start_line": 172,
+            "end_line": 178
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-pending-phase",
+          "e-waiting"
+        ]
+      ],
+      "evidence_sufficiency_review": "e-pending-phase와 e-waiting의 결합이 요구된 phase/state/Reason 구별을 뒷받침한다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-10",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "answer",
+      "generated_expected_action": "answer",
+      "action_matches": true,
+      "answer_comparison": "Terminated가 정상 완료와 실패를 모두 포함하며 reason, exit code, 시작/종료 시각을 제공한다는 답변이 원문 및 독립 답변과 일치한다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "terminated",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 10064,
+            "end": 10359,
+            "start_line": 189,
+            "end_line": 192
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [
+        [
+          "e-terminated"
+        ]
+      ],
+      "evidence_sufficiency_review": "e-terminated 하나가 정상/실패 가능성과 조회 필드를 모두 직접 명시한다.",
+      "required_changes": []
+    },
+    {
+      "item_id": "support-11",
+      "decision": "needs_revision",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "clarify",
+      "generated_expected_action": "clarify",
+      "action_matches": true,
+      "answer_comparison": "expected_action=clarify와 reference_answer는 독립 답변과 일치하며 이벤트·컨테이너 로그·이전 실행 로그를 요청하는 것이 적절하다. 다만 rationale의 결정할 수 있으므로는 증거가 없으면 원인을 결정할 수 있다는 뜻이 되어 정답/행동과 반대다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "crash-loop",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 11153,
+            "end": 11521,
+            "start_line": 207,
+            "end_line": 211
+          }
+        },
+        {
+          "blind_evidence_key": "crash-causes",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 12052,
+            "end": 12600,
+            "start_line": 222,
+            "end_line": 232
+          }
+        },
+        {
+          "blind_evidence_key": "crash-diagnosis",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 12602,
+            "end": 13591,
+            "start_line": 234,
+            "end_line": 248
+          }
+        },
+        {
+          "blind_evidence_key": "logs",
+          "source_id": "k8s-debug-running",
+          "locator": {
+            "path": "data/public-cases/support/originals/debug-running-pod.md",
+            "start": 12435,
+            "end": 12754,
+            "start_line": 334,
+            "end_line": 345
+          }
+        },
+        {
+          "blind_evidence_key": "state-inspect",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 8931,
+            "end": 9085,
+            "start_line": 164,
+            "end_line": 166
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [],
+      "evidence_sufficiency_review": "추가 진단 정보 없이는 특정 원인/수정값을 정할 수 없으므로 sufficient evidence_sets=[]가 적절하다. 원인 후보, describe 명령, 이전 로그 관련 qrels는 질문의 불충분성을 설명한다.",
+      "required_changes": [
+        {
+          "severity": "required",
+          "field": "items[support-11].rationale",
+          "problem": "현재 환경의 증거가 없어 원인을 결정할 수 있으므로 라는 문구가 clarify의 이유 및 정답과 반대다.",
+          "current_text": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 없으므로 추가 진단 정보를 요청한다.",
+          "required_replacement": "고정된 공식 문서는 일반 원인 후보와 수집 명령을 제공하지만 합성 입력은 상태 토큰 하나뿐이다. 현재 환경의 증거가 없어 원인을 결정할 수 없으므로 추가 진단 정보를 요청한다.",
+          "source_basis": [
+            "crash-causes",
+            "crash-diagnosis",
+            "logs"
+          ],
+          "why_required": "행동 라벨의 근거도 계약의 일부이므로 불충분한 증거에서 원인 확정이 가능하다는 문구를 남길 수 없다. 정답과 expected_action 자체는 바꿀 필요가 없다."
+        }
+      ]
+    },
+    {
+      "item_id": "support-12",
+      "decision": "accepted",
+      "decision_meaning": "Independent semantic review recommendation only; dataset verification fields and manifest approval are unchanged.",
+      "independent_expected_action": "abstain",
+      "generated_expected_action": "abstain",
+      "action_matches": true,
+      "answer_comparison": "세 일반 문서만으로 특정 회사 checkout의 해당 시각 배포 커밋과 실재 재시작 수를 알 수 없다는 거절은 독립 답변과 일치한다. 문서 예제 수치를 회사 데이터로 대체하지 않는다.",
+      "source_evidence": [
+        {
+          "blind_evidence_key": "phase-display",
+          "source_id": "k8s-lifecycle",
+          "locator": {
+            "path": "data/public-cases/support/originals/pod-lifecycle.md",
+            "start": 6727,
+            "end": 7204,
+            "start_line": 122,
+            "end_line": 127
+          }
+        },
+        {
+          "blind_evidence_key": "events-describe",
+          "source_id": "k8s-debug-running",
+          "locator": {
+            "path": "data/public-cases/support/originals/debug-running-pod.md",
+            "start": 4949,
+            "end": 5113,
+            "start_line": 130,
+            "end_line": 130
+          }
+        }
+      ],
+      "generated_evidence_sets_reviewed": [],
+      "evidence_sufficiency_review": "abstain의 evidence_sets=[]와 세 출처를 명시한 bounded answerability_check가 적절하다. 원문 주제/선택 구간 대조 및 checkout/날짜의 전체 파일 문자열 검색 한계도 명시되어 있다.",
+      "required_changes": []
+    }
+  ],
+  "dataset_mutation_check": {
+    "dataset_bytes_unchanged": true,
+    "all_verification_statuses_still_pending": true,
+    "manifest_approved_by_still_blank": true
+  },
+  "limitations": [
+    "Independent agent review, not human review or a production execution.",
+    "No network access, generation API, child agents, operational logs, cluster access or performance measurement during this review.",
+    "The support-12 absence check is bounded; it does not prove absence in private company data or all linked Kubernetes documentation.",
+    "The one rationale defect must be corrected and rechecked before recommending acceptance of all 12 items. No dataset verification or approval fields were edited."
+  ]
+}

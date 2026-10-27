@@ -1,0 +1,58 @@
+{
+  "case_id": "policy",
+  "round": 3,
+  "performed_at": "2026-10-27T17:10:33.093232+00:00",
+  "method": "source audit, five controlled corruptions of in-memory copies, freeze and re-audit",
+  "draft_file_sha256": "af2a5b3fee7a7dda6bcf9374d64d97959f1dab4713e9ee30e0c6fccfd00c1051",
+  "audit": {
+    "status": "valid",
+    "dataset_id": "public-github-copilot-policy",
+    "sources_checked": 3,
+    "evidence_checked": 15,
+    "cells_checked": 0,
+    "items": 12,
+    "semantic_truth_verified": false,
+    "controls_rejected": 5,
+    "controls": [
+      {
+        "control": "source_hash",
+        "result": "rejected",
+        "reason": "sources[copilot-plan].sha256: snapshot mismatch"
+      },
+      {
+        "control": "evidence_location",
+        "result": "rejected",
+        "reason": "evidence[e-personal-scope].content: does not match source locator"
+      },
+      {
+        "control": "missing_sufficient_evidence",
+        "result": "rejected",
+        "reason": "items[policy-q01].evidence_sets: must not be empty"
+      },
+      {
+        "control": "split_leak",
+        "result": "rejected",
+        "reason": "items[policy-q01-controlled-leak].split: group crosses dev/test split"
+      },
+      {
+        "control": "self_review",
+        "result": "rejected",
+        "reason": "items[policy-q01].verification: accepted item needs an independent reviewer"
+      }
+    ]
+  },
+  "frozen_file": "examples/public-cases/policy/dataset.v1.json",
+  "frozen_payload_sha256": "1c2b1cca05b7234d7c7ad20f40ae035861e139a0cb709185c9b10d01302a2ef9",
+  "frozen_audit": {
+    "status": "valid",
+    "dataset_id": "public-github-copilot-policy",
+    "sources_checked": 3,
+    "evidence_checked": 15,
+    "cells_checked": 0,
+    "items": 12,
+    "semantic_truth_verified": false
+  },
+  "operational_rag_tested": false,
+  "human_reviewed": false,
+  "embedding_model_tested": false
+}
